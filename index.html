@@ -1,28 +1,13 @@
 <!doctype html>
 <html lang="zh-Hant-TW">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>櫻雪網站頁面</title>
-  <style>
-    :root { color-scheme: light; font-family: system-ui, -apple-system, "Noto Sans TC", sans-serif; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f4f8fa; color: #173946; }
-    main { width: min(680px, calc(100% - 48px)); }
-    h1 { margin-bottom: 8px; }
-    p { color: #58707a; }
-    nav { display: grid; gap: 16px; margin-top: 32px; }
-    a { display: block; padding: 24px; border-radius: 16px; background: white; color: #075b75; text-decoration: none; font-size: 1.2rem; font-weight: 700; box-shadow: 0 8px 30px rgba(23,57,70,.08); }
-    a:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(23,57,70,.13); }
-  </style>
-</head>
-<body>
-  <main>
-    <h1>櫻雪網站頁面</h1>
-    <p>請選擇要瀏覽的頁面：</p>
-    <nav>
-      <a href="櫻雪游泳池.html">櫻雪游泳池</a>
-      <a href="櫻雪旅行社_潛水服務.html">櫻雪旅行社｜潛水服務</a>
-    </nav>
-  </main>
-</body>
-</html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>櫻雪｜潛水・游泳</title>
+<meta name="description" content="櫻雪潛水中心與櫻雪游泳池入口。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#fff;--blue:#075777;--pink:#eea5b1;--k10:#e6e6e6}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:"DM Sans","Noto Sans TC",sans-serif}body{background:#163d4c;color:#fff}.landing{min-height:100svh;position:relative;display:grid;grid-template-rows:1fr auto;overflow:hidden;background:url('sy-dive-images/pool-syk1.jpg') center 38%/cover no-repeat}.landing:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,44,59,.12) 0%,rgba(5,44,59,.24) 46%,rgba(4,31,43,.8) 100%),linear-gradient(90deg,rgba(5,48,65,.16),transparent 50%,rgba(5,48,65,.12))}.brand{position:relative;z-index:2;align-self:center;justify-self:center;text-align:center;padding:84px 24px 40px;transform:translateY(-55px)}.brand-mark{width:90px;height:100px;object-fit:contain;margin:0 auto 22px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.16))}.brand-name{font-size:11px;letter-spacing:.34em;font-weight:400;text-transform:uppercase;text-shadow:0 2px 14px rgba(0,0,0,.25)}.brand-line{width:1px;height:45px;background:rgba(255,255,255,.65);margin:25px auto 0}.entries{position:relative;z-index:3;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.35)}.entry{min-height:230px;padding:44px 6vw 38px;color:#fff;text-decoration:none;display:flex;flex-direction:column;justify-content:space-between;position:relative;background:rgba(4,38,52,.38);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .4s}.entry:first-child{border-right:1px solid rgba(255,255,255,.35)}.entry:hover{background:rgba(6,83,112,.68)}.entry-meta{font-size:9px;letter-spacing:.3em;color:rgba(255,255,255,.65)}.entry h1{font-size:clamp(28px,3vw,44px);font-weight:300;letter-spacing:.08em;margin:15px 0 8px}.entry p{font-size:13px;line-height:1.8;font-weight:300;color:rgba(255,255,255,.72);margin:0}.entry-foot{display:flex;align-items:center;justify-content:space-between;margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,.35);font-size:9px;letter-spacing:.22em}.arrow{font-size:25px;font-weight:300;transition:transform .3s}.entry:hover .arrow{transform:translateX(8px)}.corner{position:absolute;top:24px;right:28px;z-index:4;font-size:8px;letter-spacing:.22em;color:rgba(255,255,255,.7)}
+@media(max-width:700px){.landing{min-height:100svh;background-position:53% center;grid-template-rows:minmax(355px,1fr) auto}.landing:before{background:linear-gradient(180deg,rgba(4,39,53,.12),rgba(4,30,42,.52) 48%,rgba(4,29,40,.88) 100%)}.brand{padding:75px 20px 28px;transform:translateY(-18px)}.brand-mark{width:70px;height:78px;margin-bottom:16px}.brand-line{height:28px;margin-top:18px}.entries{grid-template-columns:1fr}.entry{min-height:170px;padding:27px 24px 24px;background:rgba(4,38,52,.53)}.entry:first-child{border-right:0;border-bottom:1px solid rgba(255,255,255,.32)}.entry h1{font-size:27px;margin:8px 0 4px}.entry p{font-size:12px}.entry-foot{margin-top:18px;padding-top:12px}.corner{top:18px;right:18px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head>
+<body><main class="landing"><div class="corner">SAKURAYUKI · TAIPEI</div><section class="brand" aria-label="櫻雪"><img class="brand-mark" src="sy-dive-images/hero-mark.png" alt="櫻雪 Logo mark"><div class="brand-name">Sakurayuki</div><div class="brand-line"></div></section><nav class="entries" aria-label="選擇服務"><a class="entry" href="櫻雪旅行社_潛水服務.html"><div><div class="entry-meta">SY DIVING · 01</div><h1>櫻雪潛水中心</h1><p>台北仁愛・東北角龍洞・沖繩青洞</p></div><div class="entry-foot"><span>進入潛水頁面</span><span class="arrow">→</span></div></a><a class="entry" href="櫻雪游泳池.html"><div><div class="entry-meta">SY SWIM · 02</div><h1>櫻雪游泳池</h1><p>全年恆溫・游泳教學・平靜水域訓練</p></div><div class="entry-foot"><span>進入游泳池頁面</span><span class="arrow">→</span></div></a></nav></main></body></html>
