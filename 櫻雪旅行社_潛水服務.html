@@ -77,15 +77,13 @@
   .hero {
     position: relative; min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(180deg, var(--seafoam) 0%, var(--sky-celadon) 35%, var(--deep-ocean) 70%, var(--deep-ocean) 100%);
+    background: var(--deep-ocean);
     overflow: hidden; padding: 6rem 2rem 4rem;
   }
   .hero::before {
     content: ''; position: absolute;
-    top: -80px; right: -80px;
-    width: 320px; height: 320px;
-    background: radial-gradient(circle, rgba(167,210,235,0.38) 0%, transparent 70%);
-    border-radius: 50%;
+    inset: 0; z-index: 1;
+    background: linear-gradient(90deg, rgba(4,42,71,0.64) 0%, rgba(4,42,71,0.28) 48%, rgba(4,42,71,0.12) 100%);
   }
   .hero::after {
     content: ''; position: absolute;
@@ -93,11 +91,14 @@
     width: 220px; height: 220px;
     background: radial-gradient(circle, rgba(235,177,187,0.24) 0%, transparent 70%);
     border-radius: 50%;
+    z-index: 1;
   }
-  .hero-img {
-    position: absolute; inset: 0;
-    background: url('sy-dive-images/hero.jpg') center/cover no-repeat;
-    opacity: 0.3;
+  .hero-video {
+    position: absolute; inset: 0; z-index: 0; overflow: hidden;
+  }
+  .hero-video video {
+    width: 100%; height: 100%; display: block; object-fit: cover;
+    object-position: center; opacity: 0.92;
   }
   .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 0 2rem; }
   .hero-kana {
@@ -200,6 +201,29 @@
     font-size: 0.76rem; color: var(--text-secondary); line-height: 1.6;
     font-family: 'Noto Sans JP', 'Noto Sans TC', sans-serif;
   }
+
+  /* ── OKINAWA BASE GALLERY ── */
+  .architecture-grid { display: grid; grid-template-columns: 1.25fr 0.9fr; grid-template-rows: repeat(2, minmax(240px, 1fr)); gap: 1rem; margin-top: 2rem; }
+  .architecture-card { position: relative; overflow: hidden; min-height: 240px; background: var(--white); border: 1px solid var(--border-light); }
+  .architecture-card.featured { grid-row: span 2; }
+  .architecture-card img { width: 100%; height: 100%; min-height: 240px; display: block; object-fit: cover; transition: transform 0.7s cubic-bezier(0.25,0.1,0.25,1); }
+  .architecture-card.featured img { min-height: 500px; }
+  .architecture-card:hover img { transform: scale(1.035); }
+  .architecture-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 3.4rem 1.25rem 1.1rem; color: white; background: linear-gradient(transparent, rgba(4,42,71,0.8)); }
+  .architecture-caption strong { display: block; font-size: 1rem; letter-spacing: 0.08em; }
+  .architecture-caption span { display: block; margin-top: 0.15rem; font-size: 0.72rem; color: rgba(255,255,255,0.78); letter-spacing: 0.04em; }
+
+  /* ── OKINAWA NATURE ── */
+  .nature-section { max-width: 1200px; }
+  .nature-grid { display: grid; grid-template-columns: 1.35fr 0.85fr 0.85fr; grid-template-rows: repeat(2, minmax(180px, 1fr)); gap: 1rem; margin-top: 2rem; }
+  .nature-card { position: relative; overflow: hidden; min-height: 180px; background: var(--deep-ocean); }
+  .nature-card.lead { grid-row: span 2; }
+  .nature-card img { width: 100%; height: 100%; min-height: 180px; display: block; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25,0.1,0.25,1); }
+  .nature-card.lead img { min-height: 380px; }
+  .nature-card:hover img { transform: scale(1.04); }
+  .nature-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 3.2rem 1.1rem 1rem; color: white; background: linear-gradient(transparent, rgba(4,42,71,0.76)); }
+  .nature-caption strong { display: block; font-size: 0.9rem; letter-spacing: 0.08em; }
+  .nature-caption span { display: block; margin-top: 0.15rem; font-size: 0.7rem; color: rgba(255,255,255,0.76); }
 
   /* ── FEATURES ── */
   .feats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; max-width: 960px; margin: 0 auto; }
@@ -350,6 +374,10 @@
 
   @media (max-width: 640px) {
     section { padding: 3rem 1.25rem; }
+    .architecture-grid, .nature-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .architecture-card.featured, .nature-card.lead { grid-row: auto; }
+    .architecture-card.featured img, .nature-card.lead img { min-height: 260px; }
+    .architecture-card img, .nature-card img { min-height: 220px; }
   }
 
   .reveal{opacity:1;transform:none;transition:none}
@@ -427,6 +455,7 @@
   <button class="hamburger" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單"><span></span><span></span><span></span></button>
   <ul class="nav-links">
     <li><a href="#locations">據點</a></li>
+    <li><a href="#okinawa-base">沖繩</a></li>
     <li><a href="#pathway">考證</a></li>
 
     <li><a href="櫻雪游泳池.html">櫻雪游泳池</a></li>
@@ -438,7 +467,11 @@
 
 <!-- ══ HERO ══ -->
 <header class="hero">
-  <div class="hero-img"></div>
+  <div class="hero-video" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="metadata" poster="sy-dive-images/hero-ocean-1.jpg?v=20260827-hero-v1">
+      <source src="sy-dive-images/hero-ocean.mp4?v=20260827-hero-v1" type="video/mp4">
+    </video>
+  </div>
   <div class="hero-content">
     <img src="sy-dive-images/hero-mark.png" alt="" style="width:60px;height:auto;margin:0 auto 1.5rem;display:block;filter:drop-shadow(0 2px 8px rgba(255,255,255,0.3));animation:markGlow 3s ease-in-out infinite;">
   <div class="hero-kana">SAKURAYUKI DIVING CENTER</div>
@@ -503,6 +536,28 @@
   </div>
 </section>
 
+<!-- ══ 沖繩據點建築 ══ -->
+<section class="reveal" id="okinawa-base">
+  <div class="section-kana">OKINAWA BASE</div>
+  <h2 class="section-title">沖 繩 的 店</h2>
+  <div class="sec-line"></div>
+  <p class="section-sub">從白色建築、棕櫚樹到海風，這裡是櫻雪在沖繩的集合點，也是出發前整理裝備與認識海況的地方。</p>
+  <div class="architecture-grid">
+    <figure class="architecture-card featured">
+      <img src="sy-dive-images/okinawa-aerial.jpg?v=20260827-oki-aerial-v1" alt="沖繩櫻雪潛水基地空拍外觀" loading="lazy">
+      <figcaption class="architecture-caption"><strong>Okinawa Base</strong><span>從空拍看見白色店面與海島街景</span></figcaption>
+    </figure>
+    <figure class="architecture-card">
+      <img src="sy-dive-images/okinawa-entrance.jpg?v=20260827-oki-entrance-v1" alt="沖繩櫻雪潛水基地入口" loading="lazy">
+      <figcaption class="architecture-caption"><strong>Storefront</strong><span>裝備展示與集合入口</span></figcaption>
+    </figure>
+    <figure class="architecture-card">
+      <img src="sy-dive-images/loc-okinawa.jpg?v=20260827-shop-v1" alt="沖繩櫻雪潛水基地外觀" loading="lazy">
+      <figcaption class="architecture-caption"><strong>Island Light</strong><span>白色外牆、木格柵與棕櫚樹</span></figcaption>
+    </figure>
+  </div>
+</section>
+
 
 <!-- ══ 特色 ══ -->
 <section style="text-align:center;">
@@ -539,6 +594,32 @@
     <div class="stat-item"><div class="stat-value">1.5<span> hr</span></div><div class="stat-label">台灣直飛</div></div>
     <div class="stat-item"><div class="stat-value">60<span> min</span></div><div class="stat-label">那霸 → 恩納村</div></div>
     <div class="stat-item"><div class="stat-value">5D<span> / 4N</span></div><div class="stat-label">沖繩潛旅安排</div></div>
+  </div>
+</section>
+
+<!-- ══ 沖繩自然 ══ -->
+<section class="reveal nature-section" id="okinawa-nature">
+  <div class="section-kana">ISLAND NATURE</div>
+  <h2 class="section-title">把海島留給安靜的藍</h2>
+  <div class="sec-line"></div>
+  <p class="section-sub">不只下水，也留一點時間給沖繩的海風、珊瑚與清澈光線。</p>
+  <div class="nature-grid">
+    <figure class="nature-card lead">
+      <img src="sy-dive-images/hero-ocean-3.jpg?v=20260827-hero-v1" alt="沖繩清幽海岸" loading="lazy">
+      <figcaption class="nature-caption"><strong>Quiet Coast</strong><span>清澈海灣與珊瑚岩岸</span></figcaption>
+    </figure>
+    <figure class="nature-card">
+      <img src="sy-dive-images/okinawa-blue-cave.jpg?v=20260827-nature-v1" alt="沖繩青洞水下光線" loading="lazy">
+      <figcaption class="nature-caption"><strong>Blue Cave</strong><span>光從水面慢慢落下</span></figcaption>
+    </figure>
+    <figure class="nature-card">
+      <img src="sy-dive-images/hero-ocean-1.jpg?v=20260827-hero-v1" alt="沖繩海岸潛水出發" loading="lazy">
+      <figcaption class="nature-caption"><strong>Into Blue</strong><span>從岸邊走進透明海水</span></figcaption>
+    </figure>
+    <figure class="nature-card">
+      <img src="sy-dive-images/hero-ocean-2.jpg?v=20260827-hero-v1" alt="沖繩珊瑚礁與潛水者" loading="lazy">
+      <figcaption class="nature-caption"><strong>Underwater Light</strong><span>珊瑚礁與水下日光</span></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -700,10 +781,10 @@
 </section>
 
 <!-- ══ 親子 ══ -->
-<div class="img-band"><img src="sy-dive-images/family.jpg" alt="親子友善"></div>
+<div class="img-band"><img src="sy-dive-images/family.jpg?v=20260827-family-v2" alt="親子友善"></div>
 
 <!-- ══ 台灣潛點 ══ -->
-<div class="img-band"><img src="sy-dive-images/asia.jpg" alt="台灣潛點"></div>
+<div class="img-band"><img src="sy-dive-images/asia.jpg?v=20260827-dive-v2" alt="台灣潛點"></div>
 
 <!-- ══ 聯絡 ══ -->
 <div class="contact reveal" id="contact" style="background:url('sy-dive-images/sunset-footer.jpg') center/cover no-repeat;position:relative;color:white;">
