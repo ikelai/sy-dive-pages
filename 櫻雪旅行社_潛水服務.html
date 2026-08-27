@@ -8,22 +8,23 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
 
   :root {
-    --paper:          #faf6f0;
-    --sky-celadon:    #d0eae8;
-    --ink:            #1a1a1a;
-    --sakura-light:   #f7c5cc;
-    --sakura-main:    #eea5b1;
-    --vermillion:     #c44536;
-    --seafoam:        #d4f1f9;
-    --pocari-blue:    #0080ff;
-    --ryukyu-blue:    #3a7ca5;
-    --deep-ocean:     #2c5f7c;
-    --text-primary:   #1a1a1a;
-    --text-secondary: #5a5a5a;
-    --border-light:   #e8e3d8;
-    --border-blue:    #a8e6f0;
+    /* Clean pink-blue palette: #f5f5f5 · #a7d2eb · #d7e7ec · #ebb1bb */
+    --paper:          #f5f5f5;
+    --sky-celadon:    #d7e7ec;
+    --ink:            #32434d;
+    --sakura-light:   #f6d7dc;
+    --sakura-main:    #ebb1bb;
+    --vermillion:     #d78f9e;
+    --seafoam:        #d7e7ec;
+    --pocari-blue:    #a7d2eb;
+    --ryukyu-blue:    #6da4be;
+    --deep-ocean:     #6498b1;
+    --text-primary:   #32434d;
+    --text-secondary: #65757d;
+    --border-light:   #dce8ec;
+    --border-blue:    #a7d2eb;
     --white:          #ffffff;
-    --gold:           #b8956a;
+    --gold:           #d9a0aa;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,7 +41,7 @@
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(58,124,165,0.96);
+    background: rgba(100,152,177,0.96);
     -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-light);
     padding: 0 2rem; height: 60px;
@@ -83,14 +84,14 @@
     content: ''; position: absolute;
     top: -80px; right: -80px;
     width: 320px; height: 320px;
-    background: radial-gradient(circle, rgba(0,128,255,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(167,210,235,0.38) 0%, transparent 70%);
     border-radius: 50%;
   }
   .hero::after {
     content: ''; position: absolute;
     bottom: -40px; left: -40px;
     width: 220px; height: 220px;
-    background: radial-gradient(circle, rgba(238,165,177,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(235,177,187,0.24) 0%, transparent 70%);
     border-radius: 50%;
   }
   .hero-img {
@@ -110,7 +111,7 @@
     color: white; line-height: 1.5; letter-spacing: 0.1em;
     margin-bottom: 1rem;
   }
-  .hero h1 em { font-style: normal; color: #f0c080; }
+  .hero h1 em { font-style: normal; color: var(--sakura-main); }
   .hero p {
     font-size: 1rem; color: rgba(255,255,255,0.7); font-weight: 300;
     letter-spacing: 0.06em; margin-bottom: 2.5rem;
@@ -133,13 +134,13 @@
     transition: all 0.35s cubic-bezier(0.25,0.1,0.25,1);
   }
   .btn-primary { background: var(--vermillion); color: white; border: none; }
-  .btn-primary:hover { filter: brightness(0.9); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(196,69,54,0.2); }
+  .btn-primary:hover { filter: brightness(0.96); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(215,143,158,0.2); }
   .btn-outline { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.4); }
   .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.06); transform: translateY(-1px); }
-  .btn-line { background: transparent; color: var(--pocari-blue); border: 1px solid var(--pocari-blue); }
-  .btn-line:hover { background: rgba(0,128,255,0.05); transform: translateY(-1px); }
+  .btn-line { background: transparent; color: var(--deep-ocean); border: 1px solid var(--deep-ocean); }
+  .btn-line:hover { background: rgba(167,210,235,0.22); transform: translateY(-1px); }
   .btn-dark { background: var(--ink); color: var(--paper); border: none; }
-  .btn-dark:hover { background: #333; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .btn-dark:hover { background: var(--ink); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(50,67,77,0.12); }
 
   .scroll-hint {
     position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
@@ -187,18 +188,18 @@
     font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 1.1rem;
     flex-shrink: 0;
   }
-  .loc-icon.tpe { background: rgba(238,165,177,0.2); color: var(--vermillion); }
-  .loc-icon.ld { background: rgba(58,124,165,0.15); color: var(--ryukyu-blue); }
-  .loc-icon.oki { background: rgba(0,128,255,0.12); color: var(--pocari-blue); }
+  .loc-icon.tpe { background: rgba(235,177,187,0.26); color: var(--vermillion); }
+  .loc-icon.ld { background: rgba(167,210,235,0.34); color: var(--deep-ocean); }
+  .loc-icon.oki { background: rgba(167,210,235,0.22); color: var(--deep-ocean); }
   .loc-body { padding: 0.75rem 1.75rem 1.75rem; }
   .loc-badge {
     display: inline-block; padding: 4px 12px; border-radius: 50px;
     font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em;
     margin-bottom: 0.5rem;
   }
-  .badge-tpe { background: rgba(238,165,177,0.15); color: var(--vermillion); }
-  .badge-taiwan { background: rgba(58,124,165,0.12); color: var(--ryukyu-blue); }
-  .badge-oki { background: rgba(0,128,255,0.1); color: var(--pocari-blue); }
+  .badge-tpe { background: rgba(235,177,187,0.2); color: var(--vermillion); }
+  .badge-taiwan { background: rgba(167,210,235,0.24); color: var(--deep-ocean); }
+  .badge-oki { background: rgba(167,210,235,0.16); color: var(--deep-ocean); }
   .loc-body h3 { font-family: 'Noto Serif TC', serif; font-size: 1.15rem; font-weight: 700; color: var(--ink); letter-spacing: 0.05em; margin-bottom: 0.25rem; }
   .loc-body .jp { font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
   .loc-body p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; }
@@ -229,7 +230,7 @@
   }
   .stp-circle.c1 { background: var(--sakura-main); }
   .stp-circle.c2 { background: var(--sakura-main); }
-  .stp-circle.c3 { background: var(--pocari-blue); }
+  .stp-circle.c3 { background: var(--deep-ocean); }
   .stp-arrow { position: absolute; top: 28px; right: -15px; font-size: 1.3rem; color: var(--ryukyu-blue); opacity: 0.5; }
   .stp:last-child .stp-arrow { display: none; }
   .stp h4 { font-family: 'Noto Serif TC', serif; font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
@@ -256,7 +257,7 @@
     font-family:'Noto Serif TC','PMingLiU','Songti SC','SimSun',serif; font-weight:700; font-size:1rem;
     color:white; background:var(--deep-ocean);
   }
-  .tl-item .tl-icon.light { background:var(--pocari-blue); }
+  .tl-item .tl-icon.light { background:var(--ryukyu-blue); }
   .tl-item .tl-time { font-family:'Noto Serif TC','PMingLiU','Songti SC','SimSun',serif; font-size:0.95rem; font-weight:700; color:var(--ink); letter-spacing:0.04em; }
   .tl-item .tl-act { font-size:0.75rem; color:var(--text-secondary); margin-top:0.2rem; }
   .tl-summary { text-align:center; margin-top:2rem; padding:1.5rem; background:var(--seafoam); }
@@ -283,7 +284,7 @@
   .sky-band p { color: var(--text-secondary); }
 
   /* ── DISCOUNT ── */
-  .discount { text-align: center; padding: 5rem 2rem; background: linear-gradient(180deg, var(--paper) 0%, rgba(247,197,204,0.15) 100%); }
+  .discount { text-align: center; padding: 5rem 2rem; background: linear-gradient(180deg, var(--paper) 0%, rgba(235,177,187,0.16) 100%); }
   .stamp {
     display: inline-flex; align-items: center; justify-content: center;
     width: 88px; height: 88px; border: 2px solid var(--vermillion);
@@ -314,9 +315,9 @@
   .brand-tree { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.5rem; font-size: 0.8rem; }
   .brand-node { padding: 6px 16px; border-radius: 8px; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.04em; }
   .brand-parent { background: var(--deep-ocean); color: white; }
-  .brand-snow { background: rgba(238,165,177,0.1); color: var(--vermillion); border: 1px solid var(--sakura-main); }
+  .brand-snow { background: rgba(235,177,187,0.16); color: var(--vermillion); border: 1px solid var(--sakura-main); }
   .brand-dive { background: var(--vermillion); color: white; }
-  .brand-swim { background: rgba(0,128,255,0.08); color: var(--pocari-blue); border: 1px solid var(--pocari-blue); }
+  .brand-swim { background: rgba(167,210,235,0.18); color: var(--deep-ocean); border: 1px solid var(--pocari-blue); }
   .brand-arrow { font-size: 1.1rem; color: var(--text-secondary); }
 
   /* ── CONTACT ── */
@@ -345,7 +346,7 @@
 
   /* ── MOBILE NAV ── */
   @media(max-width:768px){
-    .nav-links{position:fixed;top:56px;left:0;right:0;background:rgba(58,124,165,0.98);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);flex-direction:column;gap:0;padding:1rem 0;transform:translateY(-120%);transition:transform 0.35s cubic-bezier(0.25,0.1,0.25,1);z-index:99;border-bottom:1px solid var(--border-light)}
+    .nav-links{position:fixed;top:56px;left:0;right:0;background:rgba(100,152,177,0.98);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);flex-direction:column;gap:0;padding:1rem 0;transform:translateY(-120%);transition:transform 0.35s cubic-bezier(0.25,0.1,0.25,1);z-index:99;border-bottom:1px solid var(--border-light)}
     .nav-links.open{transform:translateY(0)}
     .nav-links li{width:100%;text-align:center}
     .nav-links a{display:block;padding:1rem 2rem;font-size:0.9rem;min-height:44px;color:rgba(255,255,255,0.85)}
@@ -367,7 +368,7 @@
   .nav-links a{min-height:auto}@media(max-width:768px){.nav-links a{min-height:44px}}
 
 
-  .sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:99;background:rgba(250,248,245,0.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--border-light);padding:0.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transform:translateY(100%);transition:transform 0.35s cubic-bezier(0.25,0.1,0.25,1)}
+  .sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:99;background:rgba(245,245,245,0.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--border-light);padding:0.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transform:translateY(100%);transition:transform 0.35s cubic-bezier(0.25,0.1,0.25,1)}
   .sticky-bar.show{transform:translateY(0)}
   .sticky-bar .price-info{font-size:0.82rem;color:rgba(255,255,255,0.85);letter-spacing:0.04em}
   .sticky-bar .price-info strong{color:var(--ink);font-family:'Noto Serif TC','PMingLiU','Songti SC','SimSun',serif;font-size:0.95rem}
@@ -379,11 +380,11 @@
   /* ── 細節調整 ── */
   
   /* 按鈕降調：從純色改半透明底＋邊框，hover 才變實心 */
-  .btn-primary{background:rgba(196,69,54,0.1);color:var(--vermillion);border:1px solid rgba(196,69,54,0.2)}
+  .btn-primary{background:rgba(235,177,187,0.18);color:var(--vermillion);border:1px solid rgba(215,143,158,0.28)}
   .btn-primary:hover{background:var(--vermillion);color:white;border-color:var(--vermillion)}
-  .btn-line{background:rgba(0,128,255,0.06);color:var(--pocari-blue);border:1px solid rgba(0,128,255,0.2)}
-  .btn-line:hover{background:var(--pocari-blue);color:white;border-color:var(--pocari-blue)}
-  .btn-dark{background:rgba(26,26,26,0.06);color:var(--ink);border:1px solid rgba(26,26,26,0.15)}
+  .btn-line{background:rgba(167,210,235,0.16);color:var(--deep-ocean);border:1px solid rgba(100,152,177,0.28)}
+  .btn-line:hover{background:var(--pocari-blue);color:var(--ink);border-color:var(--deep-ocean)}
+  .btn-dark{background:rgba(50,67,77,0.06);color:var(--ink);border:1px solid rgba(50,67,77,0.15)}
   .btn-dark:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .btn-outline{background:transparent;color:white;border:1px solid rgba(255,255,255,0.3)}
   .btn-outline:hover{background:rgba(255,255,255,0.1);border-color:white}
@@ -690,7 +691,7 @@
 
 <!-- ══ 聯絡 ══ -->
 <div class="contact reveal" id="contact" style="background:url('sy-dive-images/sunset-footer.jpg') center/cover no-repeat;position:relative;color:white;">
-  <div style="position:absolute;inset:0;background:rgba(44,95,124,0.88);"></div>
+  <div style="position:absolute;inset:0;background:rgba(100,152,177,0.88);"></div>
   <div style="position:relative;z-index:1;">
   <img src="sy-dive-images/logo-1.png?v=20260827-logo1" alt="" class="logo-foot" style="filter:brightness(0)invert(1);">
   <div class="section-kana" style="color:rgba(255,255,255,0.5);">お問い合わせ</div>
