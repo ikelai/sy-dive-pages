@@ -182,15 +182,6 @@
     padding: 1.5rem 1.75rem 0;
     display: flex; align-items: flex-start; gap: 1rem;
   }
-  .loc-icon {
-    width: 48px; height: 48px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-weight: 700; font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-  .loc-icon.tpe { background: rgba(235,177,187,0.26); color: var(--vermillion); }
-  .loc-icon.ld { background: rgba(167,210,235,0.34); color: var(--deep-ocean); }
-  .loc-icon.oki { background: rgba(167,210,235,0.22); color: var(--deep-ocean); }
   .loc-body { padding: 0.75rem 1.75rem 1.75rem; }
   .loc-badge {
     display: inline-block; padding: 4px 12px; border-radius: 50px;
@@ -211,11 +202,22 @@
   }
 
   /* ── FEATURES ── */
-  .feats { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
-  .feat { text-align: center; padding: 1rem 1.5rem; }
-  .feat .num{font-family:'Noto Sans TC','Noto Sans JP',sans-serif;font-size:0.95rem;font-weight:700;color:var(--ink);width:52px;height:52px;border:1px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;transition:all 0.3s}
-    .feat:hover .num{border-color:var(--pocari-blue);color:var(--pocari-blue)}
-    .feat .lbl{font-size:0.75rem;color:var(--text-secondary);margin-top:0.2rem;letter-spacing:0.06em}
+  .feats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; max-width: 960px; margin: 0 auto; }
+  .feat { text-align: center; padding: 1.5rem 1rem; background: rgba(255,255,255,0.72); border: 1px solid var(--border-light); transition: all 0.35s cubic-bezier(0.25,0.1,0.25,1); }
+  .feat:hover { transform: translateY(-3px); border-color: var(--pocari-blue); box-shadow: 0 8px 22px rgba(13,94,168,0.1); }
+  .feat-icon { width: 52px; height: 52px; display: grid; place-items: center; margin: 0 auto 0.85rem; color: var(--deep-ocean); background: rgba(167,210,235,0.22); border: 1px solid rgba(13,94,168,0.22); border-radius: 14px; transition: all 0.3s; }
+  .feat-icon svg { width: 27px; height: 27px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .feat:hover .feat-icon { color: white; background: var(--deep-ocean); border-color: var(--deep-ocean); }
+  .feat .lbl { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.2rem; letter-spacing: 0.04em; font-weight: 600; }
+  @media (max-width: 760px) { .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  /* ── OKINAWA STATS ── */
+  .stats-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; max-width: 760px; margin: 1.5rem auto 0; }
+  .stat-item { padding: 1.1rem 0.75rem 0.9rem; border-top: 2px solid var(--pocari-blue); border-bottom: 1px solid var(--border-light); }
+  .stat-value { color: var(--deep-ocean); font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.15; letter-spacing: 0.02em; }
+  .stat-value span { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; }
+  .stat-label { margin-top: 0.45rem; color: var(--text-secondary); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; }
+  @media (max-width: 560px) { .stats-grid { gap: 0.5rem; } .stat-value { font-size: 1.55rem; } .stat-label { font-size: 0.7rem; } }
 
   /* ── PADI PATHWAY ── */
   .pathway-wrap { background: linear-gradient(180deg, var(--paper) 0%, var(--seafoam) 50%, var(--paper) 100%); padding: 5rem 2rem; }
@@ -239,13 +241,17 @@
   @media (max-width: 640px) { .stp-arrow { display: none; } .stp { border-bottom: 1px dashed var(--border-light); padding: 1rem; } }
 
   .cert-badge {
-    display: inline-flex; align-items: center; gap: 0.75rem;
-    padding: 16px 32px; background: var(--white);
-    border: 2px solid var(--gold); margin-top: 2rem;
+    position: relative; display: inline-flex; align-items: center; gap: 1rem;
+    padding: 0.9rem 1.35rem 0.9rem 0.9rem; background: linear-gradient(135deg, var(--deep-ocean), #08477e);
+    border: 1px solid rgba(255,255,255,0.72); border-radius: 5px; margin-top: 2rem;
+    box-shadow: 0 8px 18px rgba(13,94,168,0.22), inset 0 0 0 3px rgba(255,255,255,0.12);
+    text-align: left; overflow: hidden;
   }
-  .cert-badge .icon { font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 1.8rem; color: var(--gold); }
-  .cert-badge .txt { font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--ink); }
-  .cert-badge .txt small { display: block; font-weight: 400; font-size: 0.7rem; color: var(--text-secondary); }
+  .cert-badge::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(255,255,255,0.28); border-radius: 2px; pointer-events: none; }
+  .cert-badge .icon { position: relative; z-index: 1; display: grid; place-items: center; min-width: 68px; height: 44px; padding: 0 0.35rem; background: var(--paper); border: 2px solid var(--sakura-main); color: var(--deep-ocean); font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0.12em; transform: skew(-6deg); }
+  .cert-badge .txt { position: relative; z-index: 1; font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-weight: 700; font-size: 1rem; color: white; letter-spacing: 0.03em; }
+  .cert-badge .txt small { display: block; margin-top: 0.18rem; font-weight: 400; font-size: 0.7rem; color: rgba(255,255,255,0.68); letter-spacing: 0.02em; }
+  @media (max-width: 560px) { .cert-badge { gap: 0.7rem; padding-right: 0.9rem; } .cert-badge .txt { font-size: 0.86rem; } .cert-badge .txt small { font-size: 0.62rem; } }
 
   /* ── TIMELINE ── */
   .tl { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem; }
@@ -319,6 +325,11 @@
   .brand-dive { background: var(--vermillion); color: white; }
   .brand-swim { background: rgba(167,210,235,0.18); color: var(--deep-ocean); border: 1px solid var(--pocari-blue); }
   .brand-arrow { font-size: 1.1rem; color: var(--text-secondary); }
+
+  /* ── PLAN REGION LABELS ── */
+  .loc-region { display: inline-flex; align-items: center; min-height: 34px; padding: 0.35rem 0.8rem; border-radius: 999px; font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; }
+  .loc-region.taiwan { background: rgba(167,210,235,0.24); color: var(--deep-ocean); border: 1px solid rgba(13,94,168,0.28); }
+  .loc-region.okinawa { background: rgba(235,177,187,0.2); color: var(--vermillion); border: 1px solid rgba(223,111,143,0.32); }
 
   /* ── CONTACT ── */
   .contact { text-align: center; padding: 5rem 2rem; }
@@ -499,10 +510,22 @@
   <h2 class="section-title">為 什 麼 選 櫻 雪</h2>
   <div class="sec-line"></div>
   <div class="feats">
-    <div class="feat reveal"><div class="num">台</div><div class="lbl">台北市中心前置訓練</div></div>
-    <div class="feat reveal"><div class="num">彈</div><div class="lbl">時間彈性安排</div></div>
-    <div class="feat reveal"><div class="num">海</div><div class="lbl">沖繩青洞與多元潛點</div></div>
-    <div class="feat reveal"><div class="num">P</div><div class="lbl">PADI 認證教練</div></div>
+    <div class="feat reveal">
+      <div class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11A7 7 0 0 0 5 10c0 4.9 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.2"></circle></svg></div>
+      <div class="lbl">台北市中心前置訓練</div>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3 2"></path></svg></div>
+      <div class="lbl">時間彈性安排</div>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8.5c2.2-2 4.4-2 6.6 0s4.4 2 6.6 0 4.4-2 6.6 0"></path><path d="M3 14.5c2.2-2 4.4-2 6.6 0s4.4 2 6.6 0 4.4-2 6.6 0"></path><circle cx="12" cy="18.5" r="1.5"></circle></svg></div>
+      <div class="lbl">沖繩青洞與多元潛點</div>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3.5h10v7.2c0 4-2.4 6.8-5 8.8-2.6-2-5-4.8-5-8.8Z"></path><path d="m9.3 11.4 1.8 1.8 3.7-3.8"></path></svg></div>
+      <div class="lbl">PADI 認證教練</div>
+    </div>
   </div>
 </section>
 
@@ -512,15 +535,15 @@
   <div class="section-kana">OKINAWA</div>
   <h2 class="section-title">沖 繩 青 之 洞 窟</h2>
   <div class="sec-line"></div>
-  <div class="feats">
-    <div class="feat"><div class="num">1.5<span style="font-size:0.7rem;">hr</span></div><div class="lbl">台灣直飛</div></div>
-    <div class="feat"><div class="num">60<span style="font-size:0.7rem;">min</span></div><div class="lbl">那霸→恩納村</div></div>
-    <div class="feat"><div class="num" style="font-size:0.7rem;">青洞</div><div class="lbl">沖繩青洞</div></div>
+  <div class="stats-grid">
+    <div class="stat-item"><div class="stat-value">1.5<span> hr</span></div><div class="stat-label">台灣直飛</div></div>
+    <div class="stat-item"><div class="stat-value">60<span> min</span></div><div class="stat-label">那霸 → 恩納村</div></div>
+    <div class="stat-item"><div class="stat-value">5D<span> / 4N</span></div><div class="stat-label">沖繩潛旅安排</div></div>
   </div>
 </section>
 
 <!-- ══ 教練團隊 ══ -->
-<div class="img-band"><img src="sy-dive-images/coach-hero.jpg" alt="教練團隊"></div>
+<div class="img-band"><img src="sy-dive-images/coach-hero.jpg?v=20260827-team-v2" alt="教練團隊"></div>
 
 <!-- ══ PADI 考證路徑 ══ -->
 <div class="pathway-wrap" id="pathway">
@@ -561,13 +584,12 @@
 <!-- ══ 方案 ══ -->
 <section class="reveal" id="plan" style="text-align:center;">
   <div class="section-kana">DIVE PLANS</div>
-  <h2 class="section-title">専 屬 方 案</h2>
+    <h2 class="section-title">專 屬 方 案</h2>
   <div class="sec-line"></div>
   <div class="plan-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.75rem;margin-top:1rem;">
     <div class="loc-card reveal">
       <div class="loc-header" style="padding-bottom:0;">
-        <div class="loc-icon tpe">台</div>
-        <div><span class="loc-badge badge-taiwan">台灣在地考證</span></div>
+        <div><span class="loc-region taiwan">Taiwan</span> <span class="loc-badge badge-taiwan">台灣在地考證</span></div>
       </div>
       <div class="loc-body">
         <h3>龍洞方案</h3>
@@ -581,8 +603,7 @@
     </div>
     <div class="loc-card reveal">
       <div class="loc-header" style="padding-bottom:0;">
-        <div class="loc-icon oki">沖</div>
-        <div><span class="loc-badge badge-oki">沖繩考證潛旅</span></div>
+        <div><span class="loc-region okinawa">Okinawa</span> <span class="loc-badge badge-oki">沖繩考證潛旅</span></div>
       </div>
       <div class="loc-body">
         <h3>沖繩方案</h3>
@@ -606,7 +627,6 @@
   <div class="loc-grid">
     <div class="loc-card reveal">
       <div class="loc-header" style="padding-bottom:0;">
-        <div class="loc-icon oki">浮</div>
         <div><span class="loc-badge badge-oki">青洞浮潛</span></div>
       </div>
       <div class="loc-body">
@@ -616,7 +636,6 @@
     </div>
     <div class="loc-card reveal">
       <div class="loc-header" style="padding-bottom:0;">
-        <div class="loc-icon ld">體</div>
         <div><span class="loc-badge badge-taiwan">海洋體驗</span></div>
       </div>
       <div class="loc-body">
@@ -646,7 +665,7 @@
 </a>
 
 <!-- ══ 冬雪夏水 ══ -->
-<div class="img-band"><img src="sy-dive-images/dual.jpg" alt="冬雪夏水"></div>
+<div class="img-band"><img src="sy-dive-images/dual.jpg?v=20260827-team-v2" alt="冬雪夏水"></div>
 <div class="sky-band reveal">
   <h2 class="section-title">冬 雪 夏 水</h2>
   <div class="sec-line"></div>
