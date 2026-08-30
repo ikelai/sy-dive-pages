@@ -215,6 +215,19 @@
   .architecture-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 3.4rem 1.25rem 1.1rem; color: white; background: linear-gradient(transparent, rgba(4,42,71,0.8)); }
   .architecture-caption strong { display: block; font-size: 1rem; letter-spacing: 0.08em; }
   .architecture-caption span { display: block; margin-top: 0.15rem; font-size: 0.72rem; color: rgba(255,255,255,0.78); letter-spacing: 0.04em; }
+  .architecture-study {
+    position: relative; overflow: hidden; margin-top: 1rem; padding: 2.4rem 3rem 1.35rem;
+    background: linear-gradient(135deg, rgba(247,250,252,0.98), rgba(226,240,247,0.74));
+    border: 1px solid rgba(13,94,168,0.14);
+  }
+  .architecture-study::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: linear-gradient(var(--pocari-blue), var(--sakura-main)); }
+  .architecture-study-head { position: relative; z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; }
+  .architecture-study-kicker { display: block; margin-bottom: 0.45rem; color: var(--pocari-blue); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.28em; }
+  .architecture-study h3 { color: var(--deep-ocean); font-size: clamp(1.15rem,2vw,1.55rem); letter-spacing: 0.08em; }
+  .architecture-study p { max-width: 390px; color: var(--text-secondary); font-size: 0.77rem; line-height: 1.75; }
+  .architecture-linework { position: relative; z-index: 1; margin: 0.6rem auto 0; }
+  .architecture-linework img { display: block; width: 100%; max-height: 500px; object-fit: contain; filter: drop-shadow(0 16px 24px rgba(4,42,71,0.05)); }
+  .architecture-linework figcaption { display: flex; justify-content: space-between; border-top: 1px solid rgba(13,94,168,0.12); padding-top: 0.7rem; color: rgba(4,42,71,0.52); font-size: 0.58rem; letter-spacing: 0.2em; }
 
   /* ── OKINAWA NATURE ── */
   .nature-section { max-width: 1200px; }
@@ -385,6 +398,10 @@
     .architecture-card.featured, .nature-card.lead { grid-row: auto; }
     .architecture-card.featured img, .nature-card.lead img { min-height: 260px; }
     .architecture-card img, .nature-card img { min-height: 220px; }
+    .architecture-study { padding: 1.6rem 1.2rem 1rem; }
+    .architecture-study-head { align-items: flex-start; flex-direction: column; gap: 0.65rem; }
+    .architecture-study p { font-size: 0.72rem; }
+    .architecture-linework img { min-height: 0; }
   }
 
   /* ── MOTION ── */
@@ -574,6 +591,19 @@
     <figure class="architecture-card">
       <img src="sy-dive-images/loc-okinawa-sign-v3.jpg" alt="沖繩櫻雪潛水基地外觀" loading="lazy">
       <figcaption class="architecture-caption"><strong>Island Light</strong><span>白色外牆、木格柵與棕櫚樹</span></figcaption>
+    </figure>
+  </div>
+  <div class="architecture-study reveal">
+    <div class="architecture-study-head">
+      <div>
+        <span class="architecture-study-kicker">ARCHITECTURAL STUDY</span>
+        <h3>沿 著 海 風 而 生 的 據 點</h3>
+      </div>
+      <p>從馬路望向店面，白色量體、通透露台與木格柵交疊成櫻雪在沖繩的海島輪廓。</p>
+    </div>
+    <figure class="architecture-linework">
+      <img src="sy-dive-images/okinawa-roadside-linework.png" alt="從馬路側望向櫻雪沖繩店面的建築線稿" loading="lazy">
+      <figcaption><span>ROAD-SIDE PERSPECTIVE</span><span>ONNA · OKINAWA</span></figcaption>
     </figure>
   </div>
 </section>
