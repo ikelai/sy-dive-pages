@@ -5,26 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>櫻雪潛水中心 SY Diving | 台北仁愛＋沖繩青洞</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
   :root {
-    /* Clean pink-blue palette: #f5f5f5 · #a7d2eb · #d7e7ec · #ebb1bb */
-    --paper:          #f5f5f5;
-    --sky-celadon:    #d7e7ec;
-    --ink:            #1f3440;
-    --sakura-light:   #f6d7dc;
-    --sakura-main:    #ebb1bb;
-    --vermillion:     #df6f8f;
-    --seafoam:        #d7e7ec;
-    --pocari-blue:    #a7d2eb;
-    --ryukyu-blue:    #159bd3;
-    --deep-ocean:     #0d5ea8;
-    --text-primary:   #1f3440;
-    --text-secondary: #59717f;
-    --border-light:   #dce8ec;
-    --border-blue:    #a7d2eb;
-    --white:          #ffffff;
-    --gold:           #e0a5b5;
+    /* Peach 2026 inspired: warm ivory, layered pink, beige and misty Okinawa blue */
+    --paper:          #fff9f3;
+    --sky-celadon:    #f7eadd;
+    --ink:            #51453f;
+    --sakura-light:   #f8dfe5;
+    --sakura-main:    #ef8da5;
+    --vermillion:     #e65080;
+    --seafoam:        #f3ece4;
+    --pocari-blue:    #c9dde0;
+    --ryukyu-blue:    #8fb7bd;
+    --deep-ocean:     #506f73;
+    --text-primary:   #51453f;
+    --text-secondary: #806f66;
+    --border-light:   #eadfd5;
+    --border-blue:    #c9dde0;
+    --white:          #fffdfa;
+    --gold:           #e2c3a6;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -483,6 +483,110 @@
   .faq-a{font-weight:300;letter-spacing:0.05em}
 
 @keyframes markGlow{0%,100%{filter:drop-shadow(0 2px 8px rgba(255,255,255,0.2))}50%{filter:drop-shadow(0 2px 16px rgba(255,255,255,0.5))}}
+
+  /* ── 2026 JAPANESE ISLAND REFINEMENT ── */
+  body { background: var(--paper); letter-spacing: 0.035em; }
+  nav, nav.scrolled {
+    background: rgba(81,69,63,0.9);
+    border-bottom-color: rgba(255,249,243,0.18);
+    box-shadow: none;
+  }
+  .nav-links a { font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; }
+  .nav-cta { background: var(--vermillion) !important; border-radius: 2px; }
+  .hero { background: #596b6b; }
+  .hero::before { background: linear-gradient(90deg, rgba(62,57,53,0.56), rgba(62,57,53,0.22) 54%, rgba(62,57,53,0.08)); }
+  .hero::after { background: radial-gradient(circle, rgba(239,141,165,0.2), transparent 70%); }
+  .hero-kana, .section-kana, .architecture-study-kicker { font-family: 'Montserrat','Noto Sans TC',sans-serif; font-weight: 500; }
+  .hero h1 { font-weight: 500; letter-spacing: 0.14em; }
+  .hero h1 em { color: #f3a7b8; }
+  section { padding-top: 6.5rem; padding-bottom: 6.5rem; }
+  .section-kana { color: #c39379; opacity: 1; letter-spacing: 0.34em; }
+  .section-title { color: var(--ink); font-weight: 500; letter-spacing: 0.18em; }
+  .section-sub { max-width: 620px; color: var(--text-secondary); }
+  .sec-line { width: 32px; background: var(--sakura-main); opacity: 0.7; }
+  .loc-card, .card, .disc-card, .feat {
+    background: rgba(255,253,250,0.76);
+    border-color: var(--border-light);
+    box-shadow: none;
+  }
+  .loc-card:hover, .card:hover, .disc-card:hover, .feat:hover {
+    border-color: var(--gold);
+    box-shadow: 0 18px 42px rgba(109,86,74,0.06);
+  }
+  .loc-badge, .loc-region { border-radius: 2px; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-weight: 500; }
+  .badge-tpe, .badge-oki, .loc-region.okinawa { background: rgba(239,141,165,0.14); color: #b84f70; border-color: rgba(230,80,128,0.2); }
+  .badge-taiwan, .loc-region.taiwan { background: rgba(201,221,224,0.32); color: var(--deep-ocean); border-color: rgba(80,111,115,0.18); }
+  .loc-address { background: rgba(247,234,221,0.5); }
+  .btn { border-radius: 2px; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-weight: 500; }
+  .btn-primary { background: var(--vermillion); color: white; border-color: var(--vermillion); }
+  .btn-line { background: transparent; color: var(--ink); border-color: #bfa99b; }
+  .btn-line:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .architecture-caption, .nature-caption { background: linear-gradient(transparent, rgba(64,57,53,0.75)); }
+  .architecture-card, .nature-card { border-color: rgba(234,223,213,0.86); }
+  .architecture-study {
+    background: linear-gradient(135deg, rgba(255,253,250,0.98), rgba(247,234,221,0.68));
+    border-color: var(--border-light);
+  }
+  .architecture-study::before { width: 2px; background: linear-gradient(var(--gold), var(--sakura-main)); }
+  .architecture-study-kicker { color: #b78268; }
+  .architecture-study h3, .architecture-study p { color: var(--ink); }
+  .architecture-linework img { opacity: 0.82; filter: sepia(0.18) saturate(0.62) drop-shadow(0 18px 26px rgba(109,86,74,0.04)); }
+  .feat-icon { border-radius: 50%; color: #a96578; background: rgba(239,141,165,0.11); border-color: rgba(230,80,128,0.16); }
+  .feat:hover .feat-icon { background: var(--sakura-main); border-color: var(--sakura-main); }
+  .stat-item { border-top-color: var(--gold); }
+  .stat-value { color: var(--ink); font-weight: 500; }
+  .pathway-wrap { background: linear-gradient(180deg, var(--paper), rgba(247,234,221,0.72), var(--paper)); }
+  .stp-circle.c1, .stp-circle.c2 { background: var(--sakura-main); }
+  .stp-circle.c3 { background: #8a786e; }
+  .cert-badge { background: linear-gradient(135deg, #6d564a, #8a786e); box-shadow: 0 12px 28px rgba(109,86,74,0.14), inset 0 0 0 3px rgba(255,255,255,0.1); }
+  .cert-badge .icon { color: #6d564a; background: #fff9f3; }
+  .pool-band { background: #6d625c; }
+  .pool-band .sec-line { background: var(--sakura-main); }
+  .pool-item .ch { color: #f1b5c3; }
+  .sky-band { background: #f7eadd; }
+  .discount { background: linear-gradient(180deg, var(--paper), rgba(239,141,165,0.09)); }
+  .img-band { max-height: 680px; overflow: hidden; background: var(--seafoam); }
+  .img-band img { width: 100%; height: 100%; min-height: 380px; object-fit: cover; }
+  .contact > div:first-child { background: rgba(89,73,65,0.7) !important; }
+  footer { background: #51453f; }
+  .sticky-bar { background: rgba(255,249,243,0.96); }
+  .sticky-bar .price-info { color: var(--text-secondary); }
+  .sticky-bar .btn-sm { background: var(--vermillion); border-radius: 2px; }
+
+  /* ── OKINAWA DIVE MAP ── */
+  .dive-map-section { max-width: 1200px; display: grid; grid-template-columns: 0.78fr 1.22fr; gap: clamp(2.5rem,6vw,6rem); align-items: center; }
+  .dive-map-copy .section-kana, .dive-map-copy .section-title, .dive-map-copy .section-sub { text-align: left; margin-left: 0; }
+  .dive-map-copy .sec-line { margin-left: 0; }
+  .dive-map-copy .section-sub { margin-bottom: 2rem; }
+  .dive-map-base { display: inline-flex; flex-direction: column; align-items: flex-start; padding: 1rem 1.2rem; color: var(--ink); text-decoration: none; border-left: 2px solid var(--sakura-main); background: rgba(247,234,221,0.48); }
+  .dive-map-base small { font-family: 'Montserrat',sans-serif; color: #b78268; font-size: 0.58rem; letter-spacing: 0.22em; }
+  .dive-map-base strong { margin-top: 0.2rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; }
+  .dive-map-canvas { position: relative; min-height: 520px; overflow: hidden; border: 1px solid var(--border-light); background: rgba(255,253,250,0.66); }
+  .dive-map-canvas::before, .dive-map-canvas::after { content: ''; position: absolute; border-radius: 50%; pointer-events: none; }
+  .dive-map-canvas::before { width: 280px; height: 280px; right: -90px; top: -100px; background: rgba(239,141,165,0.1); }
+  .dive-map-canvas::after { width: 190px; height: 190px; left: -70px; bottom: -70px; background: rgba(226,195,166,0.17); }
+  .okinawa-outline { position: absolute; inset: 6% 8% 5% 10%; width: 82%; height: 89%; }
+  .okinawa-island { fill: rgba(247,234,221,0.78); stroke: #c9aa98; stroke-width: 1.4; }
+  .okinawa-coastline { fill: none; stroke: rgba(80,111,115,0.3); stroke-width: 1; stroke-dasharray: 3 7; }
+  .map-pin { position: absolute; display: flex; align-items: center; gap: 0.65rem; color: var(--ink); text-decoration: none; z-index: 2; }
+  .map-pin .dot { position: relative; flex: 0 0 auto; width: 12px; height: 12px; border-radius: 50%; background: var(--paper); border: 2px solid var(--sakura-main); box-shadow: 0 0 0 6px rgba(239,141,165,0.11); }
+  .map-pin.base .dot { background: var(--vermillion); border-color: var(--vermillion); }
+  .map-pin-label { padding: 0.48rem 0.65rem; background: rgba(255,249,243,0.88); border: 1px solid rgba(234,223,213,0.8); white-space: nowrap; }
+  .map-pin-label b { display: block; font-family: 'Montserrat',sans-serif; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; }
+  .map-pin-label span { display: block; margin-top: 0.05rem; color: var(--text-secondary); font-size: 0.64rem; }
+  .pin-manza { left: 54%; top: 21%; }
+  .pin-base { left: 44%; top: 43%; }
+  .pin-blue { left: 34%; top: 57%; }
+  .pin-kerama { left: 10%; top: 76%; }
+  .dive-map-note { position: absolute; right: 1.2rem; bottom: 1rem; color: rgba(109,86,74,0.55); font-size: 0.58rem; letter-spacing: 0.08em; z-index: 2; }
+  @media(max-width:768px){
+    .nav-links { background: rgba(81,69,63,0.98); }
+    section { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+    .dive-map-section { grid-template-columns: 1fr; gap: 2rem; }
+    .dive-map-canvas { min-height: 440px; }
+    .map-pin-label b { font-size: 0.56rem; }
+    .map-pin-label span { font-size: 0.58rem; }
+  }
 </style>
 </head>
 <body>
@@ -836,6 +940,42 @@
 
 <!-- ══ 台灣潛點 ══ -->
 <div class="img-band"><img src="sy-dive-images/asia.jpg?v=20260827-dive-v2" alt="台灣潛點"></div>
+
+<!-- ══ 沖繩潛點地圖 ══ -->
+<section class="dive-map-section reveal" id="dive-map">
+  <div class="dive-map-copy">
+    <div class="section-kana">DIVE AREA GUIDE</div>
+    <h2 class="section-title">沖 繩 西 海 岸</h2>
+    <div class="sec-line"></div>
+    <p class="section-sub">從恩納村出發，沿著沖繩本島西岸探索青之洞窟與萬座；天候與船班合適時，也能安排慶良間的透明海域。</p>
+    <a class="dive-map-base" href="https://maps.app.goo.gl/Xgw14vvBEVRDdFhM7" target="_blank" rel="noopener noreferrer">
+      <small>SAKURAYUKI OKINAWA BASE</small>
+      <strong>〒904-0416 沖縄県恩納村山田 591-1 ↗</strong>
+    </a>
+  </div>
+  <div class="dive-map-canvas" aria-label="沖繩西岸潛水區域示意圖">
+    <svg class="okinawa-outline" viewBox="0 0 620 520" aria-hidden="true">
+      <path class="okinawa-island" d="M472 24c-25 18-38 41-40 68-2 29-22 38-42 53-25 18-28 44-30 73-2 30-25 49-49 63-27 16-34 42-41 72-8 36-43 54-71 72-17 11-27 30-25 48 24 8 54 6 75-7 27-17 43-47 70-62 26-15 58-20 75-47 18-29 15-66 31-96 17-32 49-54 58-91 8-34-3-63 6-94 5-19 2-37-17-52Z"/>
+      <path class="okinawa-coastline" d="M447 49c-8 47-34 69-50 101-17 33-11 70-30 101-19 30-52 47-65 80-13 31-14 58-48 82-20 14-36 27-48 49"/>
+      <path class="okinawa-coastline" d="M489 84c-29 23-38 55-48 87-9 31-8 63-27 91"/>
+      <circle cx="102" cy="443" r="26" fill="rgba(239,141,165,0.08)" stroke="rgba(201,170,152,0.65)" stroke-width="1"/>
+      <circle cx="66" cy="472" r="14" fill="rgba(239,141,165,0.06)" stroke="rgba(201,170,152,0.5)" stroke-width="1"/>
+    </svg>
+    <a class="map-pin pin-manza" href="https://www.google.com/maps/search/?api=1&amp;query=Cape+Manza+Okinawa" target="_blank" rel="noopener noreferrer">
+      <span class="dot"></span><span class="map-pin-label"><b>MANZA</b><span>萬座 · 船潛地形</span></span>
+    </a>
+    <a class="map-pin base pin-base" href="https://maps.app.goo.gl/Xgw14vvBEVRDdFhM7" target="_blank" rel="noopener noreferrer">
+      <span class="dot"></span><span class="map-pin-label"><b>SAKURAYUKI BASE</b><span>恩納村 · 集合據點</span></span>
+    </a>
+    <a class="map-pin pin-blue" href="https://www.google.com/maps/search/?api=1&amp;query=Cape+Maeda+Blue+Cave+Okinawa" target="_blank" rel="noopener noreferrer">
+      <span class="dot"></span><span class="map-pin-label"><b>BLUE CAVE</b><span>真榮田岬 · 青之洞窟</span></span>
+    </a>
+    <a class="map-pin pin-kerama" href="https://www.google.com/maps/search/?api=1&amp;query=Kerama+Islands+Okinawa" target="_blank" rel="noopener noreferrer">
+      <span class="dot"></span><span class="map-pin-label"><b>KERAMA</b><span>慶良間 · 船潛海域</span></span>
+    </a>
+    <p class="dive-map-note">SCHEMATIC MAP · 實際潛點依當日海況與安全評估安排</p>
+  </div>
+</section>
 
 <!-- ══ 聯絡 ══ -->
 <div class="contact reveal" id="contact" style="background:url('sy-dive-images/okinawa-contact.jpg?v=20260828-contact-v1') center/cover no-repeat;position:relative;color:white;">
