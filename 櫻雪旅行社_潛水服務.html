@@ -11,20 +11,20 @@
     /* Okinawa clear sky: crisp cloud white, clean air blue and sakura pink */
     --paper:          #fbfdff;
     --sky-celadon:    #f1f7ff;
-    --ink:            #36546f;
+    --ink:            #145a87;
     --sakura-light:   #f8e7ec;
     --sakura-main:    #eab6c5;
     --vermillion:     #d97896;
     --seafoam:        #f3f8ff;
-    --pocari-blue:    #d9ecff;
-    --ryukyu-blue:    #a7cfee;
-    --deep-ocean:     #537fa6;
-    --text-primary:   #36546f;
-    --text-secondary: #70869a;
+    --pocari-blue:    #dff5ff;
+    --ryukyu-blue:    #8ed8f6;
+    --deep-ocean:     #168dce;
+    --text-primary:   #285d7c;
+    --text-secondary: #6889a0;
     --border-light:   #dfebf6;
     --border-blue:    #cfe3f5;
     --white:          #ffffff;
-    --gold:           #cbddeb;
+    --gold:           #bfe8fa;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -250,16 +250,20 @@
   .architecture-linework figcaption { display: flex; justify-content: space-between; border-top: 1px solid rgba(13,94,168,0.12); padding-top: 0.7rem; color: rgba(4,42,71,0.52); font-size: 0.58rem; letter-spacing: 0.2em; }
 
   /* ── OKINAWA NATURE ── */
-  .nature-section { max-width: 1200px; }
-  .nature-grid { display: grid; grid-template-columns: 1.35fr 0.85fr 0.85fr; grid-template-rows: repeat(2, minmax(180px, 1fr)); gap: 1rem; margin-top: 2rem; }
-  .nature-card { position: relative; overflow: hidden; min-height: 180px; background: var(--deep-ocean); }
-  .nature-card.lead { grid-row: span 2; }
-  .nature-card img { width: 100%; height: 100%; min-height: 180px; display: block; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25,0.1,0.25,1); }
-  .nature-card.lead img { min-height: 380px; }
+  .nature-section { width: 100%; max-width: none; padding-left: 0; padding-right: 0; overflow: hidden; }
+  .nature-section > .section-kana, .nature-section > .section-title, .nature-section > .section-sub { max-width: 760px; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+  .nature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: minmax(460px, 68vh) minmax(380px, 56vh) minmax(460px, 68vh); gap: 0.5rem; margin-top: 3.2rem; }
+  .nature-card { position: relative; overflow: hidden; min-height: 0; background: var(--deep-ocean); }
+  .nature-card.lead, .nature-card:last-child { grid-column: 1 / -1; }
+  .nature-card img { width: 100%; height: 100%; min-height: 0; display: block; object-fit: cover; transition: transform 1.1s cubic-bezier(0.25,0.1,0.25,1), filter 0.6s ease; }
+  .nature-card:nth-child(1) img { object-position: center 56%; }
+  .nature-card:nth-child(2) img { object-position: center; }
+  .nature-card:nth-child(3) img { object-position: center 58%; }
+  .nature-card:nth-child(4) img { object-position: center 46%; }
   .nature-card:hover img { transform: scale(1.04); }
-  .nature-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 3.2rem 1.1rem 1rem; color: white; background: linear-gradient(transparent, rgba(4,42,71,0.76)); }
-  .nature-caption strong { display: block; font-size: 0.9rem; letter-spacing: 0.08em; }
-  .nature-caption span { display: block; margin-top: 0.15rem; font-size: 0.7rem; color: rgba(255,255,255,0.76); }
+  .nature-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(5rem,11vh,8rem) clamp(1.5rem,6vw,6rem) clamp(1.8rem,5vw,4rem); color: white; background: linear-gradient(transparent, rgba(0,71,124,0.68)); }
+  .nature-caption strong { display: block; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: clamp(1.05rem,2vw,1.75rem); font-weight: 500; letter-spacing: 0.1em; }
+  .nature-caption span { display: block; margin-top: 0.3rem; font-size: clamp(0.72rem,1vw,0.9rem); color: rgba(255,255,255,0.84); }
 
   /* ── FEATURES ── */
   .feats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; max-width: 960px; margin: 0 auto; }
@@ -414,10 +418,12 @@
 
   @media (max-width: 640px) {
     section { padding: 3rem 1.25rem; }
-    .architecture-grid, .nature-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-    .architecture-card.featured, .nature-card.lead { grid-row: auto; }
-    .architecture-card.featured img, .nature-card.lead img { min-height: 260px; }
-    .architecture-card img, .nature-card img { min-height: 220px; }
+    .architecture-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .nature-grid { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-rows: minmax(360px, 62vh); gap: 0.35rem; }
+    .architecture-card.featured { grid-row: auto; }
+    .nature-card.lead, .nature-card:last-child { grid-column: auto; }
+    .architecture-card.featured img { min-height: 260px; }
+    .architecture-card img { min-height: 220px; }
     .architecture-study { padding: 1.6rem 1.2rem 1rem; }
     .architecture-study-head { align-items: flex-start; flex-direction: column; gap: 0.65rem; }
     .architecture-study p { font-size: 0.72rem; }
@@ -509,14 +515,14 @@
   /* ── 2026 JAPANESE ISLAND REFINEMENT ── */
   body { background: var(--paper); letter-spacing: 0.035em; }
   nav, nav.scrolled {
-    background: rgba(72,115,151,0.91);
+    background: rgba(17,136,199,0.93);
     border-bottom-color: rgba(255,255,255,0.22);
     box-shadow: none;
   }
   .nav-links a { font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; }
   .nav-cta { background: var(--vermillion) !important; border-radius: 2px; }
-  .hero { background: #83b9e1; }
-  .hero::before { background: linear-gradient(90deg, rgba(40,70,101,0.1), rgba(40,70,101,0.32) 50%, rgba(40,70,101,0.1)), linear-gradient(180deg, rgba(40,70,101,0.06), rgba(40,70,101,0.23) 72%, rgba(40,70,101,0.36)); }
+  .hero { background: #69c4ef; }
+  .hero::before { background: linear-gradient(90deg, rgba(0,91,156,0.06), rgba(0,91,156,0.2) 50%, rgba(0,91,156,0.05)), linear-gradient(180deg, rgba(0,110,180,0.03), rgba(0,101,172,0.13) 72%, rgba(0,79,146,0.27)); }
   .hero::after { background: radial-gradient(circle, rgba(234,182,197,0.18), transparent 70%); }
   .hero-kana, .section-kana, .architecture-study-kicker { font-family: 'Montserrat','Noto Sans TC',sans-serif; font-weight: 500; }
   .hero h1 { font-weight: 500; letter-spacing: 0.14em; }
@@ -543,7 +549,7 @@
   .btn-primary { background: var(--vermillion); color: white; border-color: var(--vermillion); }
   .btn-line { background: transparent; color: var(--ink); border-color: #afcde7; }
   .btn-line:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .architecture-caption, .nature-caption { background: linear-gradient(transparent, rgba(38,66,94,0.74)); }
+  .architecture-caption, .nature-caption { background: linear-gradient(transparent, rgba(5,88,139,0.7)); }
   .architecture-card, .nature-card { border-color: rgba(223,235,246,0.94); }
   .architecture-study {
     background: linear-gradient(135deg, rgba(255,255,255,0.99), rgba(241,247,255,0.86));
@@ -559,10 +565,10 @@
   .stat-value { color: var(--ink); font-weight: 500; }
   .pathway-wrap { background: linear-gradient(180deg, var(--paper), rgba(233,244,255,0.82), var(--paper)); }
   .stp-circle.c1, .stp-circle.c2 { background: var(--sakura-main); }
-  .stp-circle.c3 { background: #78a9d1; }
-  .cert-badge { background: linear-gradient(135deg, #537fa6, #7fa9cc); box-shadow: 0 12px 28px rgba(55,91,123,0.15), inset 0 0 0 3px rgba(255,255,255,0.12); }
-  .cert-badge .icon { color: #537fa6; background: #fbfdff; }
-  .pool-band { background: #587fa1; }
+  .stp-circle.c3 { background: #40a9df; }
+  .cert-badge { background: linear-gradient(135deg, #1596d1, #5bc1eb); box-shadow: 0 12px 28px rgba(12,117,176,0.16), inset 0 0 0 3px rgba(255,255,255,0.16); }
+  .cert-badge .icon { color: #148bc7; background: #fbfdff; }
+  .pool-band { background: #1189c3; }
   .pool-band .sec-line { background: var(--sakura-main); }
   .pool-item .ch { color: #f4c4d0; }
   .sky-band { background: #f1f7ff; }
@@ -571,8 +577,9 @@
   .img-band img { width: 100%; height: 100%; min-height: 380px; object-fit: cover; }
   .img-band.dual-band { max-height: none; aspect-ratio: 2 / 1; }
   .img-band.dual-band img { min-height: 0; object-position: center; }
-  .contact > div:first-child { background: rgba(43,75,105,0.62) !important; }
-  footer { background: #3f617e; }
+  .contact > div:first-child { background: radial-gradient(ellipse at 50% 52%, rgba(0,72,139,0.7) 0%, rgba(0,105,178,0.44) 38%, rgba(0,145,207,0.16) 76%, rgba(0,160,218,0.06) 100%) !important; }
+  footer { background: #0e7fb9; color: rgba(255,255,255,0.68); }
+  footer b { color: rgba(255,255,255,0.92); }
   .sticky-bar { background: rgba(251,253,255,0.96); }
   .sticky-bar .price-info { color: var(--text-secondary); }
   .sticky-bar .btn-sm { background: var(--vermillion); border-radius: 2px; }
@@ -604,7 +611,7 @@
   .pin-kerama { left: 10%; top: 76%; }
   .dive-map-note { position: absolute; right: 1.2rem; bottom: 1rem; color: rgba(55,91,123,0.56); font-size: 0.58rem; letter-spacing: 0.08em; z-index: 2; }
   @media(max-width:768px){
-    .nav-links { background: rgba(61,101,137,0.98); }
+    .nav-links { background: rgba(14,130,190,0.98); }
     .hero-carousel { inset: 0; }
     .hero-slide img { object-position: 58% center; }
     .hero-slide:nth-child(2) img { object-position: 62% center; }
