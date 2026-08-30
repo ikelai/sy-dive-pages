@@ -93,13 +93,31 @@
     border-radius: 50%;
     z-index: 1;
   }
-  .hero-video {
-    position: absolute; inset: 0; z-index: 0; overflow: hidden;
+  .hero-carousel {
+    position: absolute; inset: -2%; z-index: 0; overflow: hidden;
+    transform: translateY(var(--hero-shift, 0px));
+    transition: transform 0.15s linear;
   }
-  .hero-video video {
+  .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.8s ease; }
+  .hero-slide img {
     width: 100%; height: 100%; display: block; object-fit: cover;
-    object-position: center; opacity: 0.92;
+    object-position: center; transform: scale(1.035); will-change: transform;
   }
+  .hero-slide.active { opacity: 1; z-index: 1; }
+  .hero-slide.active img { animation: heroCinema 8.8s cubic-bezier(0.2,0.55,0.35,1) both; }
+  .hero-slide:nth-child(even).active img { animation-name: heroCinemaReverse; }
+  @keyframes heroCinema { from { transform: scale(1.035) translate3d(-0.5%,0,0); } to { transform: scale(1.095) translate3d(0.65%,-0.45%,0); } }
+  @keyframes heroCinemaReverse { from { transform: scale(1.04) translate3d(0.55%,0,0); } to { transform: scale(1.09) translate3d(-0.55%,-0.35%,0); } }
+  .hero-carousel-nav {
+    position: absolute; right: 2.2rem; bottom: 2rem; z-index: 3;
+    display: flex; align-items: center; gap: 0.55rem;
+  }
+  .hero-carousel-dot {
+    width: 22px; height: 1px; min-width: 0 !important; min-height: 0 !important;
+    border: 0; padding: 0; cursor: pointer;
+    background: rgba(255,255,255,0.42); transition: width 0.45s ease, background 0.45s ease;
+  }
+  .hero-carousel-dot.active { width: 42px; background: rgba(255,255,255,0.95); }
   .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 0 2rem; }
   .hero-kana {
     font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
@@ -407,7 +425,7 @@
   /* ── MOTION ── */
   nav { transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease; }
   nav.scrolled { background: rgba(13,94,168,0.99); box-shadow: 0 8px 24px rgba(4,42,71,0.16); border-bottom-color: rgba(255,255,255,0.18); }
-  .hero-video video { transform: translateY(var(--hero-shift, 0px)) scale(1.03); transition: transform 0.15s linear; }
+  .hero-carousel { transform: translateY(var(--hero-shift, 0px)); }
   .reveal { opacity: 1; transform: none; }
   body.motion-ready .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25,0.1,0.25,1); transition-delay: var(--reveal-delay, 0ms); }
   body.motion-ready .reveal.visible { opacity: 1; transform: none; }
@@ -417,7 +435,9 @@
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
     body.motion-ready .reveal, body.motion-ready .reveal.visible { opacity: 1; transform: none; }
-    .hero-video video { transform: none; }
+    .hero-carousel { transform: none; }
+    .hero-slide:not(.active) { display: none; }
+    .hero-slide.active img { animation: none; transform: scale(1.035); }
   }
 
   /* ── MOBILE NAV ── */
@@ -494,7 +514,7 @@
   .nav-links a { font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; }
   .nav-cta { background: var(--vermillion) !important; border-radius: 2px; }
   .hero { background: #72a9bd; }
-  .hero::before { background: linear-gradient(90deg, rgba(49,83,96,0.5), rgba(49,83,96,0.18) 54%, rgba(49,83,96,0.04)); }
+  .hero::before { background: linear-gradient(90deg, rgba(42,80,94,0.12), rgba(42,80,94,0.35) 50%, rgba(42,80,94,0.12)), linear-gradient(180deg, rgba(42,80,94,0.08), rgba(42,80,94,0.27) 72%, rgba(42,80,94,0.4)); }
   .hero::after { background: radial-gradient(circle, rgba(234,182,197,0.18), transparent 70%); }
   .hero-kana, .section-kana, .architecture-study-kicker { font-family: 'Montserrat','Noto Sans TC',sans-serif; font-weight: 500; }
   .hero h1 { font-weight: 500; letter-spacing: 0.14em; }
@@ -583,6 +603,12 @@
   .dive-map-note { position: absolute; right: 1.2rem; bottom: 1rem; color: rgba(65,102,116,0.56); font-size: 0.58rem; letter-spacing: 0.08em; z-index: 2; }
   @media(max-width:768px){
     .nav-links { background: rgba(70,112,128,0.98); }
+    .hero-carousel { inset: 0; }
+    .hero-slide img { object-position: 58% center; }
+    .hero-slide:nth-child(2) img { object-position: 62% center; }
+    .hero-carousel-nav { right: 1.25rem; bottom: 1.35rem; }
+    .hero-carousel-dot { width: 15px; }
+    .hero-carousel-dot.active { width: 28px; }
     section { padding-top: 4.5rem; padding-bottom: 4.5rem; }
     .dive-map-section { grid-template-columns: 1fr; gap: 2rem; }
     .dive-map-canvas { min-height: 440px; }
@@ -610,10 +636,10 @@
 
 <!-- ══ HERO ══ -->
 <header class="hero">
-  <div class="hero-video" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="metadata" poster="sy-dive-images/hero-ocean-1.jpg?v=20260827-hero-v1">
-      <source src="sy-dive-images/hero-ocean.mp4?v=20260827-hero-v1" type="video/mp4">
-    </video>
+  <div class="hero-carousel" aria-hidden="true">
+    <div class="hero-slide active"><img src="sy-dive-images/hero-okinawa-sky-v2.png?v=20260830-cinema-v2" alt=""></div>
+    <div class="hero-slide"><img src="sy-dive-images/hero-okinawa-underwater-v2.png?v=20260830-cinema-v2" alt="" loading="eager"></div>
+    <div class="hero-slide"><img src="sy-dive-images/hero-okinawa-village-v2.png?v=20260830-cinema-v2" alt="" loading="eager"></div>
   </div>
   <div class="hero-content">
     <img src="sy-dive-images/hero-mark.png" alt="" style="width:60px;height:auto;margin:0 auto 1.5rem;display:block;filter:drop-shadow(0 2px 8px rgba(255,255,255,0.3));animation:markGlow 3s ease-in-out infinite;">
@@ -630,6 +656,11 @@
     </div>
   </div>
   <div class="scroll-hint">— 向下探索 —</div>
+  <div class="hero-carousel-nav" aria-label="主視覺輪播">
+    <button class="hero-carousel-dot active" type="button" aria-label="顯示沖繩海岸"></button>
+    <button class="hero-carousel-dot" type="button" aria-label="顯示沖繩水下"></button>
+    <button class="hero-carousel-dot" type="button" aria-label="顯示沖繩聚落"></button>
+  </div>
 </header>
 
 <!-- ══ 三大據點 ══ -->
@@ -685,6 +716,19 @@
   <h2 class="section-title">沖 繩 的 店</h2>
   <div class="sec-line"></div>
   <p class="section-sub">從白色建築、棕櫚樹到海風，這裡是櫻雪在沖繩的集合點，也是出發前整理裝備與認識海況的地方。</p>
+  <div class="architecture-study reveal">
+    <div class="architecture-study-head">
+      <div>
+        <span class="architecture-study-kicker">FRONT ELEVATION</span>
+        <h3>沿 著 海 風 而 生 的 據 點</h3>
+      </div>
+      <p>以正立面線稿先讀懂建築：白色水平量體、通透露台與垂直木格柵，組成櫻雪在沖繩的海島輪廓。</p>
+    </div>
+    <figure class="architecture-linework">
+      <img src="sy-dive-images/okinawa-front-elevation-v3.png?v=20260830-elevation-v3" alt="櫻雪沖繩店面建築正立面線稿" loading="lazy">
+      <figcaption><span>STREET FRONT ELEVATION</span><span>ONNA · OKINAWA</span></figcaption>
+    </figure>
+  </div>
   <div class="architecture-grid">
     <figure class="architecture-card featured">
       <img src="sy-dive-images/okinawa-aerial-sign-v4.jpg" alt="沖繩櫻雪潛水基地空拍外觀" loading="lazy">
@@ -697,19 +741,6 @@
     <figure class="architecture-card">
       <img src="sy-dive-images/loc-okinawa-sign-v3.jpg" alt="沖繩櫻雪潛水基地外觀" loading="lazy">
       <figcaption class="architecture-caption"><strong>Island Light</strong><span>白色外牆、木格柵與棕櫚樹</span></figcaption>
-    </figure>
-  </div>
-  <div class="architecture-study reveal">
-    <div class="architecture-study-head">
-      <div>
-        <span class="architecture-study-kicker">ARCHITECTURAL STUDY</span>
-        <h3>沿 著 海 風 而 生 的 據 點</h3>
-      </div>
-      <p>從馬路望向店面，白色量體、通透露台與木格柵交疊成櫻雪在沖繩的海島輪廓。</p>
-    </div>
-    <figure class="architecture-linework">
-      <img src="sy-dive-images/okinawa-roadside-linework-v2.png" alt="從馬路側望向櫻雪沖繩店面的建築線稿" loading="lazy">
-      <figcaption><span>ROAD-SIDE PERSPECTIVE</span><span>ONNA · OKINAWA</span></figcaption>
     </figure>
   </div>
 </section>
@@ -1023,7 +1054,9 @@
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const nav=document.querySelector('nav');
 const hero=document.querySelector('.hero');
-const heroVideo=document.querySelector('.hero-video video');
+const heroCarousel=document.querySelector('.hero-carousel');
+const heroSlides=[...document.querySelectorAll('.hero-slide')];
+const heroDots=[...document.querySelectorAll('.hero-carousel-dot')];
 const getStickyBar=()=>document.querySelector('#stickyBar');
 const revealItems=[...document.querySelectorAll('.reveal')];
 const revealGroups=['.loc-grid','.feats','.architecture-grid','.nature-grid','.step-row','.plan-grid'];
@@ -1035,6 +1068,28 @@ revealItems.forEach((el)=>{
     el.style.setProperty('--reveal-delay',`${Math.max(index,0)*80}ms`);
   }
 });
+
+const showHeroSlide=(nextIndex)=>{
+  heroSlides.forEach((slide,index)=>slide.classList.toggle('active',index===nextIndex));
+  heroDots.forEach((dot,index)=>dot.classList.toggle('active',index===nextIndex));
+};
+let heroIndex=0;
+let heroTimer;
+if(!reduceMotion&&heroSlides.length>1){
+  const startHeroCarousel=()=>{
+    window.clearInterval(heroTimer);
+    heroTimer=window.setInterval(()=>{
+      heroIndex=(heroIndex+1)%heroSlides.length;
+      showHeroSlide(heroIndex);
+    },7000);
+  };
+  heroDots.forEach((dot,index)=>dot.addEventListener('click',()=>{
+    heroIndex=index;
+    showHeroSlide(heroIndex);
+    startHeroCarousel();
+  }));
+  startHeroCarousel();
+}
 
 if(reduceMotion){
   revealItems.forEach((el)=>el.classList.add('visible'));
@@ -1056,8 +1111,8 @@ const syncScrollState=()=>{
   nav.classList.toggle('scrolled',y>24);
   const stickyBar=getStickyBar();
   if(stickyBar&&hero){stickyBar.classList.toggle('show',y>hero.offsetHeight*0.55);}
-  if(!reduceMotion&&heroVideo&&y<hero.offsetHeight){
-    heroVideo.style.setProperty('--hero-shift',`${Math.min(y*0.12,80)}px`);
+  if(!reduceMotion&&heroCarousel&&y<hero.offsetHeight){
+    heroCarousel.style.setProperty('--hero-shift',`${Math.min(y*0.08,48)}px`);
   }
 };
 syncScrollState();
