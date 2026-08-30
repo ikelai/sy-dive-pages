@@ -144,6 +144,8 @@
     color: rgba(255,255,255,0.65); font-size: 0.85rem;
   }
   .hero-meta-item strong { color: white; font-weight: 600; }
+  .hero-map-link { display: inline; min-width: auto; min-height: auto; color: inherit; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.38); text-underline-offset: 3px; }
+  .hero-map-link:hover { color: white; text-decoration-color: white; }
 
   .btn {
     display: inline-flex; align-items: center; gap: 0.3rem;
@@ -230,6 +232,17 @@
   .architecture-card img { width: 100%; height: 100%; min-height: 240px; display: block; object-fit: cover; transition: transform 0.7s cubic-bezier(0.25,0.1,0.25,1); }
   .architecture-card.featured img { min-height: 500px; }
   .architecture-card:hover img { transform: scale(1.035); }
+  .architecture-brand-sign {
+    position: absolute; z-index: 2; display: flex; align-items: center; justify-content: flex-start; gap: 0.35rem;
+    padding: 0.35rem 0.7rem; overflow: hidden; background: #173e70;
+    border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 5px 13px rgba(22,49,77,0.2);
+  }
+  .architecture-brand-sign .architecture-sign-mark { width: auto; height: 78%; min-height: 0; flex: 0 0 auto; object-fit: contain; transform: none !important; filter: none; }
+  .architecture-sign-copy { min-width: 0; color: #fff; text-align: left; line-height: 1.02; white-space: nowrap; }
+  .architecture-sign-copy b { display: block; font-family: 'Montserrat', sans-serif; font-size: clamp(0.38rem, 0.54vw, 0.68rem); font-weight: 600; letter-spacing: 0.025em; }
+  .architecture-sign-copy small { display: block; margin-top: 0.16rem; font-size: clamp(0.28rem, 0.42vw, 0.46rem); letter-spacing: 0.12em; opacity: 0.88; }
+  .architecture-card .sign-storefront { left: 18.5%; top: 35.5%; width: 39%; height: 13%; }
+  .architecture-card .sign-island { left: 23%; top: 38.5%; width: 35%; height: 12%; }
   .architecture-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 3.4rem 1.25rem 1.1rem; color: white; background: linear-gradient(transparent, rgba(4,42,71,0.8)); }
   .architecture-caption strong { display: block; font-size: 1rem; letter-spacing: 0.08em; }
   .architecture-caption span { display: block; margin-top: 0.15rem; font-size: 0.72rem; color: rgba(255,255,255,0.78); letter-spacing: 0.04em; }
@@ -420,6 +433,7 @@
     .architecture-study-head { align-items: flex-start; flex-direction: column; gap: 0.65rem; }
     .architecture-study p { font-size: 0.72rem; }
     .architecture-linework img { min-height: 0; }
+    .architecture-brand-sign { padding: 0.2rem 0.35rem; }
   }
 
   /* ── MOTION ── */
@@ -647,7 +661,7 @@
     <h1>滑過一片白<br>潛入一片<em>藍</em></h1>
     <p>PADI 認證教練指導 · 台北平靜水域訓練 · 東北角龍洞或沖繩青洞完成課程與考核</p>
     <div class="hero-meta">
-      <div class="hero-meta-item"><strong>仁愛</strong> 台北市大安區仁愛路四段 130 號</div>
+      <div class="hero-meta-item"><strong>仁愛</strong> <a class="hero-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A4%A7%E5%AE%89%E5%8D%80%E4%BB%81%E6%84%9B%E8%B7%AF%E5%9B%9B%E6%AE%B5130%E8%99%9F" target="_blank" rel="noopener noreferrer">台北市大安區仁愛路四段 130 號</a></div>
       <div class="hero-meta-item"><strong>沖繩</strong> 恩納村山田 591-1 · 真栄田岬旁</div>
     </div>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
@@ -736,10 +750,18 @@
     </figure>
     <figure class="architecture-card">
       <img src="sy-dive-images/okinawa-entrance.jpg?v=20260828-logo-v2" alt="沖繩櫻雪潛水基地入口" loading="lazy">
+      <span class="architecture-brand-sign sign-storefront" aria-hidden="true">
+        <img class="architecture-sign-mark" src="sy-dive-images/logo-3.png?v=20260830-sign-standard" alt="">
+        <span class="architecture-sign-copy"><b>SAKURAYUKI DIVING</b><small>櫻雪潛水中心</small></span>
+      </span>
       <figcaption class="architecture-caption"><strong>Storefront</strong><span>裝備展示與集合入口</span></figcaption>
     </figure>
     <figure class="architecture-card">
       <img src="sy-dive-images/loc-okinawa-sign-v3.jpg" alt="沖繩櫻雪潛水基地外觀" loading="lazy">
+      <span class="architecture-brand-sign sign-island" aria-hidden="true">
+        <img class="architecture-sign-mark" src="sy-dive-images/logo-3.png?v=20260830-sign-standard" alt="">
+        <span class="architecture-sign-copy"><b>SAKURAYUKI DIVING</b><small>櫻雪潛水中心</small></span>
+      </span>
       <figcaption class="architecture-caption"><strong>Island Light</strong><span>白色外牆、木格柵與棕櫚樹</span></figcaption>
     </figure>
   </div>
@@ -804,7 +826,7 @@
       <figcaption class="nature-caption"><strong>Into Blue</strong><span>從岸邊走進透明海水</span></figcaption>
     </figure>
     <figure class="nature-card">
-      <img src="sy-dive-images/hero-ocean-2.jpg?v=20260827-hero-v1" alt="沖繩珊瑚礁與潛水者" loading="lazy">
+      <img src="sy-dive-images/hero-okinawa-underwater-v2.png?v=20260830-underwater-fix" alt="沖繩珊瑚礁與潛水者" loading="lazy">
       <figcaption class="nature-caption"><strong>Underwater Light</strong><span>珊瑚礁與水下日光</span></figcaption>
     </figure>
   </div>
@@ -934,7 +956,7 @@
 </a>
 
 <!-- ══ 冬雪夏水 ══ -->
-<div class="img-band dual-band"><img src="sy-dive-images/dual-okinawa-sky-v2.png?v=20260830-sky-v2" alt="冬雪夏水"></div>
+<div class="img-band dual-band"><img src="sy-dive-images/dual-okinawa-woman-v4.png?v=20260830-woman-v4" alt="冬雪夏水"></div>
 <div class="sky-band reveal">
   <h2 class="section-title">冬 雪 夏 水</h2>
   <div class="sec-line"></div>
@@ -1019,10 +1041,12 @@
   <h2 class="section-title" style="color:white;">聯 絡 我 們</h2>
   <div class="sec-line" style="background:var(--pocari-blue);"></div>
   <div class="contact-info" style="color:rgba(255,255,255,0.75);">
-    仁愛：台北市大安區仁愛路四段 130 號<br>
+    仁愛：<a class="contact-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A4%A7%E5%AE%89%E5%8D%80%E4%BB%81%E6%84%9B%E8%B7%AF%E5%9B%9B%E6%AE%B5130%E8%99%9F" target="_blank" rel="noopener noreferrer">台北市大安區仁愛路四段 130 號</a><br>
     沖繩：<a class="contact-link" href="https://maps.app.goo.gl/Xgw14vvBEVRDdFhM7" target="_blank" rel="noopener noreferrer">〒904-0416 沖縄県恩納村山田 591-1</a><br>
     0966-777737 · sysportclub@gmail.com<br>
-    LINE @sydiving · IG @sydiving · FB @sydiving
+    <a class="contact-link" href="https://lin.ee/U08gDqx" target="_blank" rel="noopener noreferrer">LINE @sydiving</a> ·
+    <a class="contact-link" href="https://www.instagram.com/sydiving/" target="_blank" rel="noopener noreferrer">IG @sydiving</a> ·
+    <a class="contact-link" href="https://www.facebook.com/sydiving/" target="_blank" rel="noopener noreferrer">FB @sydiving</a>
   </div>
   <div style="margin-top:2rem;"><a href="https://lin.ee/U08gDqx" class="btn btn-primary">加入 LINE 諮詢</a></div>
   </div>
