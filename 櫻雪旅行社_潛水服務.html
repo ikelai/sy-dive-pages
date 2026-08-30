@@ -250,20 +250,30 @@
   .architecture-linework figcaption { display: flex; justify-content: space-between; border-top: 1px solid rgba(13,94,168,0.12); padding-top: 0.7rem; color: rgba(4,42,71,0.52); font-size: 0.58rem; letter-spacing: 0.2em; }
 
   /* ── OKINAWA NATURE ── */
-  .nature-section { width: 100%; max-width: none; padding-left: 0; padding-right: 0; overflow: hidden; }
-  .nature-section > .section-kana, .nature-section > .section-title, .nature-section > .section-sub { max-width: 760px; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
-  .nature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: minmax(460px, 68vh) minmax(380px, 56vh) minmax(460px, 68vh); gap: 0.5rem; margin-top: 3.2rem; }
-  .nature-card { position: relative; overflow: hidden; min-height: 0; background: var(--deep-ocean); }
-  .nature-card.lead, .nature-card:last-child { grid-column: 1 / -1; }
-  .nature-card img { width: 100%; height: 100%; min-height: 0; display: block; object-fit: cover; transition: transform 1.1s cubic-bezier(0.25,0.1,0.25,1), filter 0.6s ease; }
+  .nature-section { width: 100%; max-width: 1200px; overflow: hidden; }
+  .nature-grid { display: flex; gap: 1rem; margin-top: 3rem; padding: 0 6% 0.8rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 6%; scroll-behavior: smooth; cursor: grab; scrollbar-width: none; overscroll-behavior-inline: contain; }
+  .nature-grid::-webkit-scrollbar { display: none; }
+  .nature-grid.dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+  .nature-card { position: relative; flex: 0 0 84%; aspect-ratio: 16 / 9; overflow: hidden; min-height: 0; background: var(--deep-ocean); scroll-snap-align: center; cursor: zoom-in; }
+  .nature-card img { width: 100%; height: 100%; min-height: 0; display: block; object-fit: cover; transition: transform 1.1s cubic-bezier(0.25,0.1,0.25,1), filter 0.6s ease; pointer-events: none; }
   .nature-card:nth-child(1) img { object-position: center 56%; }
   .nature-card:nth-child(2) img { object-position: center; }
   .nature-card:nth-child(3) img { object-position: center 58%; }
   .nature-card:nth-child(4) img { object-position: center 46%; }
   .nature-card:hover img { transform: scale(1.04); }
-  .nature-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(5rem,11vh,8rem) clamp(1.5rem,6vw,6rem) clamp(1.8rem,5vw,4rem); color: white; background: linear-gradient(transparent, rgba(0,71,124,0.68)); }
-  .nature-caption strong { display: block; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: clamp(1.05rem,2vw,1.75rem); font-weight: 500; letter-spacing: 0.1em; }
-  .nature-caption span { display: block; margin-top: 0.3rem; font-size: clamp(0.72rem,1vw,0.9rem); color: rgba(255,255,255,0.84); }
+  .nature-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(4rem,9vh,7rem) clamp(1.5rem,5vw,4rem) clamp(1.5rem,4vw,3rem); color: white; background: linear-gradient(transparent, rgba(0,71,124,0.68)); pointer-events: none; }
+  .nature-caption strong { display: block; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: clamp(1.05rem,2vw,1.65rem); font-weight: 500; letter-spacing: 0.1em; }
+  .nature-caption span { display: block; margin-top: 0.3rem; font-size: clamp(0.72rem,1vw,0.88rem); color: rgba(255,255,255,0.84); }
+  .nature-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.25rem; }
+  .nature-arrow { width: 46px; height: 46px; min-width: 46px; min-height: 46px; border: 1px solid var(--border-blue); border-radius: 50%; background: white; color: var(--deep-ocean); font-size: 1.1rem; cursor: pointer; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .nature-arrow:hover { transform: translateY(-2px); background: var(--deep-ocean); color: white; }
+  .nature-count { min-width: 64px; color: var(--text-secondary); font-family: 'Montserrat',sans-serif; font-size: 0.72rem; letter-spacing: 0.16em; text-align: center; }
+  .nature-lightbox { position: fixed; inset: 0; z-index: 300; display: none; align-items: center; justify-content: center; padding: clamp(1rem,4vw,3rem); background: rgba(3,34,58,0.92); backdrop-filter: blur(10px); }
+  .nature-lightbox.open { display: flex; }
+  .nature-lightbox figure { width: min(1200px,92vw); margin: 0; }
+  .nature-lightbox img { display: block; width: 100%; max-height: 82vh; object-fit: contain; }
+  .nature-lightbox figcaption { padding-top: 0.8rem; color: rgba(255,255,255,0.82); font-size: 0.8rem; letter-spacing: 0.08em; }
+  .nature-lightbox-close { position: absolute; top: 1.2rem; right: 1.4rem; width: 46px; height: 46px; min-width: 46px; min-height: 46px; border: 1px solid rgba(255,255,255,0.32); border-radius: 50%; background: rgba(0,0,0,0.12); color: white; font-size: 1.5rem; cursor: pointer; }
 
   /* ── FEATURES ── */
   .feats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; max-width: 960px; margin: 0 auto; }
@@ -419,9 +429,9 @@
   @media (max-width: 640px) {
     section { padding: 3rem 1.25rem; }
     .architecture-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-    .nature-grid { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-rows: minmax(360px, 62vh); gap: 0.35rem; }
+    .nature-grid { gap: 0.75rem; padding-left: 0; padding-right: 0; scroll-padding-inline: 0; }
     .architecture-card.featured { grid-row: auto; }
-    .nature-card.lead, .nature-card:last-child { grid-column: auto; }
+    .nature-card { flex-basis: 92%; aspect-ratio: 4 / 5; }
     .architecture-card.featured img { min-height: 260px; }
     .architecture-card img { min-height: 220px; }
     .architecture-study { padding: 1.6rem 1.2rem 1rem; }
@@ -800,24 +810,37 @@
   <div class="sec-line"></div>
   <p class="section-sub">不只下水，也留一點時間給沖繩的海風、珊瑚與清澈光線。</p>
   <div class="nature-grid">
-    <figure class="nature-card lead">
+    <figure class="nature-card lead" tabindex="0" role="button" aria-label="放大 Quiet Coast">
       <img src="sy-dive-images/hero-ocean-3.jpg?v=20260827-hero-v1" alt="沖繩清幽海岸" loading="lazy">
       <figcaption class="nature-caption"><strong>Quiet Coast</strong><span>清澈海灣與珊瑚岩岸</span></figcaption>
     </figure>
-    <figure class="nature-card">
+    <figure class="nature-card" tabindex="0" role="button" aria-label="放大 Blue Cave">
       <img src="sy-dive-images/okinawa-blue-cave.jpg?v=20260827-nature-v1" alt="沖繩青洞水下光線" loading="lazy">
       <figcaption class="nature-caption"><strong>Blue Cave</strong><span>光從水面慢慢落下</span></figcaption>
     </figure>
-    <figure class="nature-card">
+    <figure class="nature-card" tabindex="0" role="button" aria-label="放大 Into Blue">
       <img src="sy-dive-images/hero-ocean-1.jpg?v=20260827-hero-v1" alt="沖繩海岸潛水出發" loading="lazy">
       <figcaption class="nature-caption"><strong>Into Blue</strong><span>從岸邊走進透明海水</span></figcaption>
     </figure>
-    <figure class="nature-card">
+    <figure class="nature-card" tabindex="0" role="button" aria-label="放大 Underwater Light">
       <img src="sy-dive-images/hero-okinawa-underwater-v2.png?v=20260830-underwater-fix" alt="沖繩珊瑚礁與潛水者" loading="lazy">
       <figcaption class="nature-caption"><strong>Underwater Light</strong><span>珊瑚礁與水下日光</span></figcaption>
     </figure>
   </div>
+  <div class="nature-controls" aria-label="海島圖片輪播控制">
+    <button class="nature-arrow" type="button" data-nature-prev aria-label="上一張">←</button>
+    <span class="nature-count" aria-live="polite">01 / 04</span>
+    <button class="nature-arrow" type="button" data-nature-next aria-label="下一張">→</button>
+  </div>
 </section>
+
+<div class="nature-lightbox" aria-hidden="true">
+  <button class="nature-lightbox-close" type="button" aria-label="關閉放大圖片">×</button>
+  <figure>
+    <img src="" alt="">
+    <figcaption></figcaption>
+  </figure>
+</div>
 
 <!-- ══ 教練團隊 ══ -->
 <div class="img-band"><img src="sy-dive-images/coach-hero.jpg?v=20260827-team-v3" alt="教練團隊"></div>
@@ -1129,6 +1152,128 @@ const syncScrollState=()=>{
 syncScrollState();
 window.addEventListener('scroll',syncScrollState,{passive:true});
 window.addEventListener('load',syncScrollState,{once:true});
+
+const natureTrack=document.querySelector('.nature-grid');
+const natureCards=[...document.querySelectorAll('.nature-card')];
+const natureCount=document.querySelector('.nature-count');
+const naturePrev=document.querySelector('[data-nature-prev]');
+const natureNext=document.querySelector('[data-nature-next]');
+const natureLightbox=document.querySelector('.nature-lightbox');
+const natureLightboxImg=natureLightbox?.querySelector('img');
+const natureLightboxCaption=natureLightbox?.querySelector('figcaption');
+const natureLightboxClose=natureLightbox?.querySelector('.nature-lightbox-close');
+let natureIndex=0;
+let natureDragging=false;
+let natureDragged=false;
+let natureStartX=0;
+let natureStartScroll=0;
+
+const updateNatureCount=(index)=>{
+  natureIndex=Math.max(0,Math.min(index,natureCards.length-1));
+  if(natureCount){
+    natureCount.textContent=`${String(natureIndex+1).padStart(2,'0')} / ${String(natureCards.length).padStart(2,'0')}`;
+  }
+};
+
+const centerNatureCard=(index)=>{
+  if(!natureTrack||!natureCards.length){return;}
+  updateNatureCount(index);
+  const card=natureCards[natureIndex];
+  const left=card.offsetLeft-natureTrack.offsetLeft-(natureTrack.clientWidth-card.clientWidth)/2;
+  natureTrack.scrollTo({left,behavior:reduceMotion?'auto':'smooth'});
+};
+
+const syncNatureIndex=()=>{
+  if(!natureTrack||!natureCards.length){return;}
+  const trackCenter=natureTrack.scrollLeft+natureTrack.clientWidth/2;
+  let nearest=0;
+  let nearestDistance=Infinity;
+  natureCards.forEach((card,index)=>{
+    const cardCenter=card.offsetLeft-natureTrack.offsetLeft+card.clientWidth/2;
+    const distance=Math.abs(cardCenter-trackCenter);
+    if(distance<nearestDistance){
+      nearestDistance=distance;
+      nearest=index;
+    }
+  });
+  updateNatureCount(nearest);
+};
+
+naturePrev?.addEventListener('click',()=>centerNatureCard(natureIndex-1));
+natureNext?.addEventListener('click',()=>centerNatureCard(natureIndex+1));
+natureTrack?.addEventListener('scroll',()=>window.requestAnimationFrame(syncNatureIndex),{passive:true});
+
+natureTrack?.addEventListener('pointerdown',(event)=>{
+  if(event.pointerType==='touch'){return;}
+  natureDragging=true;
+  natureDragged=false;
+  natureStartX=event.clientX;
+  natureStartScroll=natureTrack.scrollLeft;
+  natureTrack.classList.add('dragging');
+  natureTrack.setPointerCapture(event.pointerId);
+});
+
+natureTrack?.addEventListener('pointermove',(event)=>{
+  if(!natureDragging){return;}
+  const delta=event.clientX-natureStartX;
+  if(Math.abs(delta)>5){natureDragged=true;}
+  natureTrack.scrollLeft=natureStartScroll-delta;
+});
+
+const stopNatureDrag=(event)=>{
+  if(!natureDragging){return;}
+  natureDragging=false;
+  natureTrack.classList.remove('dragging');
+  if(natureTrack.hasPointerCapture(event.pointerId)){
+    natureTrack.releasePointerCapture(event.pointerId);
+  }
+  syncNatureIndex();
+  centerNatureCard(natureIndex);
+  window.setTimeout(()=>{natureDragged=false;},0);
+};
+
+natureTrack?.addEventListener('pointerup',stopNatureDrag);
+natureTrack?.addEventListener('pointercancel',stopNatureDrag);
+
+const openNatureLightbox=(card)=>{
+  if(natureDragged||!natureLightbox||!natureLightboxImg||!natureLightboxCaption){return;}
+  const image=card.querySelector('img');
+  const title=card.querySelector('strong')?.textContent||'';
+  const detail=card.querySelector('.nature-caption span')?.textContent||'';
+  natureLightboxImg.src=image.currentSrc||image.src;
+  natureLightboxImg.alt=image.alt;
+  natureLightboxCaption.textContent=[title,detail].filter(Boolean).join(' · ');
+  natureLightbox.classList.add('open');
+  natureLightbox.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  natureLightboxClose?.focus();
+};
+
+const closeNatureLightbox=()=>{
+  if(!natureLightbox){return;}
+  natureLightbox.classList.remove('open');
+  natureLightbox.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+};
+
+natureCards.forEach((card)=>{
+  card.addEventListener('click',()=>openNatureLightbox(card));
+  card.addEventListener('keydown',(event)=>{
+    if(event.key==='Enter'||event.key===' '){
+      event.preventDefault();
+      openNatureLightbox(card);
+    }
+  });
+});
+
+natureLightboxClose?.addEventListener('click',closeNatureLightbox);
+natureLightbox?.addEventListener('click',(event)=>{
+  if(event.target===natureLightbox){closeNatureLightbox();}
+});
+document.addEventListener('keydown',(event)=>{
+  if(event.key==='Escape'&&natureLightbox?.classList.contains('open')){closeNatureLightbox();}
+});
+updateNatureCount(0);
 </script>
 
 <script>
