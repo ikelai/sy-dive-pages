@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>櫻雪潛水中心 SY Diving | 台北仁愛＋沖繩青洞</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600&display=swap');
 
   :root {
     /* Okinawa clear sky: crisp cloud white, clean air blue and sakura pink */
@@ -710,6 +710,118 @@
     .map-pin-label b { font-size: 0.56rem; }
     .map-pin-label span { font-size: 0.58rem; }
   }
+
+  /* ══ EDITORIAL REDESIGN · NEW VERSION ONLY ══ */
+  :root {
+    --paper:#f8f8f5; --white:#fff; --ink:#151515;
+    --text-primary:#242424; --text-secondary:#6d6c67;
+    --deep-ocean:#006fc9; --ryukyu-blue:#83bde8; --pocari-blue:#e3f2ff;
+    --sakura-main:#e6a9bb; --vermillion:#cf7892;
+    --seafoam:#f2f7fb; --sky-celadon:#f5f8fb;
+    --border-light:#deded8; --border-blue:#d7e8f4;
+  }
+  html { font-size:16px; }
+  body { background:var(--paper); color:var(--text-primary); line-height:1.9; letter-spacing:.015em; }
+  nav { height:72px; padding:0 clamp(1.25rem,4vw,4.5rem); background:rgba(15,27,36,.22); border-bottom-color:rgba(255,255,255,.2); }
+  nav.scrolled { background:rgba(248,248,245,.96); box-shadow:0 10px 35px rgba(0,0,0,.06); border-bottom-color:var(--border-light); }
+  nav.scrolled .nav-links a { color:#222; }
+  nav.scrolled .nav-logo img { filter:grayscale(1) brightness(.18); }
+  .nav-links { gap:clamp(1rem,2vw,2.4rem); }
+  .nav-links a { font-family:'Montserrat','Noto Sans TC',sans-serif; font-size:.72rem; font-weight:500; letter-spacing:.08em; }
+  .nav-cta { border-radius:0; padding:10px 18px !important; background:#111 !important; }
+  nav.scrolled .nav-cta { color:#fff !important; }
+
+  .hero { min-height:100svh; justify-content:flex-start; padding:8rem clamp(1.5rem,8vw,9rem) 5rem; }
+  .hero::before { background:linear-gradient(90deg,rgba(7,18,26,.62) 0%,rgba(7,18,26,.28) 48%,rgba(7,18,26,.04) 78%),linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.24)); }
+  .hero::after { display:none; }
+  .hero-carousel { inset:0; transform:translate3d(var(--hero-x,0px),calc(var(--hero-shift,0px) + var(--hero-y,0px)),0); transition:transform .35s ease-out; }
+  .hero-slide:not(:first-child), .hero-carousel-nav { display:none; }
+  .hero-slide:first-child { opacity:1; }
+  .hero-slide:first-child img { object-position:54% center; animation:heroCinema 18s ease-out both !important; filter:saturate(.78) contrast(.96) brightness(1.03); }
+  .hero-content { text-align:left; max-width:760px; padding:0; margin:0; }
+  .hero-content > img { margin-left:0 !important; width:48px !important; }
+  .hero-kana { font-family:'Montserrat',sans-serif; font-size:.66rem; font-weight:500; letter-spacing:.24em; }
+  .hero h1 { font-family:'Noto Serif TC',serif; font-size:clamp(2.7rem,6vw,5.8rem); font-weight:500; line-height:1.2; letter-spacing:.03em; }
+  .hero h1 em { color:#8cccf4; }
+  .hero p { max-width:650px; font-size:.92rem; line-height:1.9; letter-spacing:.03em; color:rgba(255,255,255,.78); }
+  .hero-meta { justify-content:flex-start; gap:1.8rem; margin-bottom:2rem; }
+  .hero-content > div:last-child { justify-content:flex-start !important; }
+  .hero-scene-label { left:auto; right:clamp(1.5rem,4vw,4rem); bottom:2.25rem; }
+  .scroll-hint { left:auto; right:clamp(1.5rem,4vw,4rem); transform:none; }
+
+  section { max-width:1240px; padding:clamp(5.5rem,10vw,9rem) clamp(1.4rem,5vw,4rem); }
+  .section-kana { font-family:'Montserrat',sans-serif; color:#74736f; opacity:1; font-size:.6rem; letter-spacing:.26em; margin-bottom:1rem; }
+  .section-title { font-family:'Noto Serif TC',serif; color:var(--ink); font-size:clamp(1.8rem,3.4vw,3.1rem); font-weight:500; letter-spacing:.025em; line-height:1.45; }
+  .section-sub { max-width:760px; font-size:.9rem; color:var(--text-secondary); line-height:2.1; }
+  .sec-line { width:28px; background:#222; margin:1.2rem auto 2rem; }
+  .sky-band { background:#fff; padding:clamp(6rem,12vw,11rem) 2rem; }
+  .sky-band p { max-width:720px; margin-left:auto; margin-right:auto; }
+
+  .btn { border-radius:0; padding:14px 28px; font-size:.74rem; font-weight:500; letter-spacing:.12em; }
+  .btn-primary,.btn-dark { background:#111; color:#fff; }
+  .btn-outline { border:1px solid rgba(255,255,255,.7); }
+  .btn-line { border-color:#111; color:#111; }
+  .btn:hover { transform:none; box-shadow:none; }
+
+  .loc-grid { grid-template-columns:repeat(3,1fr); gap:clamp(2rem,4vw,4.5rem); }
+  .loc-card,.feat,.disc-card { background:transparent; border:0; border-radius:0; box-shadow:none; }
+  .loc-card { border-top:1px solid var(--border-light); overflow:visible; }
+  .loc-card:hover,.disc-card:hover { transform:none; box-shadow:none; border-color:#aaa; }
+  .loc-card > img { height:clamp(230px,25vw,350px) !important; filter:saturate(.72) contrast(.96) brightness(1.04); transition:filter .5s,transform .8s cubic-bezier(.2,.7,.2,1); }
+  .loc-card:hover > img { filter:saturate(.92) contrast(1); transform:scale(1.015); }
+  .loc-header { padding:1.4rem 0 0; }
+  .loc-body { padding:.6rem 0 0; }
+  .loc-badge,.loc-region { padding:0; min-height:0; border:0 !important; border-radius:0; background:transparent !important; color:#777 !important; font-family:'Montserrat','Noto Sans TC',sans-serif; font-size:.6rem; letter-spacing:.13em; }
+  .loc-body h3 { font-family:'Noto Serif TC',serif; font-weight:500; font-size:1.4rem; }
+
+  .feats { gap:0; border-top:1px solid var(--border-light); }
+  .feat { padding:2.4rem 1.5rem; border-right:1px solid var(--border-light); }
+  .feat:last-child { border-right:0; }
+  .feat-icon { background:transparent !important; border:0 !important; border-radius:0 !important; color:#111 !important; }
+  .feat-icon svg { stroke:#111; }
+
+  .architecture-study { background:#fff; border:0; padding:clamp(1rem,4vw,3rem); }
+  .architecture-linework img { filter:grayscale(1) contrast(.88) brightness(1.12); mix-blend-mode:multiply; }
+  .architecture-grid { gap:clamp(1.5rem,3vw,3rem); }
+  .architecture-card { background:transparent; }
+  .architecture-card img { filter:saturate(.72) contrast(.96) brightness(1.04); }
+  .architecture-caption { position:static; background:transparent; color:#222; padding:1rem 0 0; }
+  .architecture-caption strong { color:#111; font-family:'Montserrat',sans-serif; font-size:.75rem; letter-spacing:.12em; }
+  .architecture-caption span { color:#777; font-size:.72rem; }
+
+  .pool-band,footer { background:#15191c; }
+  .pool-item { border-width:0 0 1px; }
+  .pool-item .ch { color:#fff; font-family:'Noto Serif TC',serif; font-weight:500; }
+  .tl-item .tl-icon { width:auto; height:auto; border-radius:0; background:transparent !important; color:#111; font-family:'Montserrat',sans-serif; font-size:2rem; font-weight:400; }
+  .tl-summary { background:transparent; border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light); }
+  .plan-card,.guide-food-card { border-radius:0 !important; box-shadow:none !important; }
+  .contact::before { background:rgba(8,25,38,.46) !important; }
+
+  .nature-card img,.guide-food-card img,.guide-spot,.img-band img { filter:saturate(.76) contrast(.96) brightness(1.04); }
+  .motion-ready .reveal { opacity:0; transform:translateY(32px); transition:opacity .9s ease var(--reveal-delay,0ms),transform 1.05s cubic-bezier(.2,.7,.2,1) var(--reveal-delay,0ms); }
+  .motion-ready .reveal.visible { opacity:1; transform:none; }
+  .motion-ready .architecture-study.reveal,.motion-ready .img-band.reveal,.motion-ready .nature-section.reveal { clip-path:inset(6% 0 6% 0); transition:opacity .9s,transform 1.05s cubic-bezier(.2,.7,.2,1),clip-path 1.25s cubic-bezier(.2,.7,.2,1); }
+  .motion-ready .architecture-study.reveal.visible,.motion-ready .img-band.reveal.visible,.motion-ready .nature-section.reveal.visible { clip-path:inset(0); }
+
+  @media(max-width:900px){
+    .loc-grid { grid-template-columns:1fr; }
+    .loc-card > img { height:min(62vw,430px) !important; }
+    .feats { grid-template-columns:repeat(2,1fr); }
+    .feat:nth-child(2) { border-right:0; }
+  }
+  @media(max-width:768px){
+    nav { height:60px; background:rgba(15,27,36,.72); }
+    .nav-links { background:rgba(248,248,245,.98); }
+    .nav-links a { color:#222; }
+    .hero { min-height:92svh; padding:7rem 1.35rem 4rem; align-items:flex-end; }
+    .hero::before { background:linear-gradient(180deg,rgba(7,18,26,.05) 18%,rgba(7,18,26,.76) 100%); }
+    .hero h1 { font-size:clamp(2.25rem,12vw,3.8rem); }
+    .hero p,.hero-meta { display:none; }
+    .hero-scene-label,.scroll-hint { display:none; }
+    .feats { grid-template-columns:1fr; }
+    .feat { border-right:0; border-bottom:1px solid var(--border-light); }
+    .section-title { letter-spacing:.02em; }
+  }
 </style>
 </head>
 <body>
@@ -808,7 +920,7 @@
 <!-- ══ 沖繩據點建築 ══ -->
 <section class="reveal" id="okinawa-base">
   <div class="section-kana">OKINAWA BASE</div>
-  <h2 class="section-title">沖 繩 的 店</h2>
+  <h2 class="section-title">沖繩的店</h2>
   <div class="sec-line"></div>
   <p class="section-sub">從白色建築、棕櫚樹到海風，這裡是櫻雪在沖繩的集合點，也是出發前整理裝備與認識海況的地方。</p>
   <div class="architecture-study reveal">
@@ -841,7 +953,7 @@
 <!-- ══ 特色 ══ -->
 <section id="why" style="text-align:center;">
   <div class="section-kana">FEATURES</div>
-  <h2 class="section-title">為 什 麼 選 櫻 雪</h2>
+  <h2 class="section-title">為什麼選櫻雪</h2>
   <div class="sec-line"></div>
   <div class="feats">
     <div class="feat reveal">
@@ -867,13 +979,13 @@
 <!-- ══ 沖繩地理 ══ -->
 <section class="journey-intro reveal" id="okinawa-journey">
   <div class="section-kana">OKINAWA JOURNEY</div>
-  <h2 class="section-title">潛 進 沖 繩 · 也 走 進 島 嶼 日 常</h2>
+  <h2 class="section-title">潛進沖繩，也走進島嶼日常</h2>
   <div class="sec-line"></div>
   <p class="section-sub">從恩納村的櫻雪基地出發，潛進青之洞窟，也把海岸、島嶼風景與在地味道排進旅程。考證、體驗與旅行，在同一段海島時間裡自然完成。</p>
 </section>
 <section id="blue-cave" style="text-align:center;padding-bottom:2rem;">
   <div class="section-kana">OKINAWA</div>
-  <h2 class="section-title">沖 繩 青 之 洞 窟</h2>
+  <h2 class="section-title">沖繩青之洞窟</h2>
   <div class="sec-line"></div>
   <div class="stats-grid">
     <div class="stat-item"><div class="stat-value">1.5<span> hr</span></div><div class="stat-label">台灣直飛</div></div>
@@ -924,7 +1036,7 @@
 <!-- ══ 沖繩旅行導覽 ══ -->
 <section class="reveal guide-section" id="okinawa-guide">
   <div class="section-kana">OKINAWA ISLAND GUIDE</div>
-  <h2 class="section-title">潛 完 水 · 慢 慢 旅 行</h2>
+  <h2 class="section-title">潛完水，慢慢旅行</h2>
   <div class="sec-line"></div>
   <p class="section-sub">把恩納村周邊的味道與沖繩風景，一起排進海島旅程裡。</p>
   <h3 class="guide-subtitle">GOURMET · 美食饗宴</h3>
@@ -1002,7 +1114,7 @@
 <!-- ══ 方案 ══ -->
 <section class="reveal" id="plan" style="text-align:center;">
   <div class="section-kana">DIVE PLANS</div>
-    <h2 class="section-title">方 案 與 價 格</h2>
+    <h2 class="section-title">方案與價格</h2>
   <div class="sec-line"></div>
   <div class="plan-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.75rem;margin-top:1rem;">
     <div class="loc-card reveal">
@@ -1040,7 +1152,7 @@
 <!-- ══ 其他水上體驗 ══ -->
 <section class="reveal" id="experiences" style="text-align:center;">
   <div class="section-kana">ACTIVITIES</div>
-  <h2 class="section-title">用 不 同 方 式 · 親 近 沖 繩 的 海</h2>
+  <h2 class="section-title">用不同方式，親近沖繩的海</h2>
   <div class="sec-line"></div>
   <div class="loc-grid">
     <div class="loc-card reveal">
@@ -1068,7 +1180,7 @@
 <!-- ══ 游泳池 ══ -->
 <div class="pool-band reveal" id="pool">
   <div class="section-kana">SWIMMING POOL</div>
-  <h2 class="section-title">櫻 雪 游 泳 池</h2>
+  <h2 class="section-title">櫻雪游泳池</h2>
   <div class="sec-line"></div>
   <p style="font-size:0.85rem;margin-bottom:2rem;">櫻雪自有游泳池全年恆溫，除 PADI 平靜水域訓練外，另提供游泳課程與場地出租<br>
   <a href="https://maps.app.goo.gl/nRAS1w7pERsF7T9z8" target="_blank" rel="noopener noreferrer" style="color:inherit;text-underline-offset:0.2em;">台北市大安區仁愛路四段 130 號</a> · 9 水道 · 25m · 水深 1.2m · 免戴泳帽</p>
@@ -1084,7 +1196,7 @@
 <!-- ══ 冬雪夏水 ══ -->
 <div class="img-band dual-band" id="seasons-image"><img src="sy-dive-images/dual-okinawa-woman-v4.png?v=20260830-woman-v4" alt="冬雪夏水"></div>
 <div class="sky-band reveal" id="seasons">
-  <h2 class="section-title">冬 雪 夏 水</h2>
+  <h2 class="section-title">冬雪夏水</h2>
   <div class="sec-line"></div>
   <p style="font-size:0.85rem;">冬はスキー、夏はダイビング。<br>專業教練團隊，陪你從雪場到海島探索四季。</p>
 </div>
@@ -1104,7 +1216,7 @@
 <!-- ══ FAQ ══ -->
 <section class="reveal" id="faq" style="max-width:720px;">
   <div class="section-kana">FAQ</div>
-  <h2 class="section-title">常 見 問 題</h2>
+  <h2 class="section-title">常見問題</h2>
   <div class="sec-line"></div>
   <details class="faq-item"><summary class="faq-q">不會游泳，可以學潛水嗎？</summary><p class="faq-a">可以。PADI 只要求不靠漂浮器材在水面待 10 分鐘，並能連續游泳 200 公尺（不限姿勢、不限時間）。重點是不恐慌、能在水中照顧自己。</p></details>
   <details class="faq-item"><summary class="faq-q">近視可以潛水嗎？</summary><p class="faq-a">可以。戴隱形眼鏡下水，或租用有度數的面鏡。報名時備註度數即可。</p></details>
@@ -1120,7 +1232,7 @@
 <section class="dive-map-section reveal" id="dive-map">
   <div class="dive-map-copy">
     <div class="section-kana">MORE OKINAWA DIVES</div>
-    <h2 class="section-title">青 洞 之 外 · 還 有 更 多 玩 法</h2>
+    <h2 class="section-title">青洞之外，還有更多玩法</h2>
     <div class="sec-line"></div>
     <p class="section-sub">青之洞窟可以是旅程的起點，不必是唯一目的地。櫻雪會依旅客的證照、經驗、季節與當日海況，從恩納村帶你前往萬座等西海岸潛點；條件合適時，也能進一步安排慶良間船潛，看到沖繩更多不同的海。</p>
     <a class="dive-map-base" href="https://maps.app.goo.gl/Xgw14vvBEVRDdFhM7" target="_blank" rel="noopener noreferrer">
@@ -1158,7 +1270,7 @@
   <div style="position:relative;z-index:1;">
   <img src="sy-dive-images/logo-2.png?v=20260828-logo2" alt="櫻雪 SAKURAYUKI" class="logo-foot">
   <div class="section-kana" style="color:rgba(255,255,255,0.5);">CONTACT</div>
-  <h2 class="section-title" style="color:white;">聯 絡 我 們</h2>
+  <h2 class="section-title" style="color:white;">聯絡我們</h2>
   <div class="sec-line" style="background:var(--pocari-blue);"></div>
   <div class="contact-info" style="color:rgba(255,255,255,0.75);">
     仁愛：<a class="contact-link" href="https://maps.app.goo.gl/nRAS1w7pERsF7T9z8" target="_blank" rel="noopener noreferrer">台北市大安區仁愛路四段 130 號</a><br>
@@ -1210,6 +1322,7 @@ const heroSlides=[...document.querySelectorAll('.hero-slide')];
 const heroDots=[...document.querySelectorAll('.hero-carousel-dot')];
 const heroSceneLabel=document.querySelector('.hero-scene-label');
 const heroSceneNames=['Okinawa Base · Onna Village','Underwater Light · Blue Cave','Island Life · Okinawa'];
+const editorialHero=true;
 const getStickyBar=()=>document.querySelector('#stickyBar');
 const revealItems=[...document.querySelectorAll('.reveal')];
 const revealGroups=['.loc-grid','.feats','.architecture-grid','.nature-grid','.step-row','.plan-grid'];
@@ -1229,7 +1342,7 @@ const showHeroSlide=(nextIndex)=>{
 };
 let heroIndex=0;
 let heroTimer;
-if(!reduceMotion&&heroSlides.length>1){
+if(!editorialHero&&!reduceMotion&&heroSlides.length>1){
   const startHeroCarousel=()=>{
     window.clearInterval(heroTimer);
     heroTimer=window.setInterval(()=>{
@@ -1272,6 +1385,20 @@ const syncScrollState=()=>{
 syncScrollState();
 window.addEventListener('scroll',syncScrollState,{passive:true});
 window.addEventListener('load',syncScrollState,{once:true});
+
+if(!reduceMotion&&hero&&heroCarousel){
+  hero.addEventListener('pointermove',(event)=>{
+    const rect=hero.getBoundingClientRect();
+    const x=((event.clientX-rect.left)/rect.width-.5)*10;
+    const y=((event.clientY-rect.top)/rect.height-.5)*8;
+    heroCarousel.style.setProperty('--hero-x',`${x.toFixed(2)}px`);
+    heroCarousel.style.setProperty('--hero-y',`${y.toFixed(2)}px`);
+  });
+  hero.addEventListener('pointerleave',()=>{
+    heroCarousel.style.setProperty('--hero-x','0px');
+    heroCarousel.style.setProperty('--hero-y','0px');
+  });
+}
 
 const natureTrack=document.querySelector('.nature-grid');
 const natureCards=[...document.querySelectorAll('.nature-card')];
