@@ -373,7 +373,8 @@
   }
   .cert-badge:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(13,94,168,0.28), inset 0 0 0 3px rgba(255,255,255,0.16); }
   .cert-badge::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(255,255,255,0.28); border-radius: 2px; pointer-events: none; }
-  .cert-badge .icon { position: relative; z-index: 1; display: grid; place-items: center; min-width: 68px; height: 44px; padding: 0 0.35rem; background: var(--paper); border: 2px solid var(--sakura-main); color: var(--deep-ocean); font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0.12em; transform: skew(-6deg); }
+  .cert-badge .icon { position: relative; z-index: 1; display: grid; place-items: center; min-width: 96px; height: 58px; padding: 0.35rem 0.55rem; background: white; border-radius: 3px; }
+  .cert-badge .icon img { display: block; width: 88px; height: auto; }
   .cert-badge .txt { position: relative; z-index: 1; font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-weight: 700; font-size: 1rem; color: white; letter-spacing: 0.03em; }
   .cert-badge .txt small { display: block; margin-top: 0.18rem; font-weight: 400; font-size: 0.7rem; color: rgba(255,255,255,0.68); letter-spacing: 0.02em; }
   @media (max-width: 560px) { .cert-badge { gap: 0.7rem; padding-right: 0.9rem; } .cert-badge .txt { font-size: 0.86rem; } .cert-badge .txt small { font-size: 0.62rem; } }
@@ -975,7 +976,7 @@
       </div>
     </div>
     <a class="cert-badge" href="https://www.padi.com/zh-hant/education" target="_blank" rel="noopener noreferrer" aria-label="前往 PADI 官方網站了解開放水域潛水員證照">
-      <span class="icon">PADI</span>
+      <span class="icon"><img src="sy-dive-images/60th-padi.svg?v=20260901" alt="PADI 60 Years"></span>
       <span class="txt">PADI 開放水域潛水員證照<small>Open Water Diver · 課程與考核完成後取得</small></span>
     </a>
   </div>
