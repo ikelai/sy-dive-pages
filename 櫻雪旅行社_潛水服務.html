@@ -29,6 +29,7 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; font-size: 17px; }
+  section[id], div[id] { scroll-margin-top: 76px; }
   body {
     font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     background: var(--paper);
@@ -690,10 +691,10 @@
   <a href="櫻雪旅行社_潛水服務.html" class="nav-logo"><img src="sy-dive-images/logo-1.png?v=20260827-logo1" alt="櫻雪潛水中心" style="height:36px;"></a>
   <button class="hamburger" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單"><span></span><span></span><span></span></button>
   <ul class="nav-links">
+    <li><a href="#plan">方案價格</a></li>
+    <li><a href="#pathway">考證流程</a></li>
     <li><a href="#locations">據點</a></li>
-    <li><a href="#okinawa-base">沖繩</a></li>
-    <li><a href="#pathway">考證</a></li>
-
+    <li><a href="#blue-cave">沖繩體驗</a></li>
     <li><a href="櫻雪游泳池.html">櫻雪游泳池</a></li>
     <li><a href="#okinawa-guide">沖繩導覽</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -718,7 +719,7 @@
       <div class="hero-meta-item"><strong>沖繩</strong> 恩納村山田 591-1 · 真栄田岬旁</div>
     </div>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="#pathway" class="btn btn-primary">PADI 考證流程</a>
+      <a href="#plan" class="btn btn-primary">查看方案與價格</a>
       <a href="#locations" class="btn btn-outline">認識潛水據點</a>
     </div>
   </div>
@@ -785,7 +786,7 @@
   <p class="section-sub">從白色建築、棕櫚樹到海風，這裡是櫻雪在沖繩的集合點，也是出發前整理裝備與認識海況的地方。</p>
   <div class="architecture-study reveal">
     <figure class="architecture-linework">
-      <img src="sy-dive-images/okinawa-front-elevation-transparent.png?v=20260901-transparent3" alt="櫻雪沖繩店面建築正立面線稿" loading="lazy">
+      <img src="sy-dive-images/okinawa-front-elevation-studio-v2.png?v=20260901-studio-v3" alt="櫻雪沖繩店面建築正立面線稿" loading="lazy">
     </figure>
   </div>
   <div class="architecture-grid">
@@ -811,7 +812,7 @@
 
 
 <!-- ══ 特色 ══ -->
-<section style="text-align:center;">
+<section id="why" style="text-align:center;">
   <div class="section-kana">FEATURES</div>
   <h2 class="section-title">為 什 麼 選 櫻 雪</h2>
   <div class="sec-line"></div>
@@ -837,7 +838,7 @@
 
 
 <!-- ══ 沖繩地理 ══ -->
-<section style="text-align:center;padding-bottom:2rem;">
+<section id="blue-cave" style="text-align:center;padding-bottom:2rem;">
   <div class="section-kana">OKINAWA</div>
   <h2 class="section-title">沖 繩 青 之 洞 窟</h2>
   <div class="sec-line"></div>
@@ -927,7 +928,7 @@
 </div>
 
 <!-- ══ 教練團隊 ══ -->
-<div class="img-band"><img src="sy-dive-images/coach-hero.jpg?v=20260827-team-v3" alt="教練團隊"></div>
+<div class="img-band" id="coaches"><img src="sy-dive-images/coach-hero.jpg?v=20260827-team-v3" alt="教練團隊"></div>
 
 <!-- ══ PADI 考證路徑 ══ -->
 <div class="pathway-wrap" id="pathway">
@@ -968,7 +969,7 @@
 <!-- ══ 方案 ══ -->
 <section class="reveal" id="plan" style="text-align:center;">
   <div class="section-kana">DIVE PLANS</div>
-    <h2 class="section-title">專 屬 方 案</h2>
+    <h2 class="section-title">方 案 與 價 格</h2>
   <div class="sec-line"></div>
   <div class="plan-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.75rem;margin-top:1rem;">
     <div class="loc-card reveal">
@@ -992,7 +993,7 @@
       <div class="loc-body">
         <h3>沖繩方案</h3>
         <p class="jp">青の洞窟 · 5 天 4 夜</p>
-        <p style="font-family:'Noto Sans TC','Noto Sans JP',sans-serif;font-size:1.55rem;font-weight:700;margin:0.85rem 0;">方案金額待確認</p>
+        <p style="font-family:'Noto Sans TC','Noto Sans JP',sans-serif;font-size:1.55rem;font-weight:700;margin:0.85rem 0;">依出發日期個別報價</p>
         <div style="margin:1rem 0;padding-top:1rem;border-top:1px solid var(--border-light);font-size:0.85rem;color:var(--text-secondary);line-height:1.8;">
           平靜水域課程（1–2 支氣瓶）＋ 沖繩青洞開放水域（4 支氣瓶）＋ 機票 ＋ 住宿 4 晚 ＋ PADI 證照 ＋ 教練 ＋ 教材 ＋ 裝備
         </div>
@@ -1048,8 +1049,8 @@
 </div>
 
 <!-- ══ 冬雪夏水 ══ -->
-<div class="img-band dual-band"><img src="sy-dive-images/dual-okinawa-woman-v4.png?v=20260830-woman-v4" alt="冬雪夏水"></div>
-<div class="sky-band reveal">
+<div class="img-band dual-band" id="seasons-image"><img src="sy-dive-images/dual-okinawa-woman-v4.png?v=20260830-woman-v4" alt="冬雪夏水"></div>
+<div class="sky-band reveal" id="seasons">
   <h2 class="section-title">冬 雪 夏 水</h2>
   <div class="sec-line"></div>
   <p style="font-size:0.85rem;">冬はスキー、夏はダイビング。<br>專業教練團隊，陪你從雪場到海島探索四季。</p>
@@ -1081,12 +1082,6 @@
   <details class="faq-item"><summary class="faq-q">冬天可以學潛水嗎？</summary><p class="faq-a">可以。仁愛游泳池全年恆溫 28°C，冬天照常開課。沖繩也全年可潛。</p></details>
   <details class="faq-item"><summary class="faq-q">需要自己準備裝備嗎？</summary><p class="faq-a">不需要。課程費用已含全套潛水裝備使用。若自有裝備可折抵部分費用。</p></details>
 </section>
-
-<!-- ══ 親子 ══ -->
-<div class="img-band"><img src="sy-dive-images/family.jpg?v=20260827-family-v2" alt="親子友善"></div>
-
-<!-- ══ 台灣潛點 ══ -->
-<div class="img-band"><img src="sy-dive-images/asia.jpg?v=20260827-dive-v2" alt="台灣潛點"></div>
 
 <!-- ══ 沖繩潛點地圖 ══ -->
 <section class="dive-map-section reveal" id="dive-map">
@@ -1169,6 +1164,12 @@
 <script>
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const nav=document.querySelector('nav');
+const footer=document.querySelector('footer');
+[
+  '.hero','#why','#plan','#pathway','#locations','#coaches','#blue-cave',
+  '#experiences','#pool','#okinawa-base','#okinawa-nature','#okinawa-guide',
+  '#dive-map','#seasons-image','#seasons','#discount','#faq','#contact'
+].forEach(selector=>{const block=document.querySelector(selector);if(block&&footer){footer.before(block);}});
 const hero=document.querySelector('.hero');
 const heroCarousel=document.querySelector('.hero-carousel');
 const heroSlides=[...document.querySelectorAll('.hero-slide')];
