@@ -226,19 +226,22 @@
   .map-link:hover { color: var(--deep-ocean); }
 
   /* ── OKINAWA BASE GALLERY ── */
-  .architecture-grid { display: grid; grid-template-columns: 1.25fr 0.9fr; grid-template-rows: repeat(2, minmax(240px, 1fr)); gap: 1rem; margin-top: 2rem; }
-  .architecture-card { position: relative; overflow: hidden; min-height: 240px; background: var(--white); border: 1px solid var(--border-light); }
-  .architecture-card.featured { grid-row: span 2; }
-  .architecture-card img { width: 100%; height: 100%; min-height: 240px; display: block; object-fit: cover; transition: transform 0.7s cubic-bezier(0.25,0.1,0.25,1); }
-  .architecture-card.featured img { min-height: 500px; }
-  .architecture-card:hover img { transform: scale(1.035); }
-  .architecture-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 3.4rem 1.25rem 1.1rem; color: white; background: linear-gradient(transparent, rgba(4,42,71,0.8)); }
-  .architecture-caption strong { display: block; font-size: 1rem; letter-spacing: 0.08em; }
-  .architecture-caption span { display: block; margin-top: 0.15rem; font-size: 0.72rem; color: rgba(255,255,255,0.78); letter-spacing: 0.04em; }
+  .architecture-grid { display: flex; gap: clamp(1rem,3vw,2.25rem); margin-top: 2.5rem; padding: 0 max(4%,calc((100% - 1080px)/2)); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+  .architecture-grid::-webkit-scrollbar { display: none; }
+  .architecture-card { flex: 0 0 min(90%,1080px); scroll-snap-align: center; background: var(--white); }
+  .architecture-card img { width: 100%; aspect-ratio: 16/9; display: block; object-fit: cover; border: 1px solid var(--border-light); transition: filter 0.45s ease; }
+  .architecture-card:hover img { filter: brightness(1.025); }
+  .architecture-caption { display: grid; grid-template-columns: minmax(150px,.38fr) 1fr; gap: 1.5rem; align-items: baseline; padding: 1.15rem .15rem .35rem; border-bottom: 1px solid var(--border-light); color: var(--ink); }
+  .architecture-caption strong { font-family: 'Montserrat',sans-serif; font-size: .82rem; font-weight: 500; letter-spacing: .13em; }
+  .architecture-caption span { font-size: .72rem; color: var(--text-secondary); letter-spacing: .04em; }
+  .architecture-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.25rem; }
+  .architecture-arrow { width: 46px; height: 46px; min-width: 46px; min-height: 46px; border: 1px solid var(--border-blue); border-radius: 50%; background: white; color: var(--deep-ocean); font-size: 1rem; cursor: pointer; transition: background .25s,color .25s,transform .25s; }
+  .architecture-arrow:hover { transform: translateY(-2px); background: var(--deep-ocean); color: white; }
+  .architecture-count { min-width: 68px; color: var(--text-secondary); font-family: 'Montserrat',sans-serif; font-size: .68rem; letter-spacing: .14em; text-align: center; }
   .architecture-study {
-    position: relative; overflow: hidden; margin-top: 1rem; padding: 2.4rem 3rem 1.35rem;
-    background: linear-gradient(135deg, rgba(247,250,252,0.98), rgba(226,240,247,0.74));
-    border: 1px solid rgba(13,94,168,0.14);
+    position: relative; overflow: hidden; margin-top: 1rem; padding: 1.2rem clamp(.5rem,3vw,2rem) .5rem;
+    background: #fff;
+    border: 1px solid var(--border-light);
   }
   .architecture-study::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: linear-gradient(var(--pocari-blue), var(--sakura-main)); }
   .architecture-study-head { position: relative; z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; }
@@ -248,6 +251,7 @@
   .architecture-linework { position: relative; z-index: 1; margin: 0.6rem auto 0; }
   .architecture-linework img { display: block; width: 100%; max-height: 500px; object-fit: contain; filter: drop-shadow(0 16px 24px rgba(4,42,71,0.05)); }
   .architecture-linework figcaption { display: flex; justify-content: space-between; border-top: 1px solid rgba(13,94,168,0.12); padding-top: 0.7rem; color: rgba(4,42,71,0.52); font-size: 0.58rem; letter-spacing: 0.2em; }
+  @media(max-width:640px){.architecture-card{flex-basis:92%}.architecture-caption{grid-template-columns:1fr;gap:.3rem}.architecture-study{padding:.4rem .2rem}.architecture-linework img{min-height:220px}}
 
   /* ── OKINAWA NATURE ── */
   .nature-section { width: 100%; max-width: 1200px; overflow: hidden; }
@@ -302,6 +306,10 @@
   .guide-food-tag { padding: .42rem .68rem; background: var(--sky-celadon); border: 1px solid var(--border-light); color: var(--text-primary); font-size: .62rem; }
   .guide-food-note { margin-top: 1.4rem; color: #91a8b8; font-size: .6rem; line-height: 1.7; }
   .guide-food-close { position: absolute; z-index: 2; top: 1rem; right: 1rem; width: 44px; height: 44px; min-width: 44px; min-height: 44px; border: 1px solid rgba(20,90,135,.16); border-radius: 50%; background: rgba(255,255,255,.9); color: var(--ink); font-size: 1.35rem; cursor: pointer; }
+  .guide-food-nav { display: flex; align-items: center; justify-content: space-between; gap: .8rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-light); }
+  .guide-food-nav button { min-height: 40px; padding: .55rem .75rem; border: 0; background: transparent; color: var(--ink); font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: .62rem; letter-spacing: .08em; cursor: pointer; }
+  .guide-food-nav button:hover { color: #b45f79; }
+  .guide-food-position { color: var(--text-secondary); font-family: 'Montserrat',sans-serif; font-size: .6rem; letter-spacing: .12em; white-space: nowrap; }
   .guide-spots { margin-top: 4.5rem; overflow: hidden; }
   .guide-spots-track { display: flex; transition: transform .65s cubic-bezier(.25,.1,.25,1); }
   .guide-spot { position: relative; flex: 0 0 100%; height: min(64vh,590px); background-position: center; background-size: cover; }
@@ -781,7 +789,7 @@
     </figure>
   </div>
   <div class="architecture-grid">
-    <figure class="architecture-card featured">
+    <figure class="architecture-card">
       <img src="sy-dive-images/okinawa-aerial-sign-v4.jpg" alt="沖繩櫻雪潛水基地空拍外觀" loading="lazy">
       <figcaption class="architecture-caption"><strong>Okinawa Base</strong><span>從空拍看見白色店面與海島街景</span></figcaption>
     </figure>
@@ -793,6 +801,11 @@
       <img src="sy-dive-images/okinawa-island-sign-v6.png?v=20260831-sign-v6" alt="沖繩櫻雪潛水基地外觀" loading="lazy">
       <figcaption class="architecture-caption"><strong>Island Light</strong><span>白色外牆、木格柵與棕櫚樹</span></figcaption>
     </figure>
+  </div>
+  <div class="architecture-controls" aria-label="沖繩店面照片切換">
+    <button class="architecture-arrow" type="button" data-architecture-prev aria-label="上一張店面照片">←</button>
+    <span class="architecture-count">01 / 03</span>
+    <button class="architecture-arrow" type="button" data-architecture-next aria-label="下一張店面照片">→</button>
   </div>
 </section>
 
@@ -909,7 +922,7 @@
   <div class="guide-food-dialog" role="dialog" aria-modal="true" aria-labelledby="guideFoodTitle">
     <button class="guide-food-close" type="button" aria-label="關閉美食介紹">×</button>
     <div class="guide-food-media"><img src="" alt=""></div>
-    <div class="guide-food-copy"><span class="guide-food-cat"></span><h3 id="guideFoodTitle"></h3><div class="guide-food-jp"></div><p class="guide-food-story"></p><div class="guide-food-label">RECOMMENDED</div><div class="guide-food-tags"></div><p class="guide-food-note">餐點與營業資訊可能依季節調整，出發前請再向店家確認。</p></div>
+    <div class="guide-food-copy"><span class="guide-food-cat"></span><h3 id="guideFoodTitle"></h3><div class="guide-food-jp"></div><p class="guide-food-story"></p><div class="guide-food-label">RECOMMENDED</div><div class="guide-food-tags"></div><p class="guide-food-note">餐點與營業資訊可能依季節調整，出發前請再向店家確認。</p><div class="guide-food-nav"><button type="button" data-guide-food-prev aria-label="上一家美食">← 上一家</button><span class="guide-food-position">01 / 08</span><button type="button" data-guide-food-next aria-label="下一家美食">下一家 →</button></div></div>
   </div>
 </div>
 
@@ -1363,11 +1376,16 @@ const guideFoodTitle=guideFoodModal?.querySelector('h3');
 const guideFoodJp=guideFoodModal?.querySelector('.guide-food-jp');
 const guideFoodStory=guideFoodModal?.querySelector('.guide-food-story');
 const guideFoodTags=guideFoodModal?.querySelector('.guide-food-tags');
+const guideFoodPosition=guideFoodModal?.querySelector('.guide-food-position');
+const guideFoodDialog=guideFoodModal?.querySelector('.guide-food-dialog');
 let lastGuideFoodTrigger;
-const openGuideFood=(card)=>{
-  const item=guideFoodStories[Number(card.dataset.guideFood)];
-  if(!item||!guideFoodModal){return;}
-  lastGuideFoodTrigger=card;
+let guideFoodIndex=0;
+let guideFoodTouchStart=0;
+const renderGuideFood=(next)=>{
+  if(!guideFoodStories.length){return;}
+  guideFoodIndex=(next+guideFoodStories.length)%guideFoodStories.length;
+  const item=guideFoodStories[guideFoodIndex];
+  const card=guideFoodCards[guideFoodIndex];
   const image=card.querySelector('img');
   guideFoodImage.src=image.currentSrc||image.src;
   guideFoodImage.alt=image.alt;
@@ -1376,6 +1394,12 @@ const openGuideFood=(card)=>{
   guideFoodJp.textContent=item.jp;
   guideFoodStory.textContent=item.story;
   guideFoodTags.innerHTML=item.tags.map(tag=>`<span class="guide-food-tag">${tag}</span>`).join('');
+  guideFoodPosition.textContent=`${String(guideFoodIndex+1).padStart(2,'0')} / ${String(guideFoodStories.length).padStart(2,'0')}`;
+};
+const openGuideFood=(card)=>{
+  if(!guideFoodModal){return;}
+  lastGuideFoodTrigger=card;
+  renderGuideFood(Number(card.dataset.guideFood));
   guideFoodModal.classList.add('open');
   guideFoodModal.setAttribute('aria-hidden','false');
   document.body.style.overflow='hidden';
@@ -1391,7 +1415,33 @@ const closeGuideFood=()=>{
 guideFoodCards.forEach(card=>{card.addEventListener('click',()=>openGuideFood(card));card.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openGuideFood(card);}});});
 guideFoodClose?.addEventListener('click',closeGuideFood);
 guideFoodModal?.addEventListener('click',event=>{if(event.target===guideFoodModal){closeGuideFood();}});
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&guideFoodModal?.classList.contains('open')){closeGuideFood();}});
+guideFoodModal?.querySelector('[data-guide-food-prev]')?.addEventListener('click',()=>renderGuideFood(guideFoodIndex-1));
+guideFoodModal?.querySelector('[data-guide-food-next]')?.addEventListener('click',()=>renderGuideFood(guideFoodIndex+1));
+guideFoodDialog?.addEventListener('touchstart',event=>{guideFoodTouchStart=event.changedTouches[0].clientX;},{passive:true});
+guideFoodDialog?.addEventListener('touchend',event=>{const distance=event.changedTouches[0].clientX-guideFoodTouchStart;if(Math.abs(distance)>55){renderGuideFood(guideFoodIndex+(distance<0?1:-1));}},{passive:true});
+document.addEventListener('keydown',event=>{if(!guideFoodModal?.classList.contains('open')){return;}if(event.key==='Escape'){closeGuideFood();}else if(event.key==='ArrowLeft'){renderGuideFood(guideFoodIndex-1);}else if(event.key==='ArrowRight'){renderGuideFood(guideFoodIndex+1);}});
+
+const architectureGrid=document.querySelector('.architecture-grid');
+const architectureCards=architectureGrid?[...architectureGrid.querySelectorAll('.architecture-card')]:[];
+const architectureCount=document.querySelector('.architecture-count');
+let architectureIndex=0;
+const showArchitecture=(next)=>{
+  if(!architectureCards.length){return;}
+  architectureIndex=(next+architectureCards.length)%architectureCards.length;
+  const card=architectureCards[architectureIndex];
+  architectureGrid.scrollTo({left:card.offsetLeft-(architectureGrid.clientWidth-card.offsetWidth)/2,behavior:'smooth'});
+  architectureCount.textContent=`${String(architectureIndex+1).padStart(2,'0')} / ${String(architectureCards.length).padStart(2,'0')}`;
+};
+document.querySelector('[data-architecture-prev]')?.addEventListener('click',()=>showArchitecture(architectureIndex-1));
+document.querySelector('[data-architecture-next]')?.addEventListener('click',()=>showArchitecture(architectureIndex+1));
+architectureGrid?.addEventListener('scroll',()=>{
+  const center=architectureGrid.scrollLeft+architectureGrid.clientWidth/2;
+  let nearest=0;
+  let distance=Infinity;
+  architectureCards.forEach((card,index)=>{const cardCenter=card.offsetLeft+card.offsetWidth/2;const nextDistance=Math.abs(cardCenter-center);if(nextDistance<distance){distance=nextDistance;nearest=index;}});
+  architectureIndex=nearest;
+  architectureCount.textContent=`${String(nearest+1).padStart(2,'0')} / ${String(architectureCards.length).padStart(2,'0')}`;
+},{passive:true});
 
 const guideSpotsTrack=document.getElementById('guideSpotsTrack');
 const guideSpots=guideSpotsTrack?[...guideSpotsTrack.children]:[];
