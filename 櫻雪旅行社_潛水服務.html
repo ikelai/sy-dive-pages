@@ -368,8 +368,10 @@
     padding: 0.9rem 1.35rem 0.9rem 0.9rem; background: linear-gradient(135deg, var(--deep-ocean), #08477e);
     border: 1px solid rgba(255,255,255,0.72); border-radius: 5px; margin-top: 2rem;
     box-shadow: 0 8px 18px rgba(13,94,168,0.22), inset 0 0 0 3px rgba(255,255,255,0.12);
-    text-align: left; overflow: hidden;
+    text-align: left; overflow: hidden; text-decoration: none; cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+  .cert-badge:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(13,94,168,0.28), inset 0 0 0 3px rgba(255,255,255,0.16); }
   .cert-badge::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(255,255,255,0.28); border-radius: 2px; pointer-events: none; }
   .cert-badge .icon { position: relative; z-index: 1; display: grid; place-items: center; min-width: 68px; height: 44px; padding: 0 0.35rem; background: var(--paper); border: 2px solid var(--sakura-main); color: var(--deep-ocean); font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0.12em; transform: skew(-6deg); }
   .cert-badge .txt { position: relative; z-index: 1; font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-weight: 700; font-size: 1rem; color: white; letter-spacing: 0.03em; }
@@ -585,7 +587,7 @@
   .hero::after { background: radial-gradient(circle, rgba(234,182,197,0.18), transparent 70%); }
   .hero-kana, .section-kana, .architecture-study-kicker { font-family: 'Montserrat','Noto Sans TC',sans-serif; font-weight: 500; }
   .hero h1 { font-weight: 500; letter-spacing: 0.14em; }
-  .hero h1 em { color: #f5c5d1; }
+  .hero h1 em { color: #69cef4; }
   .journey-intro {
     max-width: none;
     padding: 6.5rem max(6vw,2rem);
@@ -613,6 +615,8 @@
   .loc-address { background: rgba(241,247,255,0.82); }
   .btn { border-radius: 2px; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-weight: 500; }
   .btn-primary { background: var(--vermillion); color: white; border-color: var(--vermillion); }
+  .hero .btn-primary { background: #1596d1; border-color: #1596d1; color: white; box-shadow: 0 8px 24px rgba(21,150,209,0.24); }
+  .hero .btn-primary:hover { background: #087fba; border-color: #087fba; box-shadow: 0 10px 28px rgba(21,150,209,0.3); }
   .btn-line { background: transparent; color: var(--ink); border-color: #afcde7; }
   .btn-line:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .architecture-caption, .nature-caption { background: linear-gradient(transparent, rgba(5,88,139,0.7)); }
@@ -970,10 +974,10 @@
         <p>完成開放水域課程與考核。龍洞需安排兩天、四支氣瓶；沖繩青洞安排四支氣瓶，實際行程依海況與預約確認。</p>
       </div>
     </div>
-    <div class="cert-badge">
+    <a class="cert-badge" href="https://www.padi.com/zh-hant/education" target="_blank" rel="noopener noreferrer" aria-label="前往 PADI 官方網站了解開放水域潛水員證照">
       <span class="icon">PADI</span>
       <span class="txt">PADI 開放水域潛水員證照<small>Open Water Diver · 課程與考核完成後取得</small></span>
-    </div>
+    </a>
   </div>
 </div>
 
