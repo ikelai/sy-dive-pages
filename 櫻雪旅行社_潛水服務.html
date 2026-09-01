@@ -822,6 +822,106 @@
     .feat { border-right:0; border-bottom:1px solid var(--border-light); }
     .section-title { letter-spacing:.02em; }
   }
+
+  /* ══ STRUCTURAL EDITORIAL LAYOUT · CHAPTER TWO ══ */
+  #locations { max-width:1380px; }
+  #locations > .section-kana,#locations > .section-title,#locations > .sec-line,#locations > .section-sub { margin-left:clamp(0rem,7vw,7rem); text-align:left; }
+  #locations > .sec-line { margin-right:auto; }
+  #locations > .section-sub { margin-right:0; max-width:620px; }
+  #locations .loc-grid { display:block; margin-top:5rem; }
+  #locations .loc-card { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr); align-items:center; gap:clamp(2rem,7vw,7rem); border-top:0; margin-bottom:clamp(5rem,10vw,10rem); }
+  #locations .loc-card:nth-child(even) { grid-template-columns:minmax(320px,.65fr) minmax(0,1.35fr); }
+  #locations .loc-card:nth-child(even) > img { grid-column:2; }
+  #locations .loc-card:nth-child(even) .loc-header,#locations .loc-card:nth-child(even) .loc-body { grid-column:1; }
+  #locations .loc-card > img { grid-row:1 / span 2; width:100%; height:min(58vw,610px) !important; }
+  #locations .loc-header { align-self:end; padding:0; }
+  #locations .loc-body { align-self:start; }
+  #locations .loc-body h3 { font-size:clamp(1.8rem,3vw,3rem); margin-bottom:.5rem; }
+  #locations .loc-body > p:not(.jp) { font-size:.88rem; line-height:2.15; }
+  #locations .loc-address { margin-top:2rem; padding-top:1.2rem; border-top:1px solid var(--border-light); }
+
+  #why { max-width:none; padding-left:0; padding-right:0; overflow:hidden; }
+  #why .feats { max-width:none; margin-top:4rem; border-bottom:1px solid var(--border-light); }
+  #why .feat { min-height:250px; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; text-align:left; padding:2.4rem clamp(1.5rem,3vw,3.5rem); }
+  #why .feat::before { font-family:'Montserrat',sans-serif; color:#9a9994; font-size:.62rem; letter-spacing:.18em; }
+  #why .feat:nth-child(1)::before { content:'01 / TRAINING'; }
+  #why .feat:nth-child(2)::before { content:'02 / SCHEDULE'; }
+  #why .feat:nth-child(3)::before { content:'03 / OKINAWA'; }
+  #why .feat:nth-child(4)::before { content:'04 / PADI'; }
+  #why .feat-icon { margin:0; width:38px; height:38px; }
+  #why .feat .lbl { color:#171717; font-family:'Noto Serif TC',serif; font-size:clamp(1rem,1.4vw,1.35rem); font-weight:500; }
+
+  #okinawa-base { max-width:none; padding-left:0; padding-right:0; }
+  #okinawa-base > .section-kana,#okinawa-base > .section-title,#okinawa-base > .sec-line,#okinawa-base > .section-sub { max-width:1100px; margin-left:auto; margin-right:auto; }
+  #okinawa-base .architecture-study { width:min(88vw,1280px); margin:4rem auto 0; }
+  #okinawa-base .architecture-grid { padding-left:8vw; padding-right:8vw; }
+  #okinawa-base .architecture-card { flex-basis:min(76vw,1020px); }
+
+  .pathway-wrap { padding:clamp(6rem,11vw,10rem) clamp(1.4rem,6vw,7rem); background:#eef6fb; }
+  .pathway-inner { max-width:1280px; display:grid; grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr); gap:clamp(3rem,8vw,8rem); text-align:left; }
+  .pathway-intro { position:sticky; top:120px; align-self:start; }
+  .pathway-intro .section-kana,.pathway-intro .section-title,.pathway-intro .section-sub { text-align:left; }
+  .pathway-intro .sec-line { margin-left:0; }
+  .pathway-intro .section-sub { margin-left:0; }
+  .step-row { display:block; margin-top:0; }
+  .stp { position:relative; min-height:310px; padding:0 0 4rem 6.5rem; border-left:1px solid #b9cedd; text-align:left; }
+  .stp:last-child { border-left-color:transparent; }
+  .stp-circle { position:absolute; left:-2.05rem; top:0; width:4rem; height:4rem; border-radius:50%; display:grid; place-items:center; background:#fff !important; color:#111 !important; border:1px solid #9db8ca; font-family:'Montserrat',sans-serif; font-size:1rem; }
+  .stp h4 { font-family:'Noto Serif TC',serif; font-size:clamp(1.4rem,2.2vw,2rem); font-weight:500; }
+  .stp .loc { font-family:'Montserrat','Noto Sans TC',sans-serif; font-size:.66rem; letter-spacing:.12em; color:#66869b; }
+  .stp p { max-width:560px; font-size:.86rem; line-height:2.05; color:#5f6a70; }
+  .stp-arrow { display:none; }
+  .cert-badge { grid-column:2; margin-top:0; }
+
+  #plan { max-width:1280px; text-align:left !important; }
+  #plan > .section-kana,#plan > .section-title { text-align:left; }
+  #plan > .sec-line { margin-left:0; }
+  #plan .plan-grid { grid-template-columns:1fr 1fr !important; gap:0 !important; margin-top:4rem !important; border-top:1px solid #b9b9b3; border-bottom:1px solid #b9b9b3; }
+  #plan .loc-card { padding:clamp(2rem,5vw,5rem); border:0; }
+  #plan .loc-card + .loc-card { border-left:1px solid #b9b9b3; }
+  #plan .loc-body h3 { font-size:clamp(2rem,4vw,4rem); }
+  #plan .loc-body > p[style*="font-family"] { font-family:'Montserrat',sans-serif !important; font-weight:400 !important; font-size:clamp(1.65rem,3vw,3.2rem) !important; }
+  #plan .btn-line { width:100%; justify-content:center; margin-top:1rem; }
+
+  #experiences { max-width:1280px; text-align:left !important; }
+  #experiences > .section-kana,#experiences > .section-title { text-align:left; }
+  #experiences > .sec-line { margin-left:0; }
+  #experiences .loc-grid { grid-template-columns:.8fr 1.2fr; gap:clamp(2rem,6vw,6rem); align-items:end; }
+  #experiences .loc-card { min-height:330px; padding:clamp(2rem,4vw,4rem); border-top:1px solid #aaa; }
+  #experiences .loc-card:nth-child(2) { min-height:470px; background:#edf6fc; border-top-color:#6faad1; }
+  #experiences .loc-body h3 { font-size:clamp(2rem,4vw,4rem); }
+
+  .guide-food-grid { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:clamp(1rem,2vw,2rem); padding-bottom:1.5rem; scrollbar-width:none; }
+  .guide-food-grid::-webkit-scrollbar { display:none; }
+  .guide-food-card { flex:0 0 min(68vw,520px); scroll-snap-align:start; border:0; background:transparent; }
+  .guide-food-card img { height:clamp(260px,35vw,470px); }
+  .guide-food-body { padding:1.2rem 0 0; }
+  .guide-food-card h3 { font-family:'Noto Serif TC',serif; font-size:1.35rem; }
+
+  .dive-map-section { max-width:none; padding-left:0; padding-right:0; display:grid; grid-template-columns:minmax(300px,.72fr) minmax(0,1.28fr); align-items:stretch; }
+  .dive-map-copy { margin:0; padding:clamp(3rem,7vw,8rem); display:flex; flex-direction:column; justify-content:center; align-items:flex-start; background:#111; color:#fff; }
+  .dive-map-copy .section-kana,.dive-map-copy .section-title,.dive-map-copy .section-sub { text-align:left; color:#fff; }
+  .dive-map-copy .sec-line { margin-left:0; background:#fff; }
+  .dive-map-copy .dive-map-base { background:transparent; color:#fff; border-left-color:#fff; }
+  .dive-map-canvas { min-height:760px; border:0; }
+
+  @media(max-width:800px){
+    #locations > .section-kana,#locations > .section-title,#locations > .sec-line,#locations > .section-sub { margin-left:0; }
+    #locations .loc-card,#locations .loc-card:nth-child(even) { display:flex; flex-direction:column; gap:1.2rem; margin-bottom:5rem; }
+    #locations .loc-card:nth-child(even) > img { order:0; }
+    #locations .loc-card .loc-header { order:1; align-self:stretch; }
+    #locations .loc-card .loc-body { order:2; }
+    #locations .loc-card > img { height:76vw !important; }
+    .pathway-inner { grid-template-columns:1fr; }
+    .pathway-intro { position:static; }
+    .cert-badge { grid-column:auto; }
+    .stp { min-height:0; padding-left:4.5rem; }
+    #plan .plan-grid,#experiences .loc-grid,.dive-map-section { grid-template-columns:1fr !important; }
+    #plan .loc-card + .loc-card { border-left:0; border-top:1px solid #b9b9b3; }
+    #experiences .loc-card,#experiences .loc-card:nth-child(2) { min-height:0; }
+    .guide-food-card { flex-basis:82vw; }
+    .dive-map-canvas { min-height:520px; }
+  }
 </style>
 </head>
 <body>
@@ -1078,10 +1178,12 @@
 <!-- ══ PADI 考證路徑 ══ -->
 <div class="pathway-wrap" id="pathway">
   <div class="pathway-inner">
-    <div class="section-kana">LICENSE</div>
-    <h2 class="section-title">PADI 開放水域潛水員證照 · 三步完成</h2>
-    <div class="sec-line"></div>
-    <p class="section-sub">由 PADI 認證教練指導，完成開放水域潛水員（Open Water Diver）課程與考核。</p>
+    <div class="pathway-intro">
+      <div class="section-kana">LICENSE</div>
+      <h2 class="section-title">PADI 開放水域潛水員證照 · 三步完成</h2>
+      <div class="sec-line"></div>
+      <p class="section-sub">由 PADI 認證教練指導，完成開放水域潛水員（Open Water Diver）課程與考核。</p>
+    </div>
     <div class="step-row">
       <div class="stp">
         <div class="stp-circle c1">1</div>
@@ -1311,10 +1413,9 @@ const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const nav=document.querySelector('nav');
 const footer=document.querySelector('footer');
 [
-  '.hero','#seasons','#seasons-image','#why','#coaches','#pool',
-  '#pathway','#locations','#experiences','#okinawa-journey','#blue-cave',
-  '#okinawa-base','#okinawa-nature','#okinawa-guide','#dive-map',
-  '#plan','#discount','#faq','#contact'
+  '.hero','#seasons','#seasons-image','#locations','#why','#pathway','#plan',
+  '#okinawa-base','#experiences','#blue-cave','#okinawa-nature','#okinawa-journey',
+  '#okinawa-guide','#dive-map','#pool','#coaches','#discount','#faq','#contact'
 ].forEach(selector=>{const block=document.querySelector(selector);if(block&&footer){footer.before(block);}});
 const hero=document.querySelector('.hero');
 const heroCarousel=document.querySelector('.hero-carousel');
