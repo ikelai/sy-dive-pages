@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沖繩潛水導覽 | 櫻雪潛水中心 SY Diving</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+:root{--paper:#fbfdff;--sky:#f1f7ff;--ink:#145a87;--text:#285d7c;--muted:#6889a0;--pink:#eab6c5;--pink-deep:#d97896;--blue:#168dce;--blue-bright:#8ed8f6;--border:#dfebf6;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:17px}
+body{background:var(--paper);color:var(--text);font-family:'Noto Sans TC','Noto Sans JP',sans-serif;line-height:1.85;letter-spacing:.035em;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+nav{position:fixed;inset:0 0 auto;z-index:100;height:60px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(17,136,199,.93);border-bottom:1px solid rgba(255,255,255,.22);backdrop-filter:blur(12px)}
+.nav-logo img{display:block;height:36px}
+.nav-links{display:flex;align-items:center;gap:1.8rem;list-style:none}
+.nav-links a{position:relative;color:rgba(255,255,255,.88);font-family:'Montserrat','Noto Sans TC',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.12em;text-decoration:none}
+.nav-links a:not(.nav-cta)::after{content:"";position:absolute;inset:auto 0 -4px;height:1px;background:var(--pink);transform:scaleX(0);transition:.3s}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{padding:8px 18px;background:var(--pink-deep);color:white!important}
+.hero{position:relative;min-height:86vh;padding:8rem 2rem 5rem;display:grid;place-items:center;overflow:hidden;background:#69c4ef}
+.hero-bg{position:absolute;inset:0;background:url('sy-dive-images/hero-okinawa-sky-v2.png?v=20260830-cinema-v2') center/cover no-repeat;transform:scale(1.04);animation:heroDrift 11s ease-out both}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,105,178,.06),rgba(0,91,156,.24) 70%,rgba(0,72,139,.38))}
+.hero-copy{position:relative;z-index:1;text-align:center;color:white;text-shadow:0 2px 16px rgba(0,80,140,.2)}
+.eyebrow,.section-kana{font-family:'Montserrat','Noto Sans TC',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase}
+.hero h1{margin:.8rem 0 .45rem;font-size:clamp(2.35rem,6vw,4.4rem);font-weight:500;letter-spacing:.15em}
+.hero p{font-size:.82rem;letter-spacing:.08em;color:rgba(255,255,255,.88)}
+.btn{display:inline-flex;align-items:center;justify-content:center;margin-top:1.8rem;padding:12px 30px;border:1px solid transparent;background:var(--pink-deep);color:white;font-size:.78rem;font-weight:500;letter-spacing:.1em;text-decoration:none;transition:.3s}
+.btn:hover{transform:translateY(-2px);filter:brightness(.96)}
+section{padding:6.5rem 2rem}
+.inner{width:min(1080px,100%);margin:auto}
+.section-kana{text-align:center;color:#86b7de}
+.section-title{margin-top:.75rem;text-align:center;color:var(--ink);font-size:clamp(1.45rem,3vw,2rem);font-weight:500;letter-spacing:.18em}
+.sec-line{width:32px;height:1px;margin:1rem auto 1.5rem;background:var(--pink)}
+.section-sub{max-width:650px;margin:auto;text-align:center;color:var(--muted);font-size:.82rem;font-weight:300}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
+.stat{padding:2.2rem 1rem;text-align:center;background:rgba(255,255,255,.82);border:1px solid var(--border)}
+.stat strong{display:block;color:var(--ink);font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:500}.stat strong small{font-size:.72rem}.stat span{font-size:.72rem;color:var(--muted)}
+.why{background:var(--sky)}
+.reasons{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem}
+.reason{padding:2rem 1rem;text-align:center;background:white;border:1px solid var(--border)}
+.reason-icon{width:54px;height:54px;margin:0 auto 1rem;display:grid;place-items:center;border:1px solid rgba(217,120,150,.2);border-radius:50%;background:rgba(234,182,197,.14);color:#ad6179;font-family:'Montserrat',sans-serif;font-size:.72rem}
+.reason h3{color:var(--ink);font-size:.86rem;font-weight:500}.reason p{margin-top:.35rem;color:var(--muted);font-size:.7rem}
+.food-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem}
+.food-card{overflow:hidden;background:white;border:1px solid var(--border);transition:.35s}
+.food-card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(55,91,123,.08)}
+.food-card img{display:block;width:100%;height:150px;object-fit:cover;background:var(--sky)}
+.food-body{padding:1.1rem}.food-cat{color:#b45f79;font-family:'Montserrat',sans-serif;font-size:.58rem;letter-spacing:.15em}.food-card h3{margin:.35rem 0 .1rem;color:var(--ink);font-size:.88rem;font-weight:500}.food-jp,.food-card p{color:var(--muted);font-size:.67rem}.food-card p{margin-top:.4rem;line-height:1.65}
+.spots{padding-left:0;padding-right:0;background:var(--sky);overflow:hidden}
+.carousel{position:relative;margin-top:3rem;overflow:hidden}
+.track{display:flex;transition:transform .65s cubic-bezier(.25,.1,.25,1)}
+.slide{position:relative;flex:0 0 100%;height:min(68vh,620px);background-position:center;background-size:cover}
+.slide::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(5,88,139,.7))}
+.slide-cap{position:absolute;z-index:1;left:clamp(1.5rem,7vw,7rem);bottom:clamp(1.5rem,5vw,4rem);color:white}.slide-cap strong{display:block;font-family:'Montserrat','Noto Sans TC',sans-serif;font-size:clamp(1.2rem,3vw,2rem);font-weight:500;letter-spacing:.1em}.slide-cap span{font-size:.78rem;color:rgba(255,255,255,.84)}
+.carousel-controls{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.25rem}.arrow{width:46px;height:46px;border:1px solid #cfe3f5;border-radius:50%;background:white;color:var(--blue);cursor:pointer}.count{min-width:70px;text-align:center;color:var(--muted);font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.14em}
+.location-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:1.5rem;margin-top:3rem}.location-copy{padding:2.2rem;background:white;border:1px solid var(--border)}.location-copy h3{color:var(--ink);font-size:1rem;font-weight:500}.location-copy p{margin-top:1rem;color:var(--muted);font-size:.78rem}.map{min-height:380px;overflow:hidden;border:1px solid var(--border)}.map iframe{width:100%;height:100%;border:0}
+.cta{text-align:center;background:linear-gradient(135deg,#128cca,#56bce8);color:white}.cta .section-kana,.cta .section-title,.cta .section-sub{color:white}.cta .section-sub{color:rgba(255,255,255,.82)}
+footer{padding:3.5rem 2rem;background:#1285bd;color:rgba(255,255,255,.62);text-align:center;font-size:.68rem;letter-spacing:.08em;line-height:2}footer strong{color:white;font-weight:500}
+.reveal{opacity:0;transform:translateY(24px);transition:.75s cubic-bezier(.25,.1,.25,1)}.reveal.visible{opacity:1;transform:none}
+@keyframes heroDrift{from{transform:scale(1.04) translateX(-.4%)}to{transform:scale(1.1) translateX(.5%)}}
+@media(max-width:820px){.nav-links li:nth-child(n+2):not(:last-child){display:none}.stats,.reasons{grid-template-columns:repeat(2,1fr)}.food-grid{grid-template-columns:repeat(2,1fr)}.location-grid{grid-template-columns:1fr}.hero{min-height:76vh}}
+@media(max-width:520px){nav{padding:0 1rem}.nav-links{gap:.8rem}.nav-logo img{height:31px}section{padding:4.5rem 1.2rem}.stats,.reasons{grid-template-columns:1fr}.food-grid{grid-template-columns:1fr 1fr;gap:.65rem}.food-card img{height:110px}.food-body{padding:.8rem}.slide{height:58vh}.map{min-height:320px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="櫻雪旅行社_潛水服務.html" class="nav-logo"><img src="sy-dive-images/logo-1.png?v=20260827-logo1" alt="回到櫻雪潛水中心"></a>
+  <ul class="nav-links">
+    <li><a href="櫻雪旅行社_潛水服務.html">潛水中心</a></li>
+    <li><a href="#about">沖繩簡介</a></li>
+    <li><a href="#food">美食</a></li>
+    <li><a href="#spots">景點</a></li>
+    <li><a href="https://lin.ee/U08gDqx" target="_blank" rel="noopener noreferrer" class="nav-cta">預約</a></li>
+  </ul>
+</nav>
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-copy">
+    <div class="eyebrow">OKINAWA ISLAND GUIDE</div>
+    <h1>沖繩の青</h1>
+    <p>櫻雪 · 恩納村 · 真榮田岬</p>
+    <a href="#about" class="btn">開始探索</a>
+  </div>
+</header>
+<section id="about"><div class="inner reveal">
+  <div class="section-kana">ABOUT OKINAWA</div><h2 class="section-title">沖 繩 簡 介</h2><div class="sec-line"></div>
+  <p class="section-sub">櫻雪沖繩據點位於中部恩納村，鄰近真榮田岬與青之洞窟。從那霸前往約一小時，適合把潛水、海景與島嶼旅行安排在同一段旅程裡。</p>
+  <div class="stats"><div class="stat"><strong>1.5<small> hr</small></strong><span>台灣直飛</span></div><div class="stat"><strong>60<small> min</small></strong><span>那霸 → 恩納村</span></div><div class="stat"><strong>5D<small> / 4N</small></strong><span>潛旅安排</span></div></div>
+</div></section>
+<section class="why"><div class="inner reveal">
+  <div class="section-kana">WHY SAKURAYUKI</div><h2 class="section-title">為 什 麼 跟 櫻 雪 潛 水</h2><div class="sec-line"></div>
+  <div class="reasons"><div class="reason"><div class="reason-icon">01</div><h3>台北先練習</h3><p>恆溫泳池完成平靜水域訓練</p></div><div class="reason"><div class="reason-icon">02</div><h3>中文服務</h3><p>降低海外課程的溝通壓力</p></div><div class="reason"><div class="reason-icon">03</div><h3>海島潛旅</h3><p>課程與沖繩旅行一起安排</p></div><div class="reason"><div class="reason-icon">04</div><h3>PADI 教練</h3><p>依海況與程度安排安全行程</p></div></div>
+</div></section>
+<section id="food"><div class="inner reveal">
+  <div class="section-kana">GOURMET</div><h2 class="section-title">美 食 饗 宴</h2><div class="sec-line"></div><p class="section-sub">潛完水，也把時間留給恩納村周邊的沖繩味道。</p>
+  <div class="food-grid">
+    <article class="food-card"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-1.png" alt="琉球之牛燒肉" loading="lazy"><div class="food-body"><span class="food-cat">YAKINIKU</span><h3>琉球の牛</h3><div class="food-jp">恩納店</div><p>沖繩和牛與燒肉料理。</p></div></article>
+    <article class="food-card"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-2.png" alt="沖繩海鮮料理" loading="lazy"><div class="food-body"><span class="food-cat">SEAFOOD</span><h3>浜の家</h3><div class="food-jp">Hama no Ie</div><p>海鮮與沖繩風味料理。</p></div></article>
+    <article class="food-card"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-3.png" alt="暖暮拉麵" loading="lazy"><div class="food-body"><span class="food-cat">RAMEN</span><h3>暖暮拉麵</h3><div class="food-jp">Danbo</div><p>旅行途中溫暖的一碗豚骨拉麵。</p></div></article>
+    <article class="food-card"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-4.png" alt="沖繩牛排" loading="lazy"><div class="food-body"><span class="food-cat">STEAK</span><h3>Steak 88</h3><div class="food-jp">ステーキハウス</div><p>經典沖繩美式牛排。</p></div></article>
+    <article class="food-card"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-5.png" alt="沖繩海景咖啡" loading="lazy"><div class="food-body"><span class="food-cat">CAFÉ</span><h3>Oni Café</h3><div class="food-jp">オニカフェ</div><p>海景與輕盈的島嶼午後。</p></div></article>
+    <article class="food-card"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-6.png" alt="沖繩甜點" loading="lazy"><div class="food-body"><span class="food-cat">SWEETS</span><h3>三矢本舗</h3><div class="food-jp">サーターアンダギー</div><p>沖繩經典炸甜點。</p></div></article>
+    <article class="food-card"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-7.png" alt="沖繩古民家料理" loading="lazy"><div class="food-body"><span class="food-cat">LOCAL FOOD</span><h3>大家</h3><div class="food-jp">うふやー</div><p>古民家裡品嘗沖繩料理。</p></div></article>
+    <article class="food-card"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-8.png" alt="沖繩窯烤麵包" loading="lazy"><div class="food-body"><span class="food-cat">BAKERY</span><h3>水円</h3><div class="food-jp">Suien Bakery</div><p>藏在綠意裡的窯烤麵包。</p></div></article>
+  </div>
+</div></section>
+<section class="spots" id="spots"><div class="inner reveal"><div class="section-kana">SIGHTSEEING</div><h2 class="section-title">必 訪 景 點</h2><div class="sec-line"></div><p class="section-sub">從海底到陸地，順著沖繩的光線慢慢旅行。</p></div>
+  <div class="carousel"><div class="track" id="spotTrack">
+    <div class="slide" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-1.png')"><div class="slide-cap"><strong>Blue Cave</strong><span>青之洞窟 · 真榮田岬</span></div></div>
+    <div class="slide" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-2.png')"><div class="slide-cap"><strong>American Village</strong><span>美國村 · 海岸夕陽</span></div></div>
+    <div class="slide" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-3.png')"><div class="slide-cap"><strong>Cape Zanpa</strong><span>殘波岬 · 白色燈塔</span></div></div>
+    <div class="slide" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-4.png')"><div class="slide-cap"><strong>Shurijo</strong><span>首里城 · 琉球文化</span></div></div>
+    <div class="slide" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-5.png')"><div class="slide-cap"><strong>Churaumi</strong><span>美麗海水族館</span></div></div>
+    <div class="slide" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-6.png')"><div class="slide-cap"><strong>Kouri Bridge</strong><span>古宇利大橋 · 跨海風景</span></div></div>
+  </div></div>
+  <div class="carousel-controls"><button class="arrow" type="button" id="spotPrev" aria-label="上一個景點">←</button><span class="count" id="spotCount">01 / 06</span><button class="arrow" type="button" id="spotNext" aria-label="下一個景點">→</button></div>
+</section>
+<section id="location"><div class="inner reveal"><div class="section-kana">OKINAWA BASE</div><h2 class="section-title">櫻 雪 沖 繩 據 點</h2><div class="sec-line"></div>
+  <div class="location-grid"><div class="location-copy"><h3>恩納村 · 真榮田岬旁</h3><p><a href="https://maps.app.goo.gl/Xgw14vvBEVRDdFhM7" target="_blank" rel="noopener noreferrer">〒904-0416 沖縄県恩納村山田 591-1</a></p><p>集合、換裝與確認海況後，再依當日安排前往潛點。</p><a href="https://maps.app.goo.gl/Xgw14vvBEVRDdFhM7" target="_blank" rel="noopener noreferrer" class="btn">開啟 Google Maps</a></div><div class="map"><iframe title="櫻雪沖繩據點地圖" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.5!2d127.7738!3d26.4387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDI2JzE5LjMiTiAxMjfCsDQ2JzI1LjgiRQ!5e0!3m2!1szh-TW!2stw!4v1" loading="lazy" allowfullscreen></iframe></div></div>
+</div></section>
+<section class="cta"><div class="inner reveal"><div class="section-kana">LET'S DIVE</div><h2 class="section-title">從 台 北 練 習 到 沖 繩 下 海</h2><div class="sec-line"></div><p class="section-sub">告訴我們預計日期、人數與潛水經驗，一起安排適合的課程與海島旅程。</p><a href="https://lin.ee/U08gDqx" target="_blank" rel="noopener noreferrer" class="btn">加入 LINE 諮詢</a></div></section>
+<footer><strong>櫻雪潛水中心 SY Diving</strong><br>SAKURA YUKI · TAIPEI · OKINAWA</footer>
+<script>
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const revealItems=[...document.querySelectorAll('.reveal')];
+if(reduceMotion){revealItems.forEach(el=>el.classList.add('visible'));}else{const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:.12});revealItems.forEach(el=>observer.observe(el));}
+const track=document.getElementById('spotTrack');const slides=[...track.children];const count=document.getElementById('spotCount');let index=0;let timer;
+function showSlide(next){index=(next+slides.length)%slides.length;track.style.transform=`translateX(-${index*100}%)`;count.textContent=`${String(index+1).padStart(2,'0')} / ${String(slides.length).padStart(2,'0')}`;}
+function restart(){if(reduceMotion)return;clearInterval(timer);timer=setInterval(()=>showSlide(index+1),6000);}
+document.getElementById('spotPrev').addEventListener('click',()=>{showSlide(index-1);restart();});document.getElementById('spotNext').addEventListener('click',()=>{showSlide(index+1);restart();});restart();
+</script>
+</body>
+</html>
