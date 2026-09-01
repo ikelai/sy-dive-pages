@@ -586,6 +586,13 @@
   .hero-kana, .section-kana, .architecture-study-kicker { font-family: 'Montserrat','Noto Sans TC',sans-serif; font-weight: 500; }
   .hero h1 { font-weight: 500; letter-spacing: 0.14em; }
   .hero h1 em { color: #f5c5d1; }
+  .journey-intro {
+    max-width: none;
+    padding: 6.5rem max(6vw,2rem);
+    text-align: center;
+    background: linear-gradient(180deg,#f7fbff 0%,#eef8ff 100%);
+  }
+  .journey-intro .section-sub { max-width: 680px; }
   section { padding-top: 6.5rem; padding-bottom: 6.5rem; }
   .section-kana { color: #86b7de; opacity: 1; letter-spacing: 0.34em; }
   .section-title { color: var(--ink); font-weight: 500; letter-spacing: 0.18em; }
@@ -691,14 +698,13 @@
   <a href="櫻雪旅行社_潛水服務.html" class="nav-logo"><img src="sy-dive-images/logo-1.png?v=20260827-logo1" alt="櫻雪潛水中心" style="height:36px;"></a>
   <button class="hamburger" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單"><span></span><span></span><span></span></button>
   <ul class="nav-links">
-    <li><a href="#plan">方案價格</a></li>
-    <li><a href="#pathway">考證流程</a></li>
-    <li><a href="#locations">據點</a></li>
-    <li><a href="#blue-cave">沖繩體驗</a></li>
-    <li><a href="櫻雪游泳池.html">櫻雪游泳池</a></li>
-    <li><a href="#okinawa-guide">沖繩導覽</a></li>
+    <li><a href="#seasons">關於櫻雪</a></li>
+    <li><a href="#pathway">PADI 考證</a></li>
+    <li><a href="#experiences">體驗與浮潛</a></li>
+    <li><a href="#okinawa-journey">沖繩潛旅</a></li>
+    <li><a href="#plan">費用與報名</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="https://lin.ee/U08gDqx" class="nav-cta" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href,'_blank','noopener,noreferrer');return false;">預約</a></li>
+    <li><a href="https://lin.ee/U08gDqx" class="nav-cta" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href,'_blank','noopener,noreferrer');return false;">LINE 預約</a></li>
   </ul>
 </nav>
 
@@ -719,8 +725,8 @@
       <div class="hero-meta-item"><strong>沖繩</strong> 恩納村山田 591-1 · 真栄田岬旁</div>
     </div>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="#plan" class="btn btn-primary">查看方案與價格</a>
-      <a href="#locations" class="btn btn-outline">認識潛水據點</a>
+      <a href="#pathway" class="btn btn-primary">開始規劃考證</a>
+      <a href="#plan" class="btn btn-outline">查看方案與價格</a>
     </div>
   </div>
   <div class="scroll-hint">— 向下探索 —</div>
@@ -838,6 +844,12 @@
 
 
 <!-- ══ 沖繩地理 ══ -->
+<section class="journey-intro reveal" id="okinawa-journey">
+  <div class="section-kana">OKINAWA JOURNEY</div>
+  <h2 class="section-title">不只下水，是一趟完整的沖繩旅行</h2>
+  <div class="sec-line"></div>
+  <p class="section-sub">從恩納村的櫻雪基地出發，潛進青之洞窟，也把海岸、島嶼風景與在地味道排進旅程。考證、體驗與旅行，在同一段海島時間裡自然完成。</p>
+</section>
 <section id="blue-cave" style="text-align:center;padding-bottom:2rem;">
   <div class="section-kana">OKINAWA</div>
   <h2 class="section-title">沖 繩 青 之 洞 窟</h2>
@@ -1166,9 +1178,10 @@ const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const nav=document.querySelector('nav');
 const footer=document.querySelector('footer');
 [
-  '.hero','#why','#plan','#pathway','#locations','#coaches','#blue-cave',
-  '#experiences','#pool','#okinawa-base','#okinawa-nature','#okinawa-guide',
-  '#dive-map','#seasons-image','#seasons','#discount','#faq','#contact'
+  '.hero','#seasons-image','#seasons','#why','#coaches','#pool',
+  '#pathway','#locations','#experiences','#okinawa-journey','#blue-cave',
+  '#okinawa-base','#okinawa-nature','#okinawa-guide','#dive-map',
+  '#plan','#discount','#faq','#contact'
 ].forEach(selector=>{const block=document.querySelector(selector);if(block&&footer){footer.before(block);}});
 const hero=document.querySelector('.hero');
 const heroCarousel=document.querySelector('.hero-carousel');
