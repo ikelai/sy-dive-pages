@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>櫻雪潛水中心 SY Diving｜黑色版</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600&display=swap');
+
+  :root {
+    /* Okinawa clear sky: crisp cloud white, clean air blue and sakura pink */
+    --paper:          #fbfdff;
+    --sky-celadon:    #f1f7ff;
+    --ink:            #145a87;
+    --sakura-light:   #f8e7ec;
+    --sakura-main:    #eab6c5;
+    --vermillion:     #d97896;
+    --seafoam:        #f3f8ff;
+    --pocari-blue:    #dff5ff;
+    --ryukyu-blue:    #8ed8f6;
+    --deep-ocean:     #168dce;
+    --text-primary:   #285d7c;
+    --text-secondary: #6889a0;
+    --border-light:   #dfebf6;
+    --border-blue:    #cfe3f5;
+    --white:          #ffffff;
+    --gold:           #bfe8fa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 17px; }
+  section[id], div[id] { scroll-margin-top: 76px; }
+  body {
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
+    background: var(--paper);
+    color: var(--text-primary);
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,94,168,0.96);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    padding: 0 2rem; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo img { height: 34px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
+    font-size: 0.82rem; color: rgba(255,255,255,0.85);
+    text-decoration: none; letter-spacing: 0.08em;
+    transition: color 0.3s; position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 1px; background: var(--vermillion);
+    transform: scaleX(0); transition: transform 0.3s cubic-bezier(0.25,0.1,0.25,1);
+  }
+  .nav-links a:hover { color: rgba(255,255,255,1); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    padding: 8px 20px !important;
+    background: var(--vermillion) !important;
+    color: white !important;
+    border-radius: 50px;
+    font-weight: 600 !important;
+  }
+  .nav-cta:hover { filter: brightness(0.9); }
+  .nav-cta::after { display: none !important; }
+  @media (max-width: 768px) { .nav-links { gap: 1rem; } .nav-links a { font-size: 0.72rem; } }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--deep-ocean);
+    overflow: hidden; padding: 6rem 2rem 4rem;
+  }
+  .hero::before {
+    content: ''; position: absolute;
+    inset: 0; z-index: 1;
+    background: linear-gradient(90deg, rgba(4,42,71,0.68) 0%, rgba(4,42,71,0.34) 50%, rgba(4,42,71,0.14) 100%), linear-gradient(180deg,rgba(4,42,71,0.08),rgba(4,42,71,0.28));
+  }
+  .hero::after {
+    content: ''; position: absolute;
+    bottom: -40px; left: -40px;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(235,177,187,0.24) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .hero-carousel {
+    position: absolute; inset: -2%; z-index: 0; overflow: hidden;
+    transform: translateY(var(--hero-shift, 0px));
+    transition: transform 0.15s linear;
+  }
+  .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.8s ease; }
+  .hero-slide img {
+    width: 100%; height: 100%; display: block; object-fit: cover;
+    object-position: center; transform: scale(1.035); will-change: transform;
+  }
+  .hero-slide.active { opacity: 1; z-index: 1; }
+  .hero-slide.active img { animation: heroCinema 8.8s cubic-bezier(0.2,0.55,0.35,1) both; }
+  .hero-slide:nth-child(even).active img { animation-name: heroCinemaReverse; }
+  .hero-slide:first-child img { object-position: 54% center; }
+  @keyframes heroCinema { from { transform: scale(1.035) translate3d(-0.5%,0,0); } to { transform: scale(1.095) translate3d(0.65%,-0.45%,0); } }
+  @keyframes heroCinemaReverse { from { transform: scale(1.04) translate3d(0.55%,0,0); } to { transform: scale(1.09) translate3d(-0.55%,-0.35%,0); } }
+  .hero-carousel-nav {
+    position: absolute; right: 2.2rem; bottom: 2rem; z-index: 3;
+    display: flex; align-items: center; gap: 0.55rem;
+  }
+  .hero-carousel-dot {
+    width: 22px; height: 1px; min-width: 0 !important; min-height: 0 !important;
+    border: 0; padding: 0; cursor: pointer;
+    background: rgba(255,255,255,0.42); transition: width 0.45s ease, background 0.45s ease;
+  }
+  .hero-carousel-dot.active { width: 42px; background: rgba(255,255,255,0.95); }
+  .hero-scene-label {
+    position: absolute; left: 2.2rem; bottom: 1.85rem; z-index: 3;
+    display: flex; align-items: center; gap: 0.8rem;
+    color: rgba(255,255,255,0.78); font-family: 'Montserrat','Noto Sans TC',sans-serif;
+    font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .hero-scene-label::before { content:''; display:block; width: 34px; height: 1px; background: rgba(255,255,255,0.62); }
+  .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 0 2rem; }
+  .motion-ready .hero-content > * { opacity: 0; animation: heroCopyIn 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
+  .motion-ready .hero-content > *:nth-child(1) { animation-delay: .18s; }
+  .motion-ready .hero-content > *:nth-child(2) { animation-delay: .32s; }
+  .motion-ready .hero-content > *:nth-child(3) { animation-delay: .46s; }
+  .motion-ready .hero-content > *:nth-child(4) { animation-delay: .58s; }
+  .motion-ready .hero-content > *:nth-child(5) { animation-delay: .7s; }
+  @keyframes heroCopyIn { from { opacity:0; transform:translateY(18px); filter:blur(5px); } to { opacity:1; transform:none; filter:none; } }
+  .hero-kana {
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.9); margin-bottom: 1.2rem; line-height: 1.35;
+  }
+  .hero h1 {
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 700;
+    color: white; line-height: 1.5; letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--sakura-main); }
+  .hero p {
+    font-size: 1rem; color: rgba(255,255,255,0.7); font-weight: 300;
+    letter-spacing: 0.06em; margin-bottom: 2.5rem;
+  }
+  .hero-meta {
+    display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .hero-meta-item {
+    display: flex; align-items: center; gap: 0.4rem;
+    color: rgba(255,255,255,0.65); font-size: 0.85rem;
+  }
+  .hero-meta-item strong { color: white; font-weight: 600; }
+  .hero-map-link { display: inline; min-width: auto; min-height: auto; color: inherit; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.38); text-underline-offset: 3px; }
+  .hero-map-link:hover { color: white; text-decoration-color: white; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    padding: 13px 36px; font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
+    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.08em;
+    text-decoration: none; cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.25,0.1,0.25,1);
+  }
+  .btn-primary { background: var(--vermillion); color: white; border: none; }
+  .btn-primary:hover { filter: brightness(0.96); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(215,143,158,0.2); }
+  .btn-outline { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.4); }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+  .btn-line { background: transparent; color: var(--deep-ocean); border: 1px solid var(--deep-ocean); }
+  .btn-line:hover { background: rgba(167,210,235,0.22); transform: translateY(-1px); }
+  .btn-dark { background: var(--ink); color: var(--paper); border: none; }
+  .btn-dark:hover { background: var(--ink); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(31,52,64,0.12); }
+
+  .scroll-hint {
+    position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.35); font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
+    font-size: 0.75rem; letter-spacing: 0.15em;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-kana {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.3em;
+    color: var(--ryukyu-blue); opacity: 0.75;
+    text-align: center; margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700;
+    letter-spacing: 0.1em; text-align: center; color: var(--ink);
+  }
+  .section-sub {
+    font-size: 0.9rem; color: var(--text-secondary);
+    text-align: center; max-width: 650px; margin: 0 auto 2.5rem;
+    letter-spacing: 0.04em;
+  }
+  .sec-line { width: 36px; height: 1px; background: var(--vermillion); margin: 0.75rem auto 1.5rem; }
+
+  /* ── LOCATION CARDS ── */
+  .loc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem; }
+  @media (max-width: 768px) { .loc-grid { grid-template-columns: 1fr; } }
+  .loc-card {
+    background: var(--white); border: 1px solid var(--border-light);
+    overflow: hidden; transition: all 0.35s cubic-bezier(0.25,0.1,0.25,1);
+  }
+  .loc-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.04); border-color: var(--pocari-blue); }
+  .loc-header {
+    padding: 1.5rem 1.75rem 0;
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .loc-body { padding: 0.75rem 1.75rem 1.75rem; }
+  .loc-badge {
+    display: inline-block; padding: 4px 12px; border-radius: 50px;
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+  .badge-tpe { background: rgba(235,177,187,0.2); color: var(--vermillion); }
+  .badge-taiwan { background: rgba(167,210,235,0.24); color: var(--deep-ocean); }
+  .badge-oki { background: rgba(167,210,235,0.16); color: var(--deep-ocean); }
+  .loc-body h3 { font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--ink); letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+  .loc-body .jp { font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
+  .loc-body p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; }
+  .loc-body .experience-note { font-size: 0.78rem; color: var(--deep-ocean); line-height: 1.75; margin-top: -0.25rem; }
+  .loc-address {
+    margin-top: 1rem; padding: 0.75rem 1rem;
+    background: var(--paper); border: 1px solid var(--border-light);
+    font-size: 0.76rem; color: var(--text-secondary); line-height: 1.6;
+    font-family: 'Noto Sans JP', 'Noto Sans TC', sans-serif;
+  }
+  .map-link { display: inline; min-width: auto; min-height: auto; color: inherit; text-decoration: underline; text-decoration-color: var(--pocari-blue); text-underline-offset: 3px; }
+  .map-link:hover { color: var(--deep-ocean); }
+
+  /* ── OKINAWA BASE GALLERY ── */
+  .architecture-grid { display: flex; gap: clamp(1rem,3vw,2.25rem); margin-top: 2.5rem; padding: 0 max(4%,calc((100% - 1080px)/2)); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+  .architecture-grid::-webkit-scrollbar { display: none; }
+  .architecture-card { position: relative; flex: 0 0 min(90%,1080px); aspect-ratio: 16/9; overflow: hidden; scroll-snap-align: center; background: var(--deep-ocean); }
+  .architecture-card img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 1.1s cubic-bezier(0.25,0.1,0.25,1),filter .6s ease; }
+  .architecture-card:hover img { transform: scale(1.035); }
+  .architecture-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(4rem,9vh,7rem) clamp(1.5rem,5vw,4rem) clamp(1.5rem,4vw,3rem); color: white; background: linear-gradient(transparent,rgba(0,71,124,.7)); pointer-events: none; }
+  .architecture-caption strong { display: block; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: clamp(1.05rem,2vw,1.65rem); font-weight: 500; letter-spacing: .1em; }
+  .architecture-caption span { display: block; margin-top: .3rem; font-size: clamp(.72rem,1vw,.88rem); color: rgba(255,255,255,.84); }
+  .architecture-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.25rem; }
+  .architecture-arrow { width: 46px; height: 46px; min-width: 46px; min-height: 46px; border: 1px solid var(--border-blue); border-radius: 50%; background: white; color: var(--deep-ocean); font-size: 1rem; cursor: pointer; transition: background .25s,color .25s,transform .25s; }
+  .architecture-arrow:hover { transform: translateY(-2px); background: var(--deep-ocean); color: white; }
+  .architecture-count { min-width: 68px; color: var(--text-secondary); font-family: 'Montserrat',sans-serif; font-size: .68rem; letter-spacing: .14em; text-align: center; }
+  .architecture-study {
+    position: relative; overflow: hidden; margin-top: 1rem; padding: 1.2rem clamp(.5rem,3vw,2rem) .5rem;
+    background: transparent;
+    border: 0;
+  }
+  .architecture-study::before { display: none; }
+  .architecture-study-head { position: relative; z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; }
+  .architecture-study-kicker { display: block; margin-bottom: 0.45rem; color: var(--pocari-blue); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.28em; }
+  .architecture-study h3 { color: var(--deep-ocean); font-size: clamp(1.15rem,2vw,1.55rem); letter-spacing: 0.08em; }
+  .architecture-study p { max-width: 390px; color: var(--text-secondary); font-size: 0.77rem; line-height: 1.75; }
+  .architecture-linework { position: relative; z-index: 1; margin: 0.6rem auto 0; }
+  .architecture-linework img { display: block; width: 100%; max-height: 500px; object-fit: contain; filter: drop-shadow(0 16px 24px rgba(4,42,71,0.05)); }
+  .architecture-linework figcaption { display: flex; justify-content: space-between; border-top: 1px solid rgba(13,94,168,0.12); padding-top: 0.7rem; color: rgba(4,42,71,0.52); font-size: 0.58rem; letter-spacing: 0.2em; }
+  @media(max-width:640px){.architecture-card{flex-basis:92%}.architecture-study{padding:.4rem .2rem}.architecture-linework img{min-height:220px}}
+
+  /* ── OKINAWA NATURE ── */
+  .nature-section { width: 100%; max-width: 1200px; overflow: hidden; }
+  .nature-grid { display: flex; gap: 1rem; margin-top: 3rem; padding: 0 6% 0.8rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 6%; scroll-behavior: smooth; cursor: grab; scrollbar-width: none; overscroll-behavior-inline: contain; }
+  .nature-grid::-webkit-scrollbar { display: none; }
+  .nature-grid.dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+  .nature-card { position: relative; flex: 0 0 84%; aspect-ratio: 16 / 9; overflow: hidden; min-height: 0; background: var(--deep-ocean); scroll-snap-align: center; cursor: zoom-in; }
+  .nature-card img { width: 100%; height: 100%; min-height: 0; display: block; object-fit: cover; transition: transform 1.1s cubic-bezier(0.25,0.1,0.25,1), filter 0.6s ease; pointer-events: none; }
+  .nature-card:nth-child(1) img { object-position: center 56%; }
+  .nature-card:nth-child(2) img { object-position: center; }
+  .nature-card:nth-child(3) img { object-position: center 58%; }
+  .nature-card:nth-child(4) img { object-position: center 46%; }
+  .nature-card:hover img { transform: scale(1.04); }
+  .nature-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(4rem,9vh,7rem) clamp(1.5rem,5vw,4rem) clamp(1.5rem,4vw,3rem); color: white; background: linear-gradient(transparent, rgba(0,71,124,0.68)); pointer-events: none; }
+  .nature-caption strong { display: block; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: clamp(1.05rem,2vw,1.65rem); font-weight: 500; letter-spacing: 0.1em; }
+  .nature-caption span { display: block; margin-top: 0.3rem; font-size: clamp(0.72rem,1vw,0.88rem); color: rgba(255,255,255,0.84); }
+  .nature-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.25rem; }
+  .nature-arrow { width: 46px; height: 46px; min-width: 46px; min-height: 46px; border: 1px solid var(--border-blue); border-radius: 50%; background: white; color: var(--deep-ocean); font-size: 1.1rem; cursor: pointer; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .nature-arrow:hover { transform: translateY(-2px); background: var(--deep-ocean); color: white; }
+  .nature-count { min-width: 64px; color: var(--text-secondary); font-family: 'Montserrat',sans-serif; font-size: 0.72rem; letter-spacing: 0.16em; text-align: center; }
+  .nature-lightbox { position: fixed; inset: 0; z-index: 300; display: none; align-items: center; justify-content: center; padding: clamp(1rem,4vw,3rem); background: rgba(3,34,58,0.92); backdrop-filter: blur(10px); }
+  .nature-lightbox.open { display: flex; }
+  .nature-lightbox figure { width: min(1200px,92vw); margin: 0; }
+  .nature-lightbox img { display: block; width: 100%; max-height: 82vh; object-fit: contain; }
+  .nature-lightbox figcaption { padding-top: 0.8rem; color: rgba(255,255,255,0.82); font-size: 0.8rem; letter-spacing: 0.08em; }
+  .nature-lightbox-close { position: absolute; top: 1.2rem; right: 1.4rem; width: 46px; height: 46px; min-width: 46px; min-height: 46px; border: 1px solid rgba(255,255,255,0.32); border-radius: 50%; background: rgba(0,0,0,0.12); color: white; font-size: 1.5rem; cursor: pointer; }
+
+  /* ── OKINAWA GUIDE ── */
+  .guide-section { max-width: 1200px; }
+  .guide-subtitle { margin: 4.2rem 0 1.4rem; color: var(--ink); font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-align: center; }
+  .guide-food-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; }
+  .guide-food-card { overflow: hidden; background: white; border: 1px solid var(--border-light); cursor: pointer; transition: transform .35s, box-shadow .35s; }
+  .guide-food-card:hover { transform: translateY(-4px); box-shadow: 0 18px 42px rgba(55,91,123,.08); }
+  .guide-food-card:focus-visible { outline: 2px solid var(--sakura-main); outline-offset: 3px; }
+  .guide-food-card img { display: block; width: 100%; height: 150px; object-fit: cover; background: var(--sky-celadon); }
+  .guide-food-body { padding: 1.05rem; }
+  .guide-food-cat { color: #b45f79; font-family: 'Montserrat',sans-serif; font-size: .56rem; letter-spacing: .15em; }
+  .guide-food-card h3 { margin: .35rem 0 .1rem; color: var(--ink); font-size: .86rem; font-weight: 500; }
+  .guide-food-card p { color: var(--text-secondary); font-size: .66rem; line-height: 1.65; }
+  .guide-food-more { display: block; margin-top: .7rem; color: #b45f79; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: .54rem; letter-spacing: .1em; }
+  .guide-food-modal { position: fixed; inset: 0; z-index: 320; display: none; align-items: center; justify-content: center; padding: clamp(1rem,4vw,3rem); background: rgba(7,62,101,.78); backdrop-filter: blur(12px); }
+  .guide-food-modal.open { display: flex; }
+  .guide-food-dialog { position: relative; width: min(920px,94vw); max-height: 90vh; display: grid; grid-template-columns: 1.08fr .92fr; overflow: auto; background: white; box-shadow: 0 28px 80px rgba(3,48,82,.24); }
+  .guide-food-media { min-height: 480px; background: var(--sky-celadon); }
+  .guide-food-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .guide-food-copy { padding: clamp(2rem,5vw,4rem); align-self: center; }
+  .guide-food-copy h3 { margin: .6rem 0 .15rem; color: var(--ink); font-size: clamp(1.5rem,3vw,2.1rem); font-weight: 500; letter-spacing: .08em; }
+  .guide-food-jp { color: #8aa5b9; font-family: 'Montserrat','Noto Sans JP',sans-serif; font-size: .7rem; letter-spacing: .1em; }
+  .guide-food-story { margin-top: 1.5rem; color: var(--text-secondary); font-size: .78rem; line-height: 1.9; }
+  .guide-food-label { margin-top: 1.6rem; color: var(--ink); font-size: .66rem; font-weight: 500; letter-spacing: .12em; }
+  .guide-food-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .7rem; }
+  .guide-food-tag { padding: .42rem .68rem; background: var(--sky-celadon); border: 1px solid var(--border-light); color: var(--text-primary); font-size: .62rem; }
+  .guide-food-note { margin-top: 1.4rem; color: #91a8b8; font-size: .6rem; line-height: 1.7; }
+  .guide-food-close { position: absolute; z-index: 2; top: 1rem; right: 1rem; width: 44px; height: 44px; min-width: 44px; min-height: 44px; border: 1px solid rgba(20,90,135,.16); border-radius: 50%; background: rgba(255,255,255,.9); color: var(--ink); font-size: 1.35rem; cursor: pointer; }
+  .guide-food-nav { display: flex; align-items: center; justify-content: space-between; gap: .8rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-light); }
+  .guide-food-nav button { min-height: 40px; padding: .55rem .75rem; border: 0; background: transparent; color: var(--ink); font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: .62rem; letter-spacing: .08em; cursor: pointer; }
+  .guide-food-nav button:hover { color: #b45f79; }
+  .guide-food-position { color: var(--text-secondary); font-family: 'Montserrat',sans-serif; font-size: .6rem; letter-spacing: .12em; white-space: nowrap; }
+  .guide-spots { margin-top: 4.5rem; overflow: hidden; }
+  .guide-spots-track { display: flex; transition: transform .65s cubic-bezier(.25,.1,.25,1); }
+  .guide-spot { position: relative; flex: 0 0 100%; height: min(64vh,590px); background-position: center; background-size: cover; }
+  .guide-spot::after { content: ''; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent,rgba(5,88,139,.7)); }
+  .guide-spot-caption { position: absolute; z-index: 1; left: clamp(1.5rem,6vw,5rem); bottom: clamp(1.5rem,5vw,3.5rem); color: white; }
+  .guide-spot-caption strong { display: block; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: clamp(1.2rem,3vw,1.9rem); font-weight: 500; letter-spacing: .1em; }
+  .guide-spot-caption span { font-size: .76rem; color: rgba(255,255,255,.84); }
+  .guide-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.2rem; }
+  .guide-arrow { width: 46px; height: 46px; min-width: 46px; min-height: 46px; border: 1px solid var(--border-blue); border-radius: 50%; background: white; color: var(--deep-ocean); cursor: pointer; }
+  .guide-count { min-width: 70px; text-align: center; color: var(--text-secondary); font-family: 'Montserrat',sans-serif; font-size: .68rem; letter-spacing: .14em; }
+  @media(max-width:820px){ .guide-food-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-food-dialog{grid-template-columns:1fr}.guide-food-media{min-height:300px;max-height:42vh}.guide-food-copy{padding:1.6rem} }
+  @media(max-width:520px){ .guide-food-grid{gap:.65rem}.guide-food-card img{height:110px}.guide-food-body{padding:.8rem}.guide-spot{height:58vh} }
+
+  /* ── FEATURES ── */
+  .feats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; max-width: 960px; margin: 0 auto; }
+  .feat { text-align: center; padding: 1.5rem 1rem; background: rgba(255,255,255,0.72); border: 1px solid var(--border-light); transition: all 0.35s cubic-bezier(0.25,0.1,0.25,1); }
+  .feat:hover { transform: translateY(-3px); border-color: var(--pocari-blue); box-shadow: 0 8px 22px rgba(13,94,168,0.1); }
+  .feat-icon { width: 52px; height: 52px; display: grid; place-items: center; margin: 0 auto 0.85rem; color: var(--deep-ocean); background: rgba(167,210,235,0.22); border: 1px solid rgba(13,94,168,0.22); border-radius: 14px; transition: all 0.3s; }
+  .feat-icon svg { width: 27px; height: 27px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .feat:hover .feat-icon { color: white; background: var(--deep-ocean); border-color: var(--deep-ocean); }
+  .feat .lbl { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.2rem; letter-spacing: 0.04em; font-weight: 600; }
+  @media (max-width: 760px) { .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  /* ── OKINAWA STATS ── */
+  .stats-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; max-width: 760px; margin: 1.5rem auto 0; }
+  .stat-item { padding: 1.1rem 0.75rem 0.9rem; border-top: 2px solid var(--pocari-blue); border-bottom: 1px solid var(--border-light); }
+  .stat-value { color: var(--deep-ocean); font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.15; letter-spacing: 0.02em; }
+  .stat-value span { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; }
+  .stat-label { margin-top: 0.45rem; color: var(--text-secondary); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; }
+  @media (max-width: 560px) { .stats-grid { gap: 0.5rem; } .stat-value { font-size: 1.55rem; } .stat-label { font-size: 0.7rem; } }
+
+  /* ── PADI PATHWAY ── */
+  .pathway-wrap { background: linear-gradient(180deg, var(--paper) 0%, var(--seafoam) 50%, var(--paper) 100%); padding: 5rem 2rem; }
+  .pathway-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .step-row { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem; }
+  .stp { flex: 1; min-width: 160px; max-width: 240px; position: relative; padding: 1.5rem 0.75rem; }
+  .stp-circle {
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem; font-size: 1.3rem; font-weight: 700;
+    color: white; font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
+  }
+  .stp-circle.c1 { background: var(--sakura-main); }
+  .stp-circle.c2 { background: var(--sakura-main); }
+  .stp-circle.c3 { background: var(--deep-ocean); }
+  .stp-arrow { position: absolute; top: 28px; right: -15px; font-size: 1.3rem; color: var(--ryukyu-blue); opacity: 0.5; }
+  .stp:last-child .stp-arrow { display: none; }
+  .stp h4 { font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+  .stp .loc { font-size: 0.75rem; color: var(--ryukyu-blue); font-weight: 600; margin-bottom: 0.3rem; }
+  .stp p { font-size: 0.8rem; color: var(--text-secondary); }
+  @media (max-width: 640px) { .stp-arrow { display: none; } .stp { border-bottom: 1px dashed var(--border-light); padding: 1rem; } }
+
+  .cert-badge {
+    position: relative; display: inline-flex; align-items: center; gap: 1rem;
+    padding: 0.9rem 1.35rem 0.9rem 0.9rem; background: linear-gradient(135deg, var(--deep-ocean), #08477e);
+    border: 1px solid rgba(255,255,255,0.72); border-radius: 5px; margin-top: 2rem;
+    box-shadow: 0 8px 18px rgba(13,94,168,0.22), inset 0 0 0 3px rgba(255,255,255,0.12);
+    text-align: left; overflow: hidden; text-decoration: none; cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cert-badge:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(13,94,168,0.28), inset 0 0 0 3px rgba(255,255,255,0.16); }
+  .cert-badge::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(255,255,255,0.28); border-radius: 2px; pointer-events: none; }
+  .cert-badge .icon { position: relative; z-index: 1; display: grid; place-items: center; min-width: 96px; height: 58px; padding: 0.35rem 0.55rem; background: white; border-radius: 3px; }
+  .cert-badge .icon img { display: block; width: 88px; height: auto; }
+  .cert-badge .txt { position: relative; z-index: 1; font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-weight: 700; font-size: 1rem; color: white; letter-spacing: 0.03em; }
+  .cert-badge .txt small { display: block; margin-top: 0.18rem; font-weight: 400; font-size: 0.7rem; color: rgba(255,255,255,0.68); letter-spacing: 0.02em; }
+  @media (max-width: 560px) { .cert-badge { gap: 0.7rem; padding-right: 0.9rem; } .cert-badge .txt { font-size: 0.86rem; } .cert-badge .txt small { font-size: 0.62rem; } }
+
+  /* ── TIMELINE ── */
+  .tl { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem; }
+  .tl-item { text-align:center; padding:1.25rem 1.5rem; min-width:130px; }
+  .tl-item .tl-icon {
+    width:48px; height:48px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 0.6rem;
+    font-family:'Noto Sans TC','Noto Sans JP',sans-serif; font-weight:700; font-size:1rem;
+    color:white; background:var(--deep-ocean);
+  }
+  .tl-item .tl-icon.light { background:var(--ryukyu-blue); }
+  .tl-item .tl-time { font-family:'Noto Sans TC','Noto Sans JP',sans-serif; font-size:0.95rem; font-weight:700; color:var(--ink); letter-spacing:0.04em; }
+  .tl-item .tl-act { font-size:0.75rem; color:var(--text-secondary); margin-top:0.2rem; }
+  .tl-summary { text-align:center; margin-top:2rem; padding:1.5rem; background:var(--seafoam); }
+  .tl-summary p { font-size:0.8rem; color:var(--text-secondary); letter-spacing:0.04em; }
+  .tl-summary strong { color:var(--deep-ocean); }
+
+  /* ── POOL ── */
+  .pool-band { background: var(--deep-ocean); color: white; text-align: center; padding: 5rem 2rem; }
+  .pool-band .section-kana { color: rgba(255,255,255,0.4); }
+  .pool-band .section-title { color: white; }
+  .pool-band .sec-line { background: var(--pocari-blue); }
+  .pool-band p { color: rgba(255,255,255,0.55); }
+  .pool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; max-width: 800px; margin: 0 auto; }
+  .pool-item { padding: 1.75rem 1rem; border: 1px solid rgba(255,255,255,0.1); transition: all 0.35s cubic-bezier(0.25,0.1,0.25,1); }
+  .pool-item:hover { border-color: rgba(255,255,255,0.3); }
+  .pool-item .ch { font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--pocari-blue); margin-bottom: 0.25rem; transition: color 0.3s; }
+  .pool-item:hover .ch { color: white; }
+  .pool-item .tx { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+  /* ── SKY BAND ── */
+  .sky-band { background: var(--sky-celadon); padding: 5rem 2rem; text-align: center; }
+  .sky-band .section-title { color: var(--ink); }
+  .sky-band .sec-line { background: var(--vermillion); }
+  .sky-band p { color: var(--text-secondary); }
+
+  /* ── DISCOUNT ── */
+  .discount { text-align: center; padding: 5rem 2rem; background: linear-gradient(180deg, var(--paper) 0%, rgba(235,177,187,0.16) 100%); }
+  .stamp {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 88px; height: 88px; border: 2px solid var(--vermillion);
+    border-radius: 50%; color: var(--vermillion);
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-weight: 600;
+    font-size: 0.75rem; letter-spacing: 0.08em;
+    margin-bottom: 1.5rem; line-height: 1.4;
+  }
+  .disc-row { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+  .disc-card { background: var(--white); padding: 1.5rem 2rem; border: 1px solid var(--border-light); transition: all 0.35s cubic-bezier(0.25,0.1,0.25,1); }
+  .disc-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+  .disc-card .amt { font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 2rem; font-weight: 700; color: var(--vermillion); }
+  .disc-card .lbl { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.3rem; }
+
+  /* ── FAQ ── */
+  .faq-item { border-bottom: 1px solid var(--border-light); }
+  .faq-q {
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 0.9rem; font-weight: 600;
+    letter-spacing: 0.06em; padding: 1.2rem 0; cursor: pointer;
+    list-style: none; display: flex; justify-content: space-between; align-items: center;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q::after { content: '+'; font-size: 1.2rem; font-weight: 300; color: var(--text-secondary); transition: transform 0.3s; }
+  details[open] .faq-q::after { content: '−'; transform: rotate(180deg); }
+  .faq-a { font-size: 0.82rem; color: var(--text-secondary); padding: 0 0 1.25rem; line-height: 1.9; }
+
+  /* ── BRAND TREE ── */
+  .brand-tree { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.5rem; font-size: 0.8rem; }
+  .brand-node { padding: 6px 16px; border-radius: 8px; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.04em; }
+  .brand-parent { background: var(--deep-ocean); color: white; }
+  .brand-snow { background: rgba(235,177,187,0.16); color: var(--vermillion); border: 1px solid var(--sakura-main); }
+  .brand-dive { background: var(--vermillion); color: white; }
+  .brand-swim { background: rgba(167,210,235,0.18); color: var(--deep-ocean); border: 1px solid var(--pocari-blue); }
+  .brand-arrow { font-size: 1.1rem; color: var(--text-secondary); }
+
+  /* ── PLAN REGION LABELS ── */
+  .loc-region { display: inline-flex; align-items: center; min-height: 34px; padding: 0.35rem 0.8rem; border-radius: 999px; font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; }
+  .loc-region.taiwan { background: rgba(167,210,235,0.24); color: var(--deep-ocean); border: 1px solid rgba(13,94,168,0.28); }
+  .loc-region.okinawa { background: rgba(235,177,187,0.2); color: var(--vermillion); border: 1px solid rgba(223,111,143,0.32); }
+
+  /* ── CONTACT ── */
+  .contact { text-align: center; padding: 5rem 2rem; }
+  .contact .logo-foot { height: 104px; width: auto; margin-bottom: 1.5rem; }
+  .contact-info { font-size: 0.85rem; color: var(--text-secondary); line-height: 2.5; letter-spacing: 0.04em; }
+  .contact-link { display: inline; min-width: auto; min-height: auto; color: inherit; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.5); text-underline-offset: 3px; }
+  .contact-link:hover { color: white; text-decoration-color: white; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--ink); color: rgba(255,255,255,0.35); text-align: center; padding: 3rem 2rem; font-size: 0.72rem; letter-spacing: 0.06em; line-height: 2.2; }
+  .footer-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; text-align: left; }
+  @media(max-width:700px){ .footer-inner { flex-direction: column; text-align: center !important; } .footer-inner div { text-align: center !important; } }
+  footer b { color: rgba(255,255,255,0.55); font-weight: 500; }
+  footer .footer-brand-link, footer .footer-brand-link:visited { display: inline; min-width: auto; min-height: auto; color: var(--sakura-main); text-decoration: none; border-bottom: 1px solid rgba(235,177,187,0.38); transition: color 0.3s, border-color 0.3s; }
+  footer .footer-brand-link:hover { color: #ffd9e1; border-color: #ffd9e1; }
+  .footer-careers{color:rgba(255,255,255,0.48);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.22);font-size:0.66rem;letter-spacing:0.08em;min-height:auto;margin-top:0.4rem}
+  .footer-careers:hover{color:white;border-color:white}
+
+  /* ── IMG BAND ── */
+  .img-band { width: 100%; padding: 0; max-width: 100%; }
+  .img-band img { width: 100%; height: auto; display: block; }
+
+  @media (max-width: 640px) {
+    section { padding: 3rem 1.25rem; }
+    .architecture-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .nature-grid { gap: 0.75rem; padding-left: 0; padding-right: 0; scroll-padding-inline: 0; }
+    .architecture-card.featured { grid-row: auto; }
+    .nature-card { flex-basis: 92%; aspect-ratio: 4 / 5; }
+    .architecture-card.featured img { min-height: 260px; }
+    .architecture-card img { min-height: 220px; }
+    .architecture-study { padding: 1.6rem 1.2rem 1rem; }
+    .architecture-study-head { align-items: flex-start; flex-direction: column; gap: 0.65rem; }
+    .architecture-study p { font-size: 0.72rem; }
+    .architecture-linework img { min-height: 0; }
+  }
+
+  /* ── MOTION ── */
+  nav { transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease; }
+  nav.scrolled { background: rgba(13,94,168,0.99); box-shadow: 0 8px 24px rgba(4,42,71,0.16); border-bottom-color: rgba(255,255,255,0.18); }
+  .hero-carousel { transform: translateY(var(--hero-shift, 0px)); }
+  .reveal { opacity: 1; transform: none; }
+  body.motion-ready .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25,0.1,0.25,1); transition-delay: var(--reveal-delay, 0ms); }
+  body.motion-ready .reveal.visible { opacity: 1; transform: none; }
+  details[open] .faq-a { animation: faqIn 0.35s ease both; }
+  @keyframes faqIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    body.motion-ready .reveal, body.motion-ready .reveal.visible { opacity: 1; transform: none; }
+    .hero-carousel { transform: none; }
+    .hero-slide:not(.active) { display: none; }
+    .hero-slide.active img { animation: none; transform: scale(1.035); }
+  }
+
+  /* ── MOBILE NAV ── */
+  @media(max-width:768px){
+    .nav-links{position:fixed;top:56px;left:0;right:0;background:rgba(13,94,168,0.98);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);flex-direction:column;gap:0;padding:1rem 0;transform:translateY(-120%);transition:transform 0.35s cubic-bezier(0.25,0.1,0.25,1);z-index:99;border-bottom:1px solid var(--border-light)}
+    .nav-links.open{transform:translateY(0)}
+    .nav-links li{width:100%;text-align:center}
+    .nav-links a{display:block;padding:1rem 2rem;font-size:0.9rem;min-height:44px;color:rgba(255,255,255,0.85)}
+    .nav-cta{display:inline-block!important;margin:0.5rem auto}
+  }
+  
+  /* ── HAMBURGER ── */
+  .hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:10px;z-index:101;min-width:44px;min-height:44px;align-items:center;justify-content:center;background:none;border:none}
+  .hamburger span{display:block;width:22px;height:1.5px;background:white;transition:all 0.3s}
+  .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+  @media(min-width:769px){.hamburger{display:none!important}}
+  
+  /* ── TOUCH FEEDBACK ── */
+  .btn:active,.card:active,.loc-card:active,.food-card:active,.disc-card:active{transform:scale(0.97)!important;transition:transform 0.1s!important}
+  .faq-q:active{color:var(--pocari-blue)}
+  a,button,.btn,[onclick]{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
+  .nav-links a{min-height:auto}@media(max-width:768px){.nav-links a{min-height:44px}}
+
+
+  .sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:99;background:rgba(245,245,245,0.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--border-light);padding:0.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transform:translateY(100%);transition:transform 0.35s cubic-bezier(0.25,0.1,0.25,1)}
+  .sticky-bar.show{transform:translateY(0)}
+  .sticky-bar .price-info{font-size:0.82rem;color:rgba(255,255,255,0.85);letter-spacing:0.04em}
+  .sticky-bar .price-info strong{color:var(--ink);font-family:'Noto Sans TC','Noto Sans JP',sans-serif;font-size:0.95rem}
+  .sticky-bar .btn-sm{padding:10px 24px;background:var(--vermillion);color:white;font-family:'Noto Sans TC','Noto Sans JP',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-decoration:none;border-radius:50px;white-space:nowrap;transition:all 0.3s}
+  .sticky-bar .btn-sm:hover{filter:brightness(0.9)}
+  @media(min-width:769px){.sticky-bar{display:none}}
+
+
+  /* ── 細節調整 ── */
+  
+  /* 按鈕降調：從純色改半透明底＋邊框，hover 才變實心 */
+  .btn-primary{background:rgba(235,177,187,0.18);color:var(--vermillion);border:1px solid rgba(215,143,158,0.28)}
+  .btn-primary:hover{background:var(--vermillion);color:white;border-color:var(--vermillion)}
+  .btn-line{background:rgba(167,210,235,0.16);color:var(--deep-ocean);border:1px solid rgba(13,94,168,0.28)}
+  .btn-line:hover{background:var(--pocari-blue);color:var(--ink);border-color:var(--deep-ocean)}
+  .btn-dark{background:rgba(31,52,64,0.06);color:var(--ink);border:1px solid rgba(31,52,64,0.15)}
+  .btn-dark:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .btn-outline{background:transparent;color:white;border:1px solid rgba(255,255,255,0.3)}
+  .btn-outline:hover{background:rgba(255,255,255,0.1);border-color:white}
+  
+  /* 卡片加層次：輕柔內陰影＋微邊框 */
+  .loc-card,.card{border:1px solid rgba(0,0,0,0.04);box-shadow:0 1px 3px rgba(0,0,0,0.02),0 0 0 1px rgba(0,0,0,0.01)}
+  .loc-card:hover,.card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.05),0 0 0 1px rgba(0,0,0,0.03)}
+  
+  /* 字體層次：標題更大、內文更輕 */
+  .section-title{font-weight:700;letter-spacing:0.14em}
+  .section-sub{font-weight:300;line-height:1.9}
+  .loc-body h3,.card-body h3{font-size:1.2rem;font-weight:700;letter-spacing:0.08em}
+  .loc-body p,.card-body p{font-weight:300;line-height:1.85}
+  
+  /* 分隔線更細緻 */
+  .sec-line{height:0.5px;width:48px;opacity:0.5}
+  
+  /* FAQ 更輕 */
+  .faq-q{font-weight:500;letter-spacing:0.08em;font-size:0.88rem}
+  .faq-a{font-weight:300;letter-spacing:0.05em}
+
+@keyframes markGlow{0%,100%{filter:drop-shadow(0 2px 8px rgba(255,255,255,0.2))}50%{filter:drop-shadow(0 2px 16px rgba(255,255,255,0.5))}}
+
+  /* ── 2026 JAPANESE ISLAND REFINEMENT ── */
+  body { background: var(--paper); letter-spacing: 0.035em; }
+  nav, nav.scrolled {
+    background: rgba(17,136,199,0.93);
+    border-bottom-color: rgba(255,255,255,0.22);
+    box-shadow: none;
+  }
+  .nav-links a { font-family: 'Montserrat','Noto Sans TC',sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; }
+  .nav-cta { background: var(--vermillion) !important; border-radius: 2px; }
+  .hero { background: #69c4ef; }
+  .hero::before { background: linear-gradient(90deg, rgba(0,91,156,0.06), rgba(0,91,156,0.2) 50%, rgba(0,91,156,0.05)), linear-gradient(180deg, rgba(0,110,180,0.03), rgba(0,101,172,0.13) 72%, rgba(0,79,146,0.27)); }
+  .hero::after { background: radial-gradient(circle, rgba(234,182,197,0.18), transparent 70%); }
+  .hero-kana, .section-kana, .architecture-study-kicker { font-family: 'Montserrat','Noto Sans TC',sans-serif; font-weight: 500; }
+  .hero h1 { font-weight: 500; letter-spacing: 0.14em; }
+  .hero h1 em { color: #0070d3; text-shadow: 0 1px 0 rgba(255,255,255,0.75), 0 0 16px rgba(255,255,255,0.38); }
+  .journey-intro {
+    max-width: none;
+    padding: 6.5rem max(6vw,2rem);
+    text-align: center;
+    background: linear-gradient(180deg,#f7fbff 0%,#eef8ff 100%);
+  }
+  .journey-intro .section-sub { max-width: 680px; }
+  section { padding-top: 6.5rem; padding-bottom: 6.5rem; }
+  .section-kana { color: #86b7de; opacity: 1; letter-spacing: 0.34em; }
+  .section-title { color: var(--ink); font-weight: 500; letter-spacing: 0.18em; }
+  .section-sub { max-width: 620px; color: var(--text-secondary); }
+  .sec-line { width: 32px; background: var(--sakura-main); opacity: 0.7; }
+  .loc-card, .card, .disc-card, .feat {
+    background: rgba(255,255,255,0.8);
+    border-color: var(--border-light);
+    box-shadow: none;
+  }
+  .loc-card:hover, .card:hover, .disc-card:hover, .feat:hover {
+    border-color: var(--gold);
+    box-shadow: 0 18px 42px rgba(55,91,123,0.07);
+  }
+  .loc-badge, .loc-region { border-radius: 2px; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-weight: 500; }
+  .badge-tpe, .badge-oki, .loc-region.okinawa { background: rgba(234,182,197,0.17); color: #b45f79; border-color: rgba(217,120,150,0.2); }
+  .badge-taiwan, .loc-region.taiwan { background: rgba(217,236,255,0.52); color: var(--deep-ocean); border-color: rgba(83,127,166,0.18); }
+  .loc-address { background: rgba(241,247,255,0.82); }
+  .btn { border-radius: 2px; font-family: 'Montserrat','Noto Sans TC',sans-serif; font-weight: 500; }
+  .btn-primary { background: var(--vermillion); color: white; border-color: var(--vermillion); }
+  .hero .btn-primary { background: #0070d3; border-color: #0070d3; color: white; box-shadow: 0 8px 24px rgba(0,112,211,0.28); }
+  .hero .btn-primary:hover { background: #005aa8; border-color: #005aa8; box-shadow: 0 10px 28px rgba(0,90,168,0.34); }
+  .btn-line { background: transparent; color: var(--ink); border-color: #afcde7; }
+  .btn-line:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .architecture-caption, .nature-caption { background: linear-gradient(transparent, rgba(5,88,139,0.7)); }
+  .architecture-card, .nature-card { border-color: rgba(223,235,246,0.94); }
+  .architecture-study {
+    background: linear-gradient(135deg, rgba(255,255,255,0.99), rgba(241,247,255,0.86));
+    border-color: var(--border-light);
+  }
+  .architecture-study::before { width: 2px; background: linear-gradient(var(--gold), var(--sakura-main)); }
+  .architecture-study-kicker { color: #76a9d2; }
+  .architecture-study h3, .architecture-study p { color: var(--ink); }
+  .architecture-linework img { opacity: 0.84; filter: saturate(0.8) contrast(0.98) drop-shadow(0 18px 26px rgba(55,91,123,0.05)); }
+  .feat-icon { border-radius: 50%; color: #ad6179; background: rgba(234,182,197,0.13); border-color: rgba(217,120,150,0.17); }
+  .feat:hover .feat-icon { background: var(--sakura-main); border-color: var(--sakura-main); }
+  .stat-item { border-top-color: var(--gold); }
+  .stat-value { color: var(--ink); font-weight: 500; }
+  .pathway-wrap { background: linear-gradient(180deg, var(--paper), rgba(233,244,255,0.82), var(--paper)); }
+  .stp-circle.c1, .stp-circle.c2 { background: var(--sakura-main); }
+  .stp-circle.c3 { background: #40a9df; }
+  .cert-badge { background: linear-gradient(135deg, #1596d1, #5bc1eb); box-shadow: 0 12px 28px rgba(12,117,176,0.16), inset 0 0 0 3px rgba(255,255,255,0.16); }
+  .cert-badge .icon { color: #148bc7; background: #fbfdff; }
+  .pool-band { background: #1189c3; }
+  .pool-band .sec-line { background: var(--sakura-main); }
+  .pool-item .ch { color: #f4c4d0; }
+  .sky-band { background: #f1f7ff; }
+  .discount { background: linear-gradient(180deg, var(--paper), rgba(234,182,197,0.1)); }
+  .img-band { max-height: 680px; overflow: hidden; background: var(--seafoam); }
+  .img-band img { width: 100%; height: 100%; min-height: 380px; object-fit: cover; }
+  .img-band.dual-band { max-height: none; aspect-ratio: 2 / 1; }
+  .img-band.dual-band img { min-height: 0; object-position: center; }
+  .contact > div:first-child { background: radial-gradient(ellipse at 50% 52%, rgba(0,72,139,0.7) 0%, rgba(0,105,178,0.44) 38%, rgba(0,145,207,0.16) 76%, rgba(0,160,218,0.06) 100%) !important; }
+  footer { background: #0e7fb9; color: rgba(255,255,255,0.68); }
+  footer b { color: rgba(255,255,255,0.92); }
+  .sticky-bar { background: rgba(251,253,255,0.96); }
+  .sticky-bar .price-info { color: var(--text-secondary); }
+  .sticky-bar .btn-sm { background: var(--vermillion); border-radius: 2px; }
+
+  /* ── OKINAWA DIVE MAP ── */
+  .dive-map-section { max-width: 1200px; display: block; }
+  .dive-map-copy { text-align: center; max-width: 760px; margin: 0 auto 2.75rem; }
+  .dive-map-copy .section-kana, .dive-map-copy .section-title, .dive-map-copy .section-sub { text-align: center; }
+  .dive-map-copy .section-sub { margin-bottom: 1.5rem; }
+  .dive-map-base { display: inline-flex; flex-direction: column; align-items: flex-start; padding: 1rem 1.2rem; color: var(--ink); text-decoration: none; border-left: 2px solid var(--sakura-main); background: rgba(241,247,255,0.8); }
+  .dive-map-base small { font-family: 'Montserrat',sans-serif; color: #76a9d2; font-size: 0.58rem; letter-spacing: 0.22em; }
+  .dive-map-base strong { margin-top: 0.2rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; }
+  .dive-map-canvas { position: relative; width: 100%; min-height: 570px; overflow: hidden; border: 1px solid var(--border-light); background: rgba(255,255,255,0.78); }
+  .dive-map-canvas::before, .dive-map-canvas::after { content: ''; position: absolute; border-radius: 50%; pointer-events: none; }
+  .dive-map-canvas::before { width: 280px; height: 280px; right: -90px; top: -100px; background: rgba(234,182,197,0.11); }
+  .dive-map-canvas::after { width: 190px; height: 190px; left: -70px; bottom: -70px; background: rgba(217,236,255,0.38); }
+  .okinawa-outline { position: absolute; inset: 6% 8% 5% 10%; width: 82%; height: 89%; }
+  .okinawa-island { fill: rgba(226,240,253,0.88); stroke: #a7cbe8; stroke-width: 1.4; }
+  .okinawa-coastline { fill: none; stroke: rgba(83,127,166,0.32); stroke-width: 1; stroke-dasharray: 3 7; }
+  .map-pin { position: absolute; display: flex; align-items: center; gap: 0.65rem; color: var(--ink); text-decoration: none; z-index: 2; }
+  .map-pin .dot { position: relative; flex: 0 0 auto; width: 12px; height: 12px; border-radius: 50%; background: var(--paper); border: 2px solid var(--sakura-main); box-shadow: 0 0 0 6px rgba(234,182,197,0.13); }
+  .map-pin.base .dot { background: var(--vermillion); border-color: var(--vermillion); }
+  .map-pin-label { padding: 0.48rem 0.65rem; background: rgba(255,255,255,0.9); border: 1px solid rgba(222,237,241,0.9); white-space: nowrap; }
+  .map-pin-label b { display: block; font-family: 'Montserrat',sans-serif; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; }
+  .map-pin-label span { display: block; margin-top: 0.05rem; color: var(--text-secondary); font-size: 0.64rem; }
+  .pin-manza { left: 54%; top: 21%; }
+  .pin-base { left: 44%; top: 43%; }
+  .pin-blue { left: 34%; top: 57%; }
+  .pin-kerama { left: 10%; top: 76%; }
+  .dive-map-note { position: absolute; right: 1.2rem; bottom: 1rem; color: rgba(55,91,123,0.56); font-size: 0.58rem; letter-spacing: 0.08em; z-index: 2; }
+  @media(max-width:768px){
+    .nav-links { background: rgba(14,130,190,0.98); }
+    .hero-carousel { inset: 0; }
+    .hero-slide img { object-position: 58% center; }
+    .hero-slide:nth-child(2) img { object-position: 62% center; }
+    .hero-carousel-nav { right: 1.25rem; bottom: 1.35rem; }
+    .hero-scene-label { left: 1.25rem; bottom: 1.25rem; max-width: 52vw; }
+    .hero-carousel-dot { width: 15px; }
+    .hero-carousel-dot.active { width: 28px; }
+    section { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+    .dive-map-canvas { min-height: 440px; }
+    .map-pin-label b { font-size: 0.56rem; }
+    .map-pin-label span { font-size: 0.58rem; }
+  }
+
+  /* ══ EDITORIAL REDESIGN · NEW VERSION ONLY ══ */
+  :root {
+    --paper:#f8f8f5; --white:#fff; --ink:#151515;
+    --text-primary:#242424; --text-secondary:#6d6c67;
+    --deep-ocean:#006fc9; --ryukyu-blue:#83bde8; --pocari-blue:#e3f2ff;
+    --sakura-main:#e6a9bb; --vermillion:#cf7892;
+    --seafoam:#f2f7fb; --sky-celadon:#f5f8fb;
+    --border-light:#deded8; --border-blue:#d7e8f4;
+  }
+  html { font-size:16px; }
+  body { background:var(--paper); color:var(--text-primary); line-height:1.9; letter-spacing:.015em; }
+  nav { height:72px; padding:0 clamp(1.25rem,4vw,4.5rem); background:rgba(15,27,36,.22); border-bottom-color:rgba(255,255,255,.2); }
+  nav.scrolled { background:rgba(248,248,245,.96); box-shadow:0 10px 35px rgba(0,0,0,.06); border-bottom-color:var(--border-light); }
+  nav.scrolled .nav-links a { color:#222; }
+  nav.scrolled .nav-logo img { filter:grayscale(1) brightness(.18); }
+  .nav-links { gap:clamp(1rem,2vw,2.4rem); }
+  .nav-links a { font-family:'Montserrat','Noto Sans TC',sans-serif; font-size:.72rem; font-weight:500; letter-spacing:.08em; }
+  .nav-cta { border-radius:0; padding:10px 18px !important; background:#111 !important; }
+  nav.scrolled .nav-cta { color:#fff !important; }
+
+  .hero { min-height:100svh; justify-content:flex-start; padding:8rem clamp(1.5rem,8vw,9rem) 5rem; }
+  .hero::before { background:linear-gradient(90deg,rgba(7,18,26,.62) 0%,rgba(7,18,26,.28) 48%,rgba(7,18,26,.04) 78%),linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.24)); }
+  .hero::after { display:none; }
+  .hero-carousel { inset:0; transform:translate3d(var(--hero-x,0px),calc(var(--hero-shift,0px) + var(--hero-y,0px)),0); transition:transform .35s ease-out; }
+  .hero-slide:not(:first-child), .hero-carousel-nav { display:none; }
+  .hero-slide:first-child { opacity:1; }
+  .hero-slide:first-child img { object-position:54% center; animation:heroCinema 18s ease-out both !important; filter:saturate(.78) contrast(.96) brightness(1.03); }
+  .hero-content { text-align:left; max-width:760px; padding:0; margin:0; }
+  .hero-content > img { margin-left:0 !important; width:48px !important; }
+  .hero-kana { font-family:'Montserrat',sans-serif; font-size:.66rem; font-weight:500; letter-spacing:.24em; }
+  .hero h1 { font-family:'Noto Serif TC',serif; font-size:clamp(2.7rem,6vw,5.8rem); font-weight:500; line-height:1.2; letter-spacing:.03em; }
+  .hero h1 em { color:#8cccf4; }
+  .hero p { max-width:650px; font-size:.92rem; line-height:1.9; letter-spacing:.03em; color:rgba(255,255,255,.78); }
+  .hero-meta { justify-content:flex-start; gap:1.8rem; margin-bottom:2rem; }
+  .hero-content > div:last-child { justify-content:flex-start !important; }
+  .hero-scene-label { left:auto; right:clamp(1.5rem,4vw,4rem); bottom:2.25rem; }
+  .scroll-hint { left:auto; right:clamp(1.5rem,4vw,4rem); transform:none; }
+
+  section { max-width:1240px; padding:clamp(5.5rem,10vw,9rem) clamp(1.4rem,5vw,4rem); }
+  .section-kana { font-family:'Montserrat',sans-serif; color:#74736f; opacity:1; font-size:.6rem; letter-spacing:.26em; margin-bottom:1rem; }
+  .section-title { font-family:'Noto Serif TC',serif; color:var(--ink); font-size:clamp(1.8rem,3.4vw,3.1rem); font-weight:500; letter-spacing:.025em; line-height:1.45; }
+  .section-sub { max-width:760px; font-size:.9rem; color:var(--text-secondary); line-height:2.1; }
+  .sec-line { width:28px; background:#222; margin:1.2rem auto 2rem; }
+  .sky-band { background:#fff; padding:clamp(6rem,12vw,11rem) 2rem; }
+  .sky-band p { max-width:720px; margin-left:auto; margin-right:auto; }
+
+  .btn { border-radius:0; padding:14px 28px; font-size:.74rem; font-weight:500; letter-spacing:.12em; }
+  .btn-primary,.btn-dark { background:#111; color:#fff; }
+  .btn-outline { border:1px solid rgba(255,255,255,.7); }
+  .btn-line { border-color:#111; color:#111; }
+  .btn:hover { transform:none; box-shadow:none; }
+
+  .loc-grid { grid-template-columns:repeat(3,1fr); gap:clamp(2rem,4vw,4.5rem); }
+  .loc-card,.feat,.disc-card { background:transparent; border:0; border-radius:0; box-shadow:none; }
+  .loc-card { border-top:1px solid var(--border-light); overflow:visible; }
+  .loc-card:hover,.disc-card:hover { transform:none; box-shadow:none; border-color:#aaa; }
+  .loc-card > img { height:clamp(230px,25vw,350px) !important; filter:saturate(.72) contrast(.96) brightness(1.04); transition:filter .5s,transform .8s cubic-bezier(.2,.7,.2,1); }
+  .loc-card:hover > img { filter:saturate(.92) contrast(1); transform:scale(1.015); }
+  .loc-header { padding:1.4rem 0 0; }
+  .loc-body { padding:.6rem 0 0; }
+  .loc-badge,.loc-region { padding:0; min-height:0; border:0 !important; border-radius:0; background:transparent !important; color:#777 !important; font-family:'Montserrat','Noto Sans TC',sans-serif; font-size:.6rem; letter-spacing:.13em; }
+  .loc-body h3 { font-family:'Noto Serif TC',serif; font-weight:500; font-size:1.4rem; }
+
+  .feats { gap:0; border-top:1px solid var(--border-light); }
+  .feat { padding:2.4rem 1.5rem; border-right:1px solid var(--border-light); }
+  .feat:last-child { border-right:0; }
+  .feat-icon { background:transparent !important; border:0 !important; border-radius:0 !important; color:#111 !important; }
+  .feat-icon svg { stroke:#111; }
+
+  .architecture-study { background:#fff; border:0; padding:clamp(1rem,4vw,3rem); }
+  .architecture-linework img { filter:grayscale(1) contrast(.88) brightness(1.12); mix-blend-mode:multiply; }
+  .architecture-grid { gap:clamp(1.5rem,3vw,3rem); }
+  .architecture-card { background:transparent; }
+  .architecture-card img { filter:saturate(.72) contrast(.96) brightness(1.04); }
+  .architecture-caption { position:static; background:transparent; color:#222; padding:1rem 0 0; }
+  .architecture-caption strong { color:#111; font-family:'Montserrat',sans-serif; font-size:.75rem; letter-spacing:.12em; }
+  .architecture-caption span { color:#777; font-size:.72rem; }
+
+  .pool-band,footer { background:#15191c; }
+  .pool-item { border-width:0 0 1px; }
+  .pool-item .ch { color:#fff; font-family:'Noto Serif TC',serif; font-weight:500; }
+  .tl-item .tl-icon { width:auto; height:auto; border-radius:0; background:transparent !important; color:#111; font-family:'Montserrat',sans-serif; font-size:2rem; font-weight:400; }
+  .tl-summary { background:transparent; border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light); }
+  .plan-card,.guide-food-card { border-radius:0 !important; box-shadow:none !important; }
+  .contact::before { background:rgba(8,25,38,.46) !important; }
+
+  .nature-card img,.guide-food-card img,.guide-spot,.img-band img { filter:saturate(.76) contrast(.96) brightness(1.04); }
+  .motion-ready .reveal { opacity:0; transform:translateY(32px); transition:opacity .9s ease var(--reveal-delay,0ms),transform 1.05s cubic-bezier(.2,.7,.2,1) var(--reveal-delay,0ms); }
+  .motion-ready .reveal.visible { opacity:1; transform:none; }
+  .motion-ready .architecture-study.reveal,.motion-ready .img-band.reveal,.motion-ready .nature-section.reveal { clip-path:inset(6% 0 6% 0); transition:opacity .9s,transform 1.05s cubic-bezier(.2,.7,.2,1),clip-path 1.25s cubic-bezier(.2,.7,.2,1); }
+  .motion-ready .architecture-study.reveal.visible,.motion-ready .img-band.reveal.visible,.motion-ready .nature-section.reveal.visible { clip-path:inset(0); }
+
+  @media(max-width:900px){
+    .loc-grid { grid-template-columns:1fr; }
+    .loc-card > img { height:min(62vw,430px) !important; }
+    .feats { grid-template-columns:repeat(2,1fr); }
+    .feat:nth-child(2) { border-right:0; }
+  }
+  @media(max-width:768px){
+    nav { height:60px; background:rgba(15,27,36,.72); }
+    .nav-links { background:rgba(248,248,245,.98); }
+    .nav-links a { color:#222; }
+    .hero { min-height:92svh; padding:7rem 1.35rem 4rem; align-items:flex-end; }
+    .hero::before { background:linear-gradient(180deg,rgba(7,18,26,.05) 18%,rgba(7,18,26,.76) 100%); }
+    .hero h1 { font-size:clamp(2.25rem,12vw,3.8rem); }
+    .hero p,.hero-meta { display:none; }
+    .hero-scene-label,.scroll-hint { display:none; }
+    .feats { grid-template-columns:1fr; }
+    .feat { border-right:0; border-bottom:1px solid var(--border-light); }
+    .section-title { letter-spacing:.02em; }
+  }
+
+  /* ══ STRUCTURAL EDITORIAL LAYOUT · CHAPTER TWO ══ */
+  #locations { max-width:1380px; }
+  #locations > .section-kana,#locations > .section-title,#locations > .sec-line,#locations > .section-sub { margin-left:clamp(0rem,7vw,7rem); text-align:left; }
+  #locations > .sec-line { margin-right:auto; }
+  #locations > .section-sub { margin-right:0; max-width:620px; }
+  #locations .loc-grid { display:block; margin-top:5rem; }
+  #locations .loc-card { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr); align-items:center; gap:clamp(2rem,7vw,7rem); border-top:0; margin-bottom:clamp(5rem,10vw,10rem); }
+  #locations .loc-card:nth-child(even) { grid-template-columns:minmax(320px,.65fr) minmax(0,1.35fr); }
+  #locations .loc-card:nth-child(even) > img { grid-column:2; }
+  #locations .loc-card:nth-child(even) .loc-header,#locations .loc-card:nth-child(even) .loc-body { grid-column:1; }
+  #locations .loc-card > img { grid-row:1 / span 2; width:100%; height:min(58vw,610px) !important; }
+  #locations .loc-header { align-self:end; padding:0; }
+  #locations .loc-body { align-self:start; }
+  #locations .loc-body h3 { font-size:clamp(1.8rem,3vw,3rem); margin-bottom:.5rem; }
+  #locations .loc-body > p:not(.jp) { font-size:.88rem; line-height:2.15; }
+  #locations .loc-address { margin-top:2rem; padding-top:1.2rem; border-top:1px solid var(--border-light); }
+
+  #why { max-width:none; padding-left:0; padding-right:0; overflow:hidden; }
+  #why .feats { max-width:none; margin-top:4rem; border-bottom:1px solid var(--border-light); }
+  #why .feat { min-height:250px; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; text-align:left; padding:2.4rem clamp(1.5rem,3vw,3.5rem); }
+  #why .feat::before { font-family:'Montserrat',sans-serif; color:#9a9994; font-size:.62rem; letter-spacing:.18em; }
+  #why .feat:nth-child(1)::before { content:'01 / TRAINING'; }
+  #why .feat:nth-child(2)::before { content:'02 / SCHEDULE'; }
+  #why .feat:nth-child(3)::before { content:'03 / OKINAWA'; }
+  #why .feat:nth-child(4)::before { content:'04 / PADI'; }
+  #why .feat-icon { margin:0; width:38px; height:38px; }
+  #why .feat .lbl { color:#171717; font-family:'Noto Serif TC',serif; font-size:clamp(1rem,1.4vw,1.35rem); font-weight:500; }
+
+  #okinawa-base { max-width:none; padding-left:0; padding-right:0; }
+  #okinawa-base > .section-kana,#okinawa-base > .section-title,#okinawa-base > .sec-line,#okinawa-base > .section-sub { max-width:1100px; margin-left:auto; margin-right:auto; }
+  #okinawa-base .architecture-study { width:min(88vw,1280px); margin:4rem auto 0; }
+  #okinawa-base .architecture-grid { padding-left:8vw; padding-right:8vw; }
+  #okinawa-base .architecture-card { flex-basis:min(76vw,1020px); }
+
+  .pathway-wrap { padding:clamp(6rem,11vw,10rem) clamp(1.4rem,6vw,7rem); background:#eef6fb; }
+  .pathway-inner { max-width:1280px; display:grid; grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr); gap:clamp(3rem,8vw,8rem); text-align:left; }
+  .pathway-intro { position:sticky; top:120px; align-self:start; }
+  .pathway-intro .section-kana,.pathway-intro .section-title,.pathway-intro .section-sub { text-align:left; }
+  .pathway-intro .sec-line { margin-left:0; }
+  .pathway-intro .section-sub { margin-left:0; }
+  .step-row { display:block; margin-top:0; }
+  .stp { position:relative; min-height:310px; padding:0 0 4rem 6.5rem; border-left:1px solid #b9cedd; text-align:left; }
+  .stp:last-child { border-left-color:transparent; }
+  .stp-circle { position:absolute; left:-2.05rem; top:0; width:4rem; height:4rem; border-radius:50%; display:grid; place-items:center; background:#fff !important; color:#111 !important; border:1px solid #9db8ca; font-family:'Montserrat',sans-serif; font-size:1rem; }
+  .stp h4 { font-family:'Noto Serif TC',serif; font-size:clamp(1.4rem,2.2vw,2rem); font-weight:500; }
+  .stp .loc { font-family:'Montserrat','Noto Sans TC',sans-serif; font-size:.66rem; letter-spacing:.12em; color:#66869b; }
+  .stp p { max-width:560px; font-size:.86rem; line-height:2.05; color:#5f6a70; }
+  .stp-arrow { display:none; }
+  .cert-badge { grid-column:2; margin-top:0; }
+
+  #plan { max-width:1280px; text-align:left !important; }
+  #plan > .section-kana,#plan > .section-title { text-align:left; }
+  #plan > .sec-line { margin-left:0; }
+  #plan .plan-grid { grid-template-columns:1fr 1fr !important; gap:0 !important; margin-top:4rem !important; border-top:1px solid #b9b9b3; border-bottom:1px solid #b9b9b3; }
+  #plan .loc-card { padding:clamp(2rem,5vw,5rem); border:0; }
+  #plan .loc-card + .loc-card { border-left:1px solid #b9b9b3; }
+  #plan .loc-body h3 { font-size:clamp(2rem,4vw,4rem); }
+  #plan .loc-body > p[style*="font-family"] { font-family:'Montserrat',sans-serif !important; font-weight:400 !important; font-size:clamp(1.65rem,3vw,3.2rem) !important; }
+  #plan .btn-line { width:100%; justify-content:center; margin-top:1rem; }
+
+  #experiences { max-width:1280px; text-align:left !important; }
+  #experiences > .section-kana,#experiences > .section-title { text-align:left; }
+  #experiences > .sec-line { margin-left:0; }
+  #experiences .loc-grid { grid-template-columns:.8fr 1.2fr; gap:clamp(2rem,6vw,6rem); align-items:end; }
+  #experiences .loc-card { min-height:330px; padding:clamp(2rem,4vw,4rem); border-top:1px solid #aaa; }
+  #experiences .loc-card:nth-child(2) { min-height:470px; background:#edf6fc; border-top-color:#6faad1; }
+  #experiences .loc-body h3 { font-size:clamp(2rem,4vw,4rem); }
+
+  .guide-food-grid { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:clamp(1rem,2vw,2rem); padding-bottom:1.5rem; scrollbar-width:none; }
+  .guide-food-grid::-webkit-scrollbar { display:none; }
+  .guide-food-card { flex:0 0 min(68vw,520px); scroll-snap-align:start; border:0; background:transparent; }
+  .guide-food-card img { height:clamp(260px,35vw,470px); }
+  .guide-food-body { padding:1.2rem 0 0; }
+  .guide-food-card h3 { font-family:'Noto Serif TC',serif; font-size:1.35rem; }
+
+  .dive-map-section { max-width:none; padding-left:0; padding-right:0; display:grid; grid-template-columns:minmax(300px,.72fr) minmax(0,1.28fr); align-items:stretch; }
+  .dive-map-copy { margin:0; padding:clamp(3rem,7vw,8rem); display:flex; flex-direction:column; justify-content:center; align-items:flex-start; background:#111; color:#fff; }
+  .dive-map-copy .section-kana,.dive-map-copy .section-title,.dive-map-copy .section-sub { text-align:left; color:#fff; }
+  .dive-map-copy .sec-line { margin-left:0; background:#fff; }
+  .dive-map-copy .dive-map-base { background:transparent; color:#fff; border-left-color:#fff; }
+  .dive-map-canvas { min-height:760px; border:0; }
+
+  @media(max-width:800px){
+    #locations > .section-kana,#locations > .section-title,#locations > .sec-line,#locations > .section-sub { margin-left:0; }
+    #locations .loc-card,#locations .loc-card:nth-child(even) { display:flex; flex-direction:column; gap:1.2rem; margin-bottom:5rem; }
+    #locations .loc-card:nth-child(even) > img { order:0; }
+    #locations .loc-card .loc-header { order:1; align-self:stretch; }
+    #locations .loc-card .loc-body { order:2; }
+    #locations .loc-card > img { height:76vw !important; }
+    .pathway-inner { grid-template-columns:1fr; }
+    .pathway-intro { position:static; }
+    .cert-badge { grid-column:auto; }
+    .stp { min-height:0; padding-left:4.5rem; }
+    #plan .plan-grid,#experiences .loc-grid,.dive-map-section { grid-template-columns:1fr !important; }
+    #plan .loc-card + .loc-card { border-left:0; border-top:1px solid #b9b9b3; }
+    #experiences .loc-card,#experiences .loc-card:nth-child(2) { min-height:0; }
+    .guide-food-card { flex-basis:82vw; }
+    .dive-map-canvas { min-height:520px; }
+  }
+
+  /* Scrolled logo: black wordmark with the original sakura-pink flower retained. */
+  .nav-logo { position:relative; display:inline-block; line-height:0; }
+  .nav-logo::after {
+    content:''; position:absolute; inset:0; pointer-events:none; opacity:0;
+    background:url('sy-dive-images/logo-1.png?v=20260827-logo1') center/100% 100% no-repeat;
+    clip-path:inset(30% 70% 35% 9%);
+    transition:opacity .25s ease;
+  }
+  nav.scrolled .nav-logo::after { opacity:1; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="櫻雪旅行社_潛水服務.html" class="nav-logo"><img src="sy-dive-images/logo-1.png?v=20260827-logo1" alt="櫻雪潛水中心" style="height:36px;"></a>
+  <button class="hamburger" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="#seasons">關於櫻雪</a></li>
+    <li><a href="#pathway">PADI 考證</a></li>
+    <li><a href="#experiences">體驗與浮潛</a></li>
+    <li><a href="#okinawa-journey">沖繩潛旅</a></li>
+    <li><a href="#plan">費用與報名</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="https://lin.ee/U08gDqx" class="nav-cta" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href,'_blank','noopener,noreferrer');return false;">LINE 預約</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-carousel" aria-hidden="true">
+    <div class="hero-slide active"><img src="sy-dive-images/hero-okinawa-architecture-v2.png?v=20260901-architecture-v2" alt=""></div>
+    <div class="hero-slide"><img src="sy-dive-images/hero-okinawa-underwater-v2.png?v=20260830-cinema-v2" alt="" loading="eager"></div>
+    <div class="hero-slide"><img src="sy-dive-images/hero-okinawa-village-v2.png?v=20260830-cinema-v2" alt="" loading="eager"></div>
+  </div>
+  <div class="hero-content">
+    <img src="sy-dive-images/hero-mark.png" alt="" style="width:60px;height:auto;margin:0 auto 1.5rem;display:block;filter:drop-shadow(0 2px 8px rgba(255,255,255,0.3));animation:markGlow 3s ease-in-out infinite;">
+  <div class="hero-kana">SAKURAYUKI<br>DIVING CENTER</div>
+    <h1>滑過一片白<br>潛入一片<em>藍</em></h1>
+    <p>PADI 認證教練指導 · 台北平靜水域訓練 · 東北角龍洞或沖繩青洞完成課程與考核</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>仁愛</strong> <a class="hero-map-link" href="https://maps.app.goo.gl/nRAS1w7pERsF7T9z8" target="_blank" rel="noopener noreferrer">台北市大安區仁愛路四段 130 號</a></div>
+      <div class="hero-meta-item"><strong>沖繩</strong> 恩納村山田 591-1 · 真栄田岬旁</div>
+    </div>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="#pathway" class="btn btn-primary">開始規劃考證</a>
+      <a href="#plan" class="btn btn-outline">查看方案與價格</a>
+    </div>
+  </div>
+  <div class="scroll-hint">— 向下探索 —</div>
+  <div class="hero-scene-label" aria-live="polite">Okinawa Base · Onna Village</div>
+  <div class="hero-carousel-nav" aria-label="主視覺輪播">
+    <button class="hero-carousel-dot active" type="button" aria-label="顯示櫻雪沖繩基地"></button>
+    <button class="hero-carousel-dot" type="button" aria-label="顯示沖繩水下"></button>
+    <button class="hero-carousel-dot" type="button" aria-label="顯示沖繩聚落"></button>
+  </div>
+</header>
+
+<!-- ══ 三大據點 ══ -->
+<section class="reveal" id="locations">
+  <div class="section-kana">LOCATIONS</div>
+  <h2 class="section-title">三個據點 · 一條考證之路</h2>
+  <div class="sec-line"></div>
+  <p class="section-sub">櫻雪潛水中心提供台北仁愛（平靜水域）＋東北角龍洞（開放水域）＋沖繩青洞（開放水域＋潛旅）三據點，由專業教練提供課程與考核指導。</p>
+
+  <div class="loc-grid">
+    <div class="loc-card reveal">
+      <img src="sy-dive-images/loc-pool.jpg" alt="仁愛游泳池" style="width:100%;height:180px;object-fit:cover;" onerror="this.style.display='none'">
+      <div class="loc-header">
+        <div><span class="loc-badge badge-tpe">平靜水域 · 基礎訓練</span></div>
+      </div>
+      <div class="loc-body">
+        <h3>櫻雪仁愛潛水訓練</h3>
+        <p class="jp">台北 · SY Diving Ren'ai</p>
+        <p>全年恆溫游泳池，安排一次平靜水域課程。可依時間彈性安排一至兩支氣瓶，例如假日一整天或兩個平日晚間；內容包含面鏡排水、面鏡脫著、裝備脫著、調節器尋回等基礎技巧。</p>
+        <div class="loc-address"><a class="map-link" href="https://maps.app.goo.gl/nRAS1w7pERsF7T9z8" target="_blank" rel="noopener noreferrer">106 臺北市大安區敦安里仁愛路四段 130 號（安和路側）</a><br>櫻雪游泳池仁愛館內</div>
+      </div>
+    </div>
+    <div class="loc-card reveal">
+      <img src="sy-dive-images/loc-longdong.jpg" alt="東北角龍洞" style="width:100%;height:180px;object-fit:cover;" onerror="this.style.display='none'">
+      <div class="loc-header">
+        <div><span class="loc-badge badge-taiwan">開放水域 · 台灣</span></div>
+      </div>
+      <div class="loc-body">
+        <h3>東北角龍洞</h3>
+        <p class="jp">新北市貢寮 · 台湾北部</p>
+        <p>台灣成熟的開放水域潛點，台北出發約 1 小時。提供 PADI 開放水域上課與考核的在地選項；龍洞開放水域課程需安排兩天、共四支氣瓶。</p>
+        <div class="loc-address">新北市貢寮區龍洞<br>台北出發約 1 小時 · 櫻雪教練團駐點</div>
+      </div>
+    </div>
+    <div class="loc-card reveal">
+      <img src="sy-dive-images/okinawa-island-sign-v6.png?v=20260831-sign-v6" alt="沖繩青之洞窟" style="width:100%;height:180px;object-fit:cover;" onerror="this.style.display='none'">
+      <div class="loc-header">
+        <div><span class="loc-badge badge-oki">開放水域 · 日本 · 沖繩青洞</span></div>
+      </div>
+      <div class="loc-body">
+        <h3>桜雪沖縄青洞潜水</h3>
+        <p class="jp">桜雪沖縄 · 真栄田岬 — 沖縄県恩納村</p>
+        <p>櫻雪沖繩據點提供 PADI 開放水域上課與考核，也可搭配潛旅行程；在真正的大海中落實平靜水域所學，親身體驗並學習中性浮力。</p>
+        <div class="loc-address"><a class="map-link" href="https://maps.app.goo.gl/Xgw14vvBEVRDdFhM7" target="_blank" rel="noopener noreferrer">〒904-0416 沖縄県恩納村山田 591-1</a><br>26.4387, 127.7738 · 真栄田岬步行可達</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 沖繩據點建築 ══ -->
+<section class="reveal" id="okinawa-base">
+  <div class="section-kana">OKINAWA BASE</div>
+  <h2 class="section-title">沖繩的店</h2>
+  <div class="sec-line"></div>
+  <p class="section-sub">從白色建築、棕櫚樹到海風，這裡是櫻雪在沖繩的集合點，也是出發前整理裝備與認識海況的地方。</p>
+  <div class="architecture-study reveal">
+    <figure class="architecture-linework">
+      <img src="sy-dive-images/okinawa-front-elevation-studio-v2.png?v=20260901-studio-v3" alt="櫻雪沖繩店面建築正立面線稿" loading="lazy">
+    </figure>
+  </div>
+  <div class="architecture-grid">
+    <figure class="architecture-card">
+      <img src="sy-dive-images/okinawa-aerial-sign-v4.jpg" alt="沖繩櫻雪潛水基地空拍外觀" loading="lazy">
+      <figcaption class="architecture-caption"><strong>Okinawa Base</strong><span>從空拍看見白色店面與海島街景</span></figcaption>
+    </figure>
+    <figure class="architecture-card">
+      <img src="sy-dive-images/okinawa-storefront-sign-v5.png?v=20260831-sign-v5" alt="沖繩櫻雪潛水基地入口" loading="lazy">
+      <figcaption class="architecture-caption"><strong>Storefront</strong><span>裝備展示與集合入口</span></figcaption>
+    </figure>
+    <figure class="architecture-card">
+      <img src="sy-dive-images/okinawa-island-sign-v6.png?v=20260831-sign-v6" alt="沖繩櫻雪潛水基地外觀" loading="lazy">
+      <figcaption class="architecture-caption"><strong>Island Light</strong><span>白色外牆、木格柵與棕櫚樹</span></figcaption>
+    </figure>
+  </div>
+  <div class="architecture-controls" aria-label="沖繩店面照片切換">
+    <button class="architecture-arrow" type="button" data-architecture-prev aria-label="上一張店面照片">←</button>
+    <span class="architecture-count">01 / 03</span>
+    <button class="architecture-arrow" type="button" data-architecture-next aria-label="下一張店面照片">→</button>
+  </div>
+</section>
+
+
+<!-- ══ 特色 ══ -->
+<section id="why" style="text-align:center;">
+  <div class="section-kana">FEATURES</div>
+  <h2 class="section-title">為什麼選櫻雪</h2>
+  <div class="sec-line"></div>
+  <div class="feats">
+    <div class="feat reveal">
+      <div class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11A7 7 0 0 0 5 10c0 4.9 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.2"></circle></svg></div>
+      <div class="lbl">台北市中心前置訓練</div>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3 2"></path></svg></div>
+      <div class="lbl">時間彈性安排</div>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8.5c2.2-2 4.4-2 6.6 0s4.4 2 6.6 0 4.4-2 6.6 0"></path><path d="M3 14.5c2.2-2 4.4-2 6.6 0s4.4 2 6.6 0 4.4-2 6.6 0"></path><circle cx="12" cy="18.5" r="1.5"></circle></svg></div>
+      <div class="lbl">沖繩青洞與多元潛點</div>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3.5h10v7.2c0 4-2.4 6.8-5 8.8-2.6-2-5-4.8-5-8.8Z"></path><path d="m9.3 11.4 1.8 1.8 3.7-3.8"></path></svg></div>
+      <div class="lbl">PADI 認證教練</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ 沖繩地理 ══ -->
+<section class="journey-intro reveal" id="okinawa-journey">
+  <div class="section-kana">OKINAWA JOURNEY</div>
+  <h2 class="section-title">潛進沖繩，也走進島嶼日常</h2>
+  <div class="sec-line"></div>
+  <p class="section-sub">從恩納村的櫻雪基地出發，潛進青之洞窟，也把海岸、島嶼風景與在地味道排進旅程。考證、體驗與旅行，在同一段海島時間裡自然完成。</p>
+</section>
+<section id="blue-cave" style="text-align:center;padding-bottom:2rem;">
+  <div class="section-kana">OKINAWA</div>
+  <h2 class="section-title">沖繩青之洞窟</h2>
+  <div class="sec-line"></div>
+  <div class="stats-grid">
+    <div class="stat-item"><div class="stat-value">1.5<span> hr</span></div><div class="stat-label">台灣直飛</div></div>
+    <div class="stat-item"><div class="stat-value">60<span> min</span></div><div class="stat-label">那霸 → 恩納村</div></div>
+    <div class="stat-item"><div class="stat-value">5D<span> / 4N</span></div><div class="stat-label">沖繩潛旅安排</div></div>
+  </div>
+</section>
+
+<!-- ══ 沖繩自然 ══ -->
+<section class="reveal nature-section" id="okinawa-nature">
+  <div class="section-kana">ISLAND NATURE</div>
+  <h2 class="section-title">把海島留給安靜的藍</h2>
+  <div class="sec-line"></div>
+  <p class="section-sub">不只下水，也留一點時間給沖繩的海風、珊瑚與清澈光線。</p>
+  <div class="nature-grid">
+    <figure class="nature-card lead" tabindex="0" role="button" aria-label="放大 Quiet Coast">
+      <img src="sy-dive-images/hero-ocean-3.jpg?v=20260827-hero-v1" alt="沖繩清幽海岸" loading="lazy">
+      <figcaption class="nature-caption"><strong>Quiet Coast</strong><span>清澈海灣與珊瑚岩岸</span></figcaption>
+    </figure>
+    <figure class="nature-card" tabindex="0" role="button" aria-label="放大 Blue Cave">
+      <img src="sy-dive-images/okinawa-blue-cave.jpg?v=20260827-nature-v1" alt="沖繩青洞水下光線" loading="lazy">
+      <figcaption class="nature-caption"><strong>Blue Cave</strong><span>光從水面慢慢落下</span></figcaption>
+    </figure>
+    <figure class="nature-card" tabindex="0" role="button" aria-label="放大 Into Blue">
+      <img src="sy-dive-images/hero-ocean-1.jpg?v=20260827-hero-v1" alt="沖繩海岸潛水出發" loading="lazy">
+      <figcaption class="nature-caption"><strong>Into Blue</strong><span>從岸邊走進透明海水</span></figcaption>
+    </figure>
+    <figure class="nature-card" tabindex="0" role="button" aria-label="放大 Underwater Light">
+      <img src="sy-dive-images/hero-okinawa-underwater-v2.png?v=20260830-underwater-fix" alt="沖繩珊瑚礁與潛水者" loading="lazy">
+      <figcaption class="nature-caption"><strong>Underwater Light</strong><span>珊瑚礁與水下日光</span></figcaption>
+    </figure>
+  </div>
+  <div class="nature-controls" aria-label="海島圖片輪播控制">
+    <button class="nature-arrow" type="button" data-nature-prev aria-label="上一張">←</button>
+    <span class="nature-count" aria-live="polite">01 / 04</span>
+    <button class="nature-arrow" type="button" data-nature-next aria-label="下一張">→</button>
+  </div>
+</section>
+
+<div class="nature-lightbox" aria-hidden="true">
+  <button class="nature-lightbox-close" type="button" aria-label="關閉放大圖片">×</button>
+  <figure>
+    <img src="" alt="">
+    <figcaption></figcaption>
+  </figure>
+</div>
+
+<!-- ══ 沖繩旅行導覽 ══ -->
+<section class="reveal guide-section" id="okinawa-guide">
+  <div class="section-kana">OKINAWA ISLAND GUIDE</div>
+  <h2 class="section-title">潛完水，慢慢旅行</h2>
+  <div class="sec-line"></div>
+  <p class="section-sub">把恩納村周邊的味道與沖繩風景，一起排進海島旅程裡。</p>
+  <h3 class="guide-subtitle">GOURMET · 美食饗宴</h3>
+  <div class="guide-food-grid">
+    <article class="guide-food-card" tabindex="0" role="button" data-guide-food="0" aria-label="閱讀琉球之牛更多介紹"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-1.png" alt="琉球之牛燒肉" loading="lazy"><div class="guide-food-body"><span class="guide-food-cat">YAKINIKU</span><h3>琉球の牛</h3><p>沖繩和牛與燒肉料理。</p><span class="guide-food-more">READ STORY →</span></div></article>
+    <article class="guide-food-card" tabindex="0" role="button" data-guide-food="1" aria-label="閱讀浜之家更多介紹"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-2.png" alt="沖繩海鮮料理" loading="lazy"><div class="guide-food-body"><span class="guide-food-cat">SEAFOOD</span><h3>浜の家</h3><p>海鮮與沖繩風味料理。</p><span class="guide-food-more">READ STORY →</span></div></article>
+    <article class="guide-food-card" tabindex="0" role="button" data-guide-food="2" aria-label="閱讀暖暮拉麵更多介紹"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-3.png" alt="暖暮拉麵" loading="lazy"><div class="guide-food-body"><span class="guide-food-cat">RAMEN</span><h3>暖暮拉麵</h3><p>旅行途中溫暖的一碗豚骨拉麵。</p><span class="guide-food-more">READ STORY →</span></div></article>
+    <article class="guide-food-card" tabindex="0" role="button" data-guide-food="3" aria-label="閱讀 Steak 88 更多介紹"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-4.png" alt="沖繩牛排" loading="lazy"><div class="guide-food-body"><span class="guide-food-cat">STEAK</span><h3>Steak 88</h3><p>經典沖繩美式牛排。</p><span class="guide-food-more">READ STORY →</span></div></article>
+    <article class="guide-food-card" tabindex="0" role="button" data-guide-food="4" aria-label="閱讀 Oni Café 更多介紹"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-5.png" alt="沖繩海景咖啡" loading="lazy"><div class="guide-food-body"><span class="guide-food-cat">CAFÉ</span><h3>Oni Café</h3><p>海景與輕盈的島嶼午後。</p><span class="guide-food-more">READ STORY →</span></div></article>
+    <article class="guide-food-card" tabindex="0" role="button" data-guide-food="5" aria-label="閱讀三矢本舗更多介紹"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-6.png" alt="沖繩甜點" loading="lazy"><div class="guide-food-body"><span class="guide-food-cat">SWEETS</span><h3>三矢本舗</h3><p>沖繩經典炸甜點。</p><span class="guide-food-more">READ STORY →</span></div></article>
+    <article class="guide-food-card" tabindex="0" role="button" data-guide-food="6" aria-label="閱讀百年古家大家更多介紹"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-7.png" alt="沖繩古民家料理" loading="lazy"><div class="guide-food-body"><span class="guide-food-cat">LOCAL FOOD</span><h3>大家</h3><p>古民家裡品嘗沖繩料理。</p><span class="guide-food-more">READ STORY →</span></div></article>
+    <article class="guide-food-card" tabindex="0" role="button" data-guide-food="7" aria-label="閱讀水円更多介紹"><img src="https://ifgto0923-design.github.io/sy-dive/sy-dive-images/food-8.png" alt="沖繩窯烤麵包" loading="lazy"><div class="guide-food-body"><span class="guide-food-cat">BAKERY</span><h3>水円</h3><p>藏在綠意裡的窯烤麵包。</p><span class="guide-food-more">READ STORY →</span></div></article>
+  </div>
+  <div class="guide-spots">
+    <h3 class="guide-subtitle">SIGHTSEEING · 島嶼風景</h3>
+    <div class="guide-spots-track" id="guideSpotsTrack">
+      <div class="guide-spot" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-1.png')"><div class="guide-spot-caption"><strong>Blue Cave</strong><span>青之洞窟 · 真榮田岬</span></div></div>
+      <div class="guide-spot" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-2.png')"><div class="guide-spot-caption"><strong>American Village</strong><span>美國村 · 海岸夕陽</span></div></div>
+      <div class="guide-spot" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-3.png')"><div class="guide-spot-caption"><strong>Cape Zanpa</strong><span>殘波岬 · 白色燈塔</span></div></div>
+      <div class="guide-spot" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-4.png')"><div class="guide-spot-caption"><strong>Shurijo</strong><span>首里城 · 琉球文化</span></div></div>
+      <div class="guide-spot" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-5.png')"><div class="guide-spot-caption"><strong>Churaumi</strong><span>美麗海水族館</span></div></div>
+      <div class="guide-spot" style="background-image:url('https://ifgto0923-design.github.io/sy-dive/sy-dive-images/spot-new-6.png')"><div class="guide-spot-caption"><strong>Kouri Bridge</strong><span>古宇利大橋 · 跨海風景</span></div></div>
+    </div>
+    <div class="guide-controls"><button class="guide-arrow" type="button" data-guide-prev aria-label="上一個沖繩景點">←</button><span class="guide-count" aria-live="polite">01 / 06</span><button class="guide-arrow" type="button" data-guide-next aria-label="下一個沖繩景點">→</button></div>
+  </div>
+</section>
+
+<div class="guide-food-modal" aria-hidden="true">
+  <div class="guide-food-dialog" role="dialog" aria-modal="true" aria-labelledby="guideFoodTitle">
+    <button class="guide-food-close" type="button" aria-label="關閉美食介紹">×</button>
+    <div class="guide-food-media"><img src="" alt=""></div>
+    <div class="guide-food-copy"><span class="guide-food-cat"></span><h3 id="guideFoodTitle"></h3><div class="guide-food-jp"></div><p class="guide-food-story"></p><div class="guide-food-label">RECOMMENDED</div><div class="guide-food-tags"></div><p class="guide-food-note">餐點與營業資訊可能依季節調整，出發前請再向店家確認。</p><div class="guide-food-nav"><button type="button" data-guide-food-prev aria-label="上一家美食">← 上一家</button><span class="guide-food-position">01 / 08</span><button type="button" data-guide-food-next aria-label="下一家美食">下一家 →</button></div></div>
+  </div>
+</div>
+
+<!-- ══ 教練團隊 ══ -->
+<div class="img-band" id="coaches"><img src="sy-dive-images/coach-hero.jpg?v=20260827-team-v3" alt="教練團隊"></div>
+
+<!-- ══ PADI 考證路徑 ══ -->
+<div class="pathway-wrap" id="pathway">
+  <div class="pathway-inner">
+    <div class="pathway-intro">
+      <div class="section-kana">LICENSE</div>
+      <h2 class="section-title">PADI 開放水域潛水員證照 · 三步完成</h2>
+      <div class="sec-line"></div>
+      <p class="section-sub">由 PADI 認證教練指導，完成開放水域潛水員（Open Water Diver）課程與考核。</p>
+    </div>
+    <div class="step-row">
+      <div class="stp">
+        <div class="stp-circle c1">1</div>
+        <h4>平靜水域課程</h4>
+        <div class="loc">台北市區泳池</div>
+        <p>面鏡排水、面鏡脫著、裝備脫著、調節器尋回等基礎技巧。可依時間彈性安排於假日一整天或兩個平日晚間。</p>
+        <div class="stp-arrow">→</div>
+      </div>
+      <div class="stp">
+        <div class="stp-circle c2">2</div>
+        <h4>開放水域上課</h4>
+        <div class="loc">龍洞 or 沖繩青洞</div>
+        <p>在真正的大海中將平靜水域學到的各項技巧落實，親身體驗與學習中性浮力。</p>
+        <div class="stp-arrow">→</div>
+      </div>
+      <div class="stp">
+        <div class="stp-circle c3">3</div>
+        <h4>開放水域上課與考核</h4>
+        <div class="loc">龍洞 or 沖繩青洞</div>
+        <p>完成開放水域課程與考核。龍洞需安排兩天、四支氣瓶；沖繩青洞安排四支氣瓶，實際行程依海況與預約確認。</p>
+      </div>
+    </div>
+    <a class="cert-badge" href="https://www.padi.com/zh-hant/education" target="_blank" rel="noopener noreferrer" aria-label="前往 PADI 官方網站了解開放水域潛水員證照">
+      <span class="icon"><img src="sy-dive-images/60th-padi.svg?v=20260901" alt="PADI 60 Years"></span>
+      <span class="txt">PADI 開放水域潛水員證照<small>Open Water Diver · 課程與考核完成後取得</small></span>
+    </a>
+  </div>
+</div>
+
+<!-- ══ 方案 ══ -->
+<section class="reveal" id="plan" style="text-align:center;">
+  <div class="section-kana">DIVE PLANS</div>
+    <h2 class="section-title">方案與價格</h2>
+  <div class="sec-line"></div>
+  <div class="plan-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.75rem;margin-top:1rem;">
+    <div class="loc-card reveal">
+      <div class="loc-header" style="padding-bottom:0;">
+        <div><span class="loc-region taiwan">Taiwan</span> <span class="loc-badge badge-taiwan">台灣在地考證</span></div>
+      </div>
+      <div class="loc-body">
+        <h3>龍洞方案</h3>
+        <p class="jp">東北角 · 兩日完成</p>
+        <p style="font-family:'Noto Sans TC','Noto Sans JP',sans-serif;font-size:2rem;font-weight:700;margin:0.5rem 0;">NT$12,900</p>
+        <div style="margin:1rem 0;padding-top:1rem;border-top:1px solid var(--border-light);font-size:0.85rem;color:var(--text-secondary);line-height:1.8;">
+          平靜水域課程（1–2 支氣瓶）＋ 龍洞開放水域（4 支氣瓶、兩日）＋ PADI 證照 ＋ 教練 ＋ 教材 ＋ 裝備
+        </div>
+        <div style="text-align:center;"><a href="https://lin.ee/U08gDqx" class="btn btn-line" target="_blank" rel="noopener noreferrer">LINE 諮詢龍洞方案</a></div>
+      </div>
+    </div>
+    <div class="loc-card reveal">
+      <div class="loc-header" style="padding-bottom:0;">
+        <div><span class="loc-region okinawa">Okinawa</span> <span class="loc-badge badge-oki">沖繩考證潛旅</span></div>
+      </div>
+      <div class="loc-body">
+        <h3>沖繩方案</h3>
+        <p class="jp">青の洞窟 · 5 天 4 夜</p>
+        <p style="font-family:'Noto Sans TC','Noto Sans JP',sans-serif;font-size:1.55rem;font-weight:700;margin:0.85rem 0;">依出發日期個別報價</p>
+        <div style="margin:1rem 0;padding-top:1rem;border-top:1px solid var(--border-light);font-size:0.85rem;color:var(--text-secondary);line-height:1.8;">
+          平靜水域課程（1–2 支氣瓶）＋ 沖繩青洞開放水域（4 支氣瓶）＋ 機票 ＋ 住宿 4 晚 ＋ PADI 證照 ＋ 教練 ＋ 教材 ＋ 裝備
+        </div>
+        <div style="text-align:center;"><a href="https://lin.ee/U08gDqx" class="btn btn-line" target="_blank" rel="noopener noreferrer">LINE 諮詢沖繩方案</a></div>
+      </div>
+    </div>
+  </div>
+  <p class="section-sub" style="margin:1.75rem auto 0;">課程費用包含證照、教練、教材及所有裝備；個人飲食、交通等費用另計。健康聲明、取消規則與完整注意事項將於預約時提供。</p>
+</section>
+
+<!-- ══ 其他水上體驗 ══ -->
+<section class="reveal" id="experiences" style="text-align:center;">
+  <div class="section-kana">ACTIVITIES</div>
+  <h2 class="section-title">用不同方式，親近沖繩的海</h2>
+  <div class="sec-line"></div>
+  <div class="loc-grid">
+    <div class="loc-card reveal">
+      <div class="loc-header" style="padding-bottom:0;">
+        <div><span class="loc-badge badge-oki">青洞浮潛</span></div>
+      </div>
+      <div class="loc-body">
+        <h3>浮潛</h3>
+        <p>由教練帶領，親身感受青洞的海水與魚群。包含面鏡、蛙鞋、呼吸管；實際下水時間約四十分鐘，不包含上下岸與盥洗時間。</p>
+      </div>
+    </div>
+    <div class="loc-card reveal">
+      <div class="loc-header" style="padding-bottom:0;">
+        <div><span class="loc-badge badge-taiwan">海洋體驗</span></div>
+      </div>
+      <div class="loc-body">
+        <h3>體驗潛水</h3>
+        <p>由教練手把手帶領深入大海，沉浸在珊瑚、魚群與陽光之中，享受水中無重力與自由探索的體驗。</p>
+        <p class="experience-note">除了青之洞窟，也可依證照、經驗、季節與海況，詢問萬座、慶良間等特色潛點；想安排更特別的海島體驗，也能另行確認鯨鯊行程或冬季慶良間賞鯨。實際安排以當地船班與安全評估為準。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 游泳池 ══ -->
+<div class="pool-band reveal" id="pool">
+  <div class="section-kana">SWIMMING POOL</div>
+  <h2 class="section-title">櫻雪游泳池</h2>
+  <div class="sec-line"></div>
+  <p style="font-size:0.85rem;margin-bottom:2rem;">櫻雪自有游泳池全年恆溫，除 PADI 平靜水域訓練外，另提供游泳課程與場地出租<br>
+  <a href="https://maps.app.goo.gl/nRAS1w7pERsF7T9z8" target="_blank" rel="noopener noreferrer" style="color:inherit;text-underline-offset:0.2em;">台北市大安區仁愛路四段 130 號</a> · 9 水道 · 25m · 水深 1.2m · 免戴泳帽</p>
+  <div class="pool-grid">
+    <div class="pool-item"><div class="ch">潜</div><div class="tx">PADI 訓練</div></div>
+    <div class="pool-item"><div class="ch">泳</div><div class="tx">游泳課程</div></div>
+    <div class="pool-item"><div class="ch">租</div><div class="tx">場地出租</div></div>
+    <div class="pool-item"><div class="ch">練</div><div class="tx">教練培訓</div></div>
+  </div>
+  <p style="font-size:0.7rem;margin-top:1.5rem;"><a href="櫻雪游泳池.html" style="color:rgba(255,255,255,0.55);text-decoration:underline;text-underline-offset:0.25em;">點擊查看完整介紹 →</a></p>
+</div>
+
+<!-- ══ 冬雪夏水 ══ -->
+<div class="img-band dual-band" id="seasons-image"><img src="sy-dive-images/dual-okinawa-woman-v4.png?v=20260830-woman-v4" alt="冬雪夏水"></div>
+<div class="sky-band reveal" id="seasons">
+  <h2 class="section-title">冬雪夏水</h2>
+  <div class="sec-line"></div>
+  <p style="font-size:0.85rem;">冬はスキー、夏はダイビング。<br>專業教練團隊，陪你從雪場到海島探索四季。</p>
+</div>
+
+<!-- ══ 優惠 ══ -->
+<div class="discount reveal" id="discount">
+  <div class="stamp">毒友<br>優惠</div>
+  <h3 style="font-family:'Noto Sans TC','Noto Sans JP',sans-serif;font-size:1.2rem;font-weight:600;">滑雪老戰友 · 潛水一樣有折扣</h3>
+  <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:0.5rem;">揪團 4 人以上每人折 1,000 · 舊毒友再折 300 · 最多折 1,300</p>
+  <div class="disc-row">
+    <div class="disc-card"><div class="amt">−1,000</div><div class="lbl">揪團現金折抵<br><small>4 人以上同行</small></div></div>
+    <div class="disc-card"><div class="amt">−300</div><div class="lbl">舊毒友折扣<br><small>曾參加滑雪行程</small></div></div>
+  </div>
+</div>
+
+
+<!-- ══ FAQ ══ -->
+<section class="reveal" id="faq" style="max-width:720px;">
+  <div class="section-kana">FAQ</div>
+  <h2 class="section-title">常見問題</h2>
+  <div class="sec-line"></div>
+  <details class="faq-item"><summary class="faq-q">不會游泳，可以學潛水嗎？</summary><p class="faq-a">可以。PADI 只要求不靠漂浮器材在水面待 10 分鐘，並能連續游泳 200 公尺（不限姿勢、不限時間）。重點是不恐慌、能在水中照顧自己。</p></details>
+  <details class="faq-item"><summary class="faq-q">近視可以潛水嗎？</summary><p class="faq-a">可以。戴隱形眼鏡下水，或租用有度數的面鏡。報名時備註度數即可。</p></details>
+  <details class="faq-item"><summary class="faq-q">PADI 證照有期限嗎？</summary><p class="faq-a">終身有效，全球通用。若超過半年未潛水，建議先參加 Refresher 複習課程。</p></details>
+  <details class="faq-item"><summary class="faq-q">有年齡限制嗎？</summary><p class="faq-a">最低 10 歲可取得 Junior OW 證照，15 歲以上可取得標準 OW 證照。上限無硬性規定，通過健康評估即可。</p></details>
+  <details class="faq-item"><summary class="faq-q">沖繩考證需要幾天？</summary><p class="faq-a">沖繩方案為 5 天 4 夜，因下水安排兩天，下水後隔天不能搭飛機。包含台北平靜水域訓練與沖繩青洞開放水域上課、考核；實際行程與費用確認後提供。</p></details>
+  <details class="faq-item"><summary class="faq-q">可以跟朋友一起報名嗎？</summary><p class="faq-a">當然。兩人以上同行另有優惠。揪團 4 人以上每人現折 1,000 元。</p></details>
+  <details class="faq-item"><summary class="faq-q">冬天可以學潛水嗎？</summary><p class="faq-a">可以。仁愛游泳池全年恆溫 28°C，冬天照常開課。沖繩也全年可潛。</p></details>
+  <details class="faq-item"><summary class="faq-q">需要自己準備裝備嗎？</summary><p class="faq-a">不需要。課程費用已含全套潛水裝備使用。若自有裝備可折抵部分費用。</p></details>
+</section>
+
+<!-- ══ 沖繩潛點地圖 ══ -->
+<section class="dive-map-section reveal" id="dive-map">
+  <div class="dive-map-copy">
+    <div class="section-kana">MORE OKINAWA DIVES</div>
+    <h2 class="section-title">青洞之外，還有更多玩法</h2>
+    <div class="sec-line"></div>
+    <p class="section-sub">青之洞窟可以是旅程的起點，不必是唯一目的地。櫻雪會依旅客的證照、經驗、季節與當日海況，從恩納村帶你前往萬座等西海岸潛點；條件合適時，也能進一步安排慶良間船潛，看到沖繩更多不同的海。</p>
+    <a class="dive-map-base" href="https://maps.app.goo.gl/Xgw14vvBEVRDdFhM7" target="_blank" rel="noopener noreferrer">
+      <small>SAKURAYUKI OKINAWA BASE</small>
+      <strong>〒904-0416 沖縄県恩納村山田 591-1 ↗</strong>
+    </a>
+  </div>
+  <div class="dive-map-canvas" aria-label="沖繩西岸潛水區域示意圖">
+    <svg class="okinawa-outline" viewBox="0 0 620 520" aria-hidden="true">
+      <path class="okinawa-island" d="M472 24c-25 18-38 41-40 68-2 29-22 38-42 53-25 18-28 44-30 73-2 30-25 49-49 63-27 16-34 42-41 72-8 36-43 54-71 72-17 11-27 30-25 48 24 8 54 6 75-7 27-17 43-47 70-62 26-15 58-20 75-47 18-29 15-66 31-96 17-32 49-54 58-91 8-34-3-63 6-94 5-19 2-37-17-52Z"/>
+      <path class="okinawa-coastline" d="M447 49c-8 47-34 69-50 101-17 33-11 70-30 101-19 30-52 47-65 80-13 31-14 58-48 82-20 14-36 27-48 49"/>
+      <path class="okinawa-coastline" d="M489 84c-29 23-38 55-48 87-9 31-8 63-27 91"/>
+      <circle cx="102" cy="443" r="26" fill="rgba(239,141,165,0.08)" stroke="rgba(201,170,152,0.65)" stroke-width="1"/>
+      <circle cx="66" cy="472" r="14" fill="rgba(239,141,165,0.06)" stroke="rgba(201,170,152,0.5)" stroke-width="1"/>
+    </svg>
+    <a class="map-pin pin-manza" href="https://www.google.com/maps/search/?api=1&amp;query=Cape+Manza+Okinawa" target="_blank" rel="noopener noreferrer">
+      <span class="dot"></span><span class="map-pin-label"><b>MANZA</b><span>萬座 · 船潛地形</span></span>
+    </a>
+    <a class="map-pin base pin-base" href="https://maps.app.goo.gl/Xgw14vvBEVRDdFhM7" target="_blank" rel="noopener noreferrer">
+      <span class="dot"></span><span class="map-pin-label"><b>SAKURAYUKI BASE</b><span>恩納村 · 集合據點</span></span>
+    </a>
+    <a class="map-pin pin-blue" href="https://www.google.com/maps/search/?api=1&amp;query=Cape+Maeda+Blue+Cave+Okinawa" target="_blank" rel="noopener noreferrer">
+      <span class="dot"></span><span class="map-pin-label"><b>BLUE CAVE</b><span>真榮田岬 · 青之洞窟</span></span>
+    </a>
+    <a class="map-pin pin-kerama" href="https://www.google.com/maps/search/?api=1&amp;query=Kerama+Islands+Okinawa" target="_blank" rel="noopener noreferrer">
+      <span class="dot"></span><span class="map-pin-label"><b>KERAMA</b><span>慶良間 · 船潛海域</span></span>
+    </a>
+    <p class="dive-map-note">SCHEMATIC MAP · 實際潛點依當日海況與安全評估安排</p>
+  </div>
+</section>
+
+<!-- ══ 聯絡 ══ -->
+<div class="contact reveal" id="contact" style="background:url('sy-dive-images/okinawa-contact.jpg?v=20260828-contact-v1') center/cover no-repeat;position:relative;color:white;">
+  <div style="position:absolute;inset:0;background:rgba(13,94,168,0.72);"></div>
+  <div style="position:relative;z-index:1;">
+  <img src="sy-dive-images/logo-2.png?v=20260828-logo2" alt="櫻雪 SAKURAYUKI" class="logo-foot">
+  <div class="section-kana" style="color:rgba(255,255,255,0.5);">CONTACT</div>
+  <h2 class="section-title" style="color:white;">聯絡我們</h2>
+  <div class="sec-line" style="background:var(--pocari-blue);"></div>
+  <div class="contact-info" style="color:rgba(255,255,255,0.75);">
+    仁愛：<a class="contact-link" href="https://maps.app.goo.gl/nRAS1w7pERsF7T9z8" target="_blank" rel="noopener noreferrer">台北市大安區仁愛路四段 130 號</a><br>
+    沖繩：<a class="contact-link" href="https://maps.app.goo.gl/Xgw14vvBEVRDdFhM7" target="_blank" rel="noopener noreferrer">〒904-0416 沖縄県恩納村山田 591-1</a><br>
+    0966-777737 · sysportclub@gmail.com<br>
+    <a class="contact-link" href="https://lin.ee/U08gDqx" target="_blank" rel="noopener noreferrer">LINE @sydiving</a> ·
+    <a class="contact-link" href="https://www.instagram.com/sydiving/" target="_blank" rel="noopener noreferrer">IG @sydiving</a> ·
+    <a class="contact-link" href="https://www.facebook.com/sydiving/" target="_blank" rel="noopener noreferrer">FB @sydiving</a>
+  </div>
+  <div style="margin-top:2rem;"><a href="https://lin.ee/U08gDqx" class="btn btn-primary" target="_blank" rel="noopener noreferrer">加入 LINE 諮詢</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <b>櫻雪潛水中心 SY Diving</b><br>
+      SAKURA YUKI 集團 · <a class="footer-brand-link" href="https://www.syski.com.tw/" target="_blank" rel="noopener noreferrer">SY Snow</a> · <a class="footer-brand-link" href="櫻雪旅行社_潛水服務.html" target="_blank" rel="noopener noreferrer">SY Dive</a> · <a class="footer-brand-link" href="櫻雪游泳池.html" target="_blank" rel="noopener noreferrer">SY Swim</a>
+    </div>
+    <div style="text-align:center;">
+      <a href="https://www.padi.com/zh-hant/dive-center/tai-wan/sakurayuki-diving-center/" target="_blank" rel="noopener noreferrer" aria-label="前往 PADI 官方櫻雪潛水中心頁面" style="display:inline-flex;align-items:center;gap:0.75rem;padding:12px 20px;border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:inherit;text-decoration:none;transition:border-color .3s,transform .3s;">
+        <span style="font-size:1.4rem;">&#9670;</span>
+        <div style="text-align:left;line-height:1.5;">
+          <span style="font-weight:700;color:white;font-size:0.78rem;letter-spacing:0.06em;">PADI CERTIFIED</span><br>
+          <span style="font-size:0.65rem;color:rgba(255,255,255,0.35);">DIVE CENTER</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:right;font-size:0.68rem;line-height:1.8;">
+      全員 PADI 認證教練<br>含潛水綜合保險<br>沖繩県公安委員会許可<br>
+      <a class="footer-careers" href="https://www.104.com.tw/company/1a2x6bjokr?jobsource=google" target="_blank" rel="noopener">人才招募 · 查看 104 職缺</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const nav=document.querySelector('nav');
+const footer=document.querySelector('footer');
+[
+  '.hero','#seasons','#seasons-image','#locations','#why','#pathway','#plan',
+  '#okinawa-base','#experiences','#blue-cave','#okinawa-nature','#okinawa-journey',
+  '#okinawa-guide','#dive-map','#pool','#coaches','#discount','#faq','#contact'
+].forEach(selector=>{const block=document.querySelector(selector);if(block&&footer){footer.before(block);}});
+const hero=document.querySelector('.hero');
+const heroCarousel=document.querySelector('.hero-carousel');
+const heroSlides=[...document.querySelectorAll('.hero-slide')];
+const heroDots=[...document.querySelectorAll('.hero-carousel-dot')];
+const heroSceneLabel=document.querySelector('.hero-scene-label');
+const heroSceneNames=['Okinawa Base · Onna Village','Underwater Light · Blue Cave','Island Life · Okinawa'];
+const editorialHero=true;
+const getStickyBar=()=>document.querySelector('#stickyBar');
+const revealItems=[...document.querySelectorAll('.reveal')];
+const revealGroups=['.loc-grid','.feats','.architecture-grid','.nature-grid','.step-row','.plan-grid'];
+
+revealItems.forEach((el)=>{
+  const group=el.closest(revealGroups.join(','));
+  if(group){
+    const index=[...group.children].indexOf(el);
+    el.style.setProperty('--reveal-delay',`${Math.max(index,0)*80}ms`);
+  }
+});
+
+const showHeroSlide=(nextIndex)=>{
+  heroSlides.forEach((slide,index)=>slide.classList.toggle('active',index===nextIndex));
+  heroDots.forEach((dot,index)=>dot.classList.toggle('active',index===nextIndex));
+  if(heroSceneLabel){heroSceneLabel.textContent=heroSceneNames[nextIndex]||'';}
+};
+let heroIndex=0;
+let heroTimer;
+if(!editorialHero&&!reduceMotion&&heroSlides.length>1){
+  const startHeroCarousel=()=>{
+    window.clearInterval(heroTimer);
+    heroTimer=window.setInterval(()=>{
+      heroIndex=(heroIndex+1)%heroSlides.length;
+      showHeroSlide(heroIndex);
+    },7000);
+  };
+  heroDots.forEach((dot,index)=>dot.addEventListener('click',()=>{
+    heroIndex=index;
+    showHeroSlide(heroIndex);
+    startHeroCarousel();
+  }));
+  startHeroCarousel();
+}
+
+if(reduceMotion){
+  revealItems.forEach((el)=>el.classList.add('visible'));
+}else{
+  document.body.classList.add('motion-ready');
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -32px 0px'});
+  revealItems.forEach((el)=>obs.observe(el));
+}
+
+const syncScrollState=()=>{
+  const y=window.scrollY;
+  nav.classList.toggle('scrolled',y>24);
+  const stickyBar=getStickyBar();
+  if(stickyBar&&hero){stickyBar.classList.toggle('show',y>hero.offsetHeight*0.55);}
+  if(!reduceMotion&&heroCarousel&&y<hero.offsetHeight){
+    heroCarousel.style.setProperty('--hero-shift',`${Math.min(y*0.08,48)}px`);
+  }
+};
+syncScrollState();
+window.addEventListener('scroll',syncScrollState,{passive:true});
+window.addEventListener('load',syncScrollState,{once:true});
+
+if(!reduceMotion&&hero&&heroCarousel){
+  hero.addEventListener('pointermove',(event)=>{
+    const rect=hero.getBoundingClientRect();
+    const x=((event.clientX-rect.left)/rect.width-.5)*10;
+    const y=((event.clientY-rect.top)/rect.height-.5)*8;
+    heroCarousel.style.setProperty('--hero-x',`${x.toFixed(2)}px`);
+    heroCarousel.style.setProperty('--hero-y',`${y.toFixed(2)}px`);
+  });
+  hero.addEventListener('pointerleave',()=>{
+    heroCarousel.style.setProperty('--hero-x','0px');
+    heroCarousel.style.setProperty('--hero-y','0px');
+  });
+}
+
+const natureTrack=document.querySelector('.nature-grid');
+const natureCards=[...document.querySelectorAll('.nature-card')];
+const natureCount=document.querySelector('.nature-count');
+const naturePrev=document.querySelector('[data-nature-prev]');
+const natureNext=document.querySelector('[data-nature-next]');
+const natureLightbox=document.querySelector('.nature-lightbox');
+const natureLightboxImg=natureLightbox?.querySelector('img');
+const natureLightboxCaption=natureLightbox?.querySelector('figcaption');
+const natureLightboxClose=natureLightbox?.querySelector('.nature-lightbox-close');
+let natureIndex=0;
+let natureDragging=false;
+let natureDragged=false;
+let natureStartX=0;
+let natureStartScroll=0;
+
+const updateNatureCount=(index)=>{
+  natureIndex=Math.max(0,Math.min(index,natureCards.length-1));
+  if(natureCount){
+    natureCount.textContent=`${String(natureIndex+1).padStart(2,'0')} / ${String(natureCards.length).padStart(2,'0')}`;
+  }
+};
+
+const centerNatureCard=(index)=>{
+  if(!natureTrack||!natureCards.length){return;}
+  updateNatureCount(index);
+  const card=natureCards[natureIndex];
+  const left=card.offsetLeft-natureTrack.offsetLeft-(natureTrack.clientWidth-card.clientWidth)/2;
+  natureTrack.scrollTo({left,behavior:reduceMotion?'auto':'smooth'});
+};
+
+const syncNatureIndex=()=>{
+  if(!natureTrack||!natureCards.length){return;}
+  const trackCenter=natureTrack.scrollLeft+natureTrack.clientWidth/2;
+  let nearest=0;
+  let nearestDistance=Infinity;
+  natureCards.forEach((card,index)=>{
+    const cardCenter=card.offsetLeft-natureTrack.offsetLeft+card.clientWidth/2;
+    const distance=Math.abs(cardCenter-trackCenter);
+    if(distance<nearestDistance){
+      nearestDistance=distance;
+      nearest=index;
+    }
+  });
+  updateNatureCount(nearest);
+};
+
+naturePrev?.addEventListener('click',()=>centerNatureCard(natureIndex-1));
+natureNext?.addEventListener('click',()=>centerNatureCard(natureIndex+1));
+natureTrack?.addEventListener('scroll',()=>window.requestAnimationFrame(syncNatureIndex),{passive:true});
+
+natureTrack?.addEventListener('pointerdown',(event)=>{
+  if(event.pointerType==='touch'){return;}
+  natureDragging=true;
+  natureDragged=false;
+  natureStartX=event.clientX;
+  natureStartScroll=natureTrack.scrollLeft;
+  natureTrack.classList.add('dragging');
+  natureTrack.setPointerCapture(event.pointerId);
+});
+
+natureTrack?.addEventListener('pointermove',(event)=>{
+  if(!natureDragging){return;}
+  const delta=event.clientX-natureStartX;
+  if(Math.abs(delta)>5){natureDragged=true;}
+  natureTrack.scrollLeft=natureStartScroll-delta;
+});
+
+const stopNatureDrag=(event)=>{
+  if(!natureDragging){return;}
+  natureDragging=false;
+  natureTrack.classList.remove('dragging');
+  if(natureTrack.hasPointerCapture(event.pointerId)){
+    natureTrack.releasePointerCapture(event.pointerId);
+  }
+  syncNatureIndex();
+  centerNatureCard(natureIndex);
+  window.setTimeout(()=>{natureDragged=false;},0);
+};
+
+natureTrack?.addEventListener('pointerup',stopNatureDrag);
+natureTrack?.addEventListener('pointercancel',stopNatureDrag);
+
+const openNatureLightbox=(card)=>{
+  if(natureDragged||!natureLightbox||!natureLightboxImg||!natureLightboxCaption){return;}
+  const image=card.querySelector('img');
+  const title=card.querySelector('strong')?.textContent||'';
+  const detail=card.querySelector('.nature-caption span')?.textContent||'';
+  natureLightboxImg.src=image.currentSrc||image.src;
+  natureLightboxImg.alt=image.alt;
+  natureLightboxCaption.textContent=[title,detail].filter(Boolean).join(' · ');
+  natureLightbox.classList.add('open');
+  natureLightbox.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  natureLightboxClose?.focus();
+};
+
+const closeNatureLightbox=()=>{
+  if(!natureLightbox){return;}
+  natureLightbox.classList.remove('open');
+  natureLightbox.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+};
+
+natureCards.forEach((card)=>{
+  card.addEventListener('click',()=>openNatureLightbox(card));
+  card.addEventListener('keydown',(event)=>{
+    if(event.key==='Enter'||event.key===' '){
+      event.preventDefault();
+      openNatureLightbox(card);
+    }
+  });
+});
+
+natureLightboxClose?.addEventListener('click',closeNatureLightbox);
+natureLightbox?.addEventListener('click',(event)=>{
+  if(event.target===natureLightbox){closeNatureLightbox();}
+});
+document.addEventListener('keydown',(event)=>{
+  if(event.key==='Escape'&&natureLightbox?.classList.contains('open')){closeNatureLightbox();}
+});
+updateNatureCount(0);
+
+const guideFoodStories=[
+  {cat:'YAKINIKU',name:'琉球の牛',jp:'恩納店',story:'適合安排在潛水行程後的晚餐。慢慢烤肉、分享不同部位，也讓一整天的海上活動用一頓溫暖的沖繩和牛收尾。',tags:['沖繩和牛拼盤','燒肉','晚餐聚餐']},
+  {cat:'SEAFOOD',name:'浜の家',jp:'Hama no Ie',story:'想吃沖繩海味時，可以把這裡安排成比較熱鬧的一餐。魚料理與海鮮菜色適合多人分享，也很有海島旅行的節奏。',tags:['奶油烤魚','海鮮料理','多人分享']},
+  {cat:'RAMEN',name:'暖暮拉麵',jp:'Danbo',story:'豚骨湯頭適合旅行途中快速補充體力。行程較滿、想吃得簡單一點時，一碗熱拉麵就是很實際的選擇。',tags:['豚骨拉麵','客製麵硬度','快速用餐']},
+  {cat:'STEAK',name:'Steak 88',jp:'ステーキハウス',story:'沖繩的美式飲食文化，也反映在份量爽快的牛排館裡。適合想要熱鬧、直接、大口吃肉的一晚。',tags:['鐵板牛排','美式沖繩風格','家庭用餐']},
+  {cat:'CAFÉ',name:'Oni Café',jp:'オニカフェ',story:'在海邊行程之間留一段咖啡時間。比起趕景點，更適合坐下來感受沖繩的光線、海風與緩慢午後。',tags:['咖啡','巴西莓碗','午後休息']},
+  {cat:'SWEETS',name:'三矢本舗',jp:'サーターアンダギー',story:'沖繩經典的炸甜點，外層帶著香氣與口感，適合當作移動途中方便分享的小點心。',tags:['開口笑','沖繩甜點','旅行伴手']},
+  {cat:'LOCAL FOOD',name:'大家',jp:'うふやー',story:'在古民家與綠意裡吃一頓飯，本身就是一段沖繩體驗。適合不趕時間的午餐或晚餐，慢慢感受傳統空間。',tags:['Agu 豬','沖繩料理','古民家體驗']},
+  {cat:'BAKERY',name:'水円',jp:'Suien Bakery',story:'藏在自然環境裡的小型烘焙空間，適合喜歡安靜、手作感與樸實麵包香氣的人，把它安排成旅途中的小停留。',tags:['窯烤麵包','手作烘焙','安靜午後']}
+];
+const guideFoodCards=[...document.querySelectorAll('.guide-food-card')];
+const guideFoodModal=document.querySelector('.guide-food-modal');
+const guideFoodClose=guideFoodModal?.querySelector('.guide-food-close');
+const guideFoodImage=guideFoodModal?.querySelector('.guide-food-media img');
+const guideFoodCat=guideFoodModal?.querySelector('.guide-food-copy .guide-food-cat');
+const guideFoodTitle=guideFoodModal?.querySelector('h3');
+const guideFoodJp=guideFoodModal?.querySelector('.guide-food-jp');
+const guideFoodStory=guideFoodModal?.querySelector('.guide-food-story');
+const guideFoodTags=guideFoodModal?.querySelector('.guide-food-tags');
+const guideFoodPosition=guideFoodModal?.querySelector('.guide-food-position');
+const guideFoodDialog=guideFoodModal?.querySelector('.guide-food-dialog');
+let lastGuideFoodTrigger;
+let guideFoodIndex=0;
+let guideFoodTouchStart=0;
+const renderGuideFood=(next)=>{
+  if(!guideFoodStories.length){return;}
+  guideFoodIndex=(next+guideFoodStories.length)%guideFoodStories.length;
+  const item=guideFoodStories[guideFoodIndex];
+  const card=guideFoodCards[guideFoodIndex];
+  const image=card.querySelector('img');
+  guideFoodImage.src=image.currentSrc||image.src;
+  guideFoodImage.alt=image.alt;
+  guideFoodCat.textContent=item.cat;
+  guideFoodTitle.textContent=item.name;
+  guideFoodJp.textContent=item.jp;
+  guideFoodStory.textContent=item.story;
+  guideFoodTags.innerHTML=item.tags.map(tag=>`<span class="guide-food-tag">${tag}</span>`).join('');
+  guideFoodPosition.textContent=`${String(guideFoodIndex+1).padStart(2,'0')} / ${String(guideFoodStories.length).padStart(2,'0')}`;
+};
+const openGuideFood=(card)=>{
+  if(!guideFoodModal){return;}
+  lastGuideFoodTrigger=card;
+  renderGuideFood(Number(card.dataset.guideFood));
+  guideFoodModal.classList.add('open');
+  guideFoodModal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  guideFoodClose?.focus();
+};
+const closeGuideFood=()=>{
+  if(!guideFoodModal){return;}
+  guideFoodModal.classList.remove('open');
+  guideFoodModal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+  lastGuideFoodTrigger?.focus();
+};
+guideFoodCards.forEach(card=>{card.addEventListener('click',()=>openGuideFood(card));card.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openGuideFood(card);}});});
+guideFoodClose?.addEventListener('click',closeGuideFood);
+guideFoodModal?.addEventListener('click',event=>{if(event.target===guideFoodModal){closeGuideFood();}});
+guideFoodModal?.querySelector('[data-guide-food-prev]')?.addEventListener('click',()=>renderGuideFood(guideFoodIndex-1));
+guideFoodModal?.querySelector('[data-guide-food-next]')?.addEventListener('click',()=>renderGuideFood(guideFoodIndex+1));
+guideFoodDialog?.addEventListener('touchstart',event=>{guideFoodTouchStart=event.changedTouches[0].clientX;},{passive:true});
+guideFoodDialog?.addEventListener('touchend',event=>{const distance=event.changedTouches[0].clientX-guideFoodTouchStart;if(Math.abs(distance)>55){renderGuideFood(guideFoodIndex+(distance<0?1:-1));}},{passive:true});
+document.addEventListener('keydown',event=>{if(!guideFoodModal?.classList.contains('open')){return;}if(event.key==='Escape'){closeGuideFood();}else if(event.key==='ArrowLeft'){renderGuideFood(guideFoodIndex-1);}else if(event.key==='ArrowRight'){renderGuideFood(guideFoodIndex+1);}});
+
+const architectureGrid=document.querySelector('.architecture-grid');
+const architectureCards=architectureGrid?[...architectureGrid.querySelectorAll('.architecture-card')]:[];
+const architectureCount=document.querySelector('.architecture-count');
+let architectureIndex=0;
+const showArchitecture=(next)=>{
+  if(!architectureCards.length){return;}
+  architectureIndex=(next+architectureCards.length)%architectureCards.length;
+  const card=architectureCards[architectureIndex];
+  architectureGrid.scrollTo({left:card.offsetLeft-(architectureGrid.clientWidth-card.offsetWidth)/2,behavior:'smooth'});
+  architectureCount.textContent=`${String(architectureIndex+1).padStart(2,'0')} / ${String(architectureCards.length).padStart(2,'0')}`;
+};
+document.querySelector('[data-architecture-prev]')?.addEventListener('click',()=>showArchitecture(architectureIndex-1));
+document.querySelector('[data-architecture-next]')?.addEventListener('click',()=>showArchitecture(architectureIndex+1));
+architectureGrid?.addEventListener('scroll',()=>{
+  const center=architectureGrid.scrollLeft+architectureGrid.clientWidth/2;
+  let nearest=0;
+  let distance=Infinity;
+  architectureCards.forEach((card,index)=>{const cardCenter=card.offsetLeft+card.offsetWidth/2;const nextDistance=Math.abs(cardCenter-center);if(nextDistance<distance){distance=nextDistance;nearest=index;}});
+  architectureIndex=nearest;
+  architectureCount.textContent=`${String(nearest+1).padStart(2,'0')} / ${String(architectureCards.length).padStart(2,'0')}`;
+},{passive:true});
+
+const guideSpotsTrack=document.getElementById('guideSpotsTrack');
+const guideSpots=guideSpotsTrack?[...guideSpotsTrack.children]:[];
+const guideCount=document.querySelector('.guide-count');
+let guideSpotIndex=0;
+const showGuideSpot=(next)=>{
+  if(!guideSpotsTrack||!guideSpots.length){return;}
+  guideSpotIndex=(next+guideSpots.length)%guideSpots.length;
+  guideSpotsTrack.style.transform=`translateX(-${guideSpotIndex*100}%)`;
+  guideCount.textContent=`${String(guideSpotIndex+1).padStart(2,'0')} / ${String(guideSpots.length).padStart(2,'0')}`;
+};
+document.querySelector('[data-guide-prev]')?.addEventListener('click',()=>showGuideSpot(guideSpotIndex-1));
+document.querySelector('[data-guide-next]')?.addEventListener('click',()=>showGuideSpot(guideSpotIndex+1));
+</script>
+
+<script>
+document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.nav-links').classList.remove('open');document.querySelector('.hamburger').classList.remove('open')})});
+</script>
+
+<div class="sticky-bar" id="stickyBar">
+  <div class="price-info">
+    PADI 考證方案 <strong>NT$12,900</strong> 起
+  </div>
+  <a href="https://lin.ee/U08gDqx" class="btn-sm" target="_blank" rel="noopener noreferrer">LINE 諮詢</a>
+</div>
+
+</body>
+</html>
