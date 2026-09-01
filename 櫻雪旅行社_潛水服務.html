@@ -651,14 +651,14 @@
   .sticky-bar .btn-sm { background: var(--vermillion); border-radius: 2px; }
 
   /* ── OKINAWA DIVE MAP ── */
-  .dive-map-section { max-width: 1200px; display: grid; grid-template-columns: 0.78fr 1.22fr; gap: clamp(2.5rem,6vw,6rem); align-items: center; }
-  .dive-map-copy .section-kana, .dive-map-copy .section-title, .dive-map-copy .section-sub { text-align: left; margin-left: 0; }
-  .dive-map-copy .sec-line { margin-left: 0; }
-  .dive-map-copy .section-sub { margin-bottom: 2rem; }
+  .dive-map-section { max-width: 1200px; display: block; }
+  .dive-map-copy { text-align: center; max-width: 760px; margin: 0 auto 2.75rem; }
+  .dive-map-copy .section-kana, .dive-map-copy .section-title, .dive-map-copy .section-sub { text-align: center; }
+  .dive-map-copy .section-sub { margin-bottom: 1.5rem; }
   .dive-map-base { display: inline-flex; flex-direction: column; align-items: flex-start; padding: 1rem 1.2rem; color: var(--ink); text-decoration: none; border-left: 2px solid var(--sakura-main); background: rgba(241,247,255,0.8); }
   .dive-map-base small { font-family: 'Montserrat',sans-serif; color: #76a9d2; font-size: 0.58rem; letter-spacing: 0.22em; }
   .dive-map-base strong { margin-top: 0.2rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; }
-  .dive-map-canvas { position: relative; min-height: 520px; overflow: hidden; border: 1px solid var(--border-light); background: rgba(255,255,255,0.78); }
+  .dive-map-canvas { position: relative; width: 100%; min-height: 570px; overflow: hidden; border: 1px solid var(--border-light); background: rgba(255,255,255,0.78); }
   .dive-map-canvas::before, .dive-map-canvas::after { content: ''; position: absolute; border-radius: 50%; pointer-events: none; }
   .dive-map-canvas::before { width: 280px; height: 280px; right: -90px; top: -100px; background: rgba(234,182,197,0.11); }
   .dive-map-canvas::after { width: 190px; height: 190px; left: -70px; bottom: -70px; background: rgba(217,236,255,0.38); }
@@ -685,7 +685,6 @@
     .hero-carousel-dot { width: 15px; }
     .hero-carousel-dot.active { width: 28px; }
     section { padding-top: 4.5rem; padding-bottom: 4.5rem; }
-    .dive-map-section { grid-template-columns: 1fr; gap: 2rem; }
     .dive-map-canvas { min-height: 440px; }
     .map-pin-label b { font-size: 0.56rem; }
     .map-pin-label span { font-size: 0.58rem; }
@@ -1098,10 +1097,10 @@
 <!-- ══ 沖繩潛點地圖 ══ -->
 <section class="dive-map-section reveal" id="dive-map">
   <div class="dive-map-copy">
-    <div class="section-kana">DIVE AREA GUIDE</div>
-    <h2 class="section-title">沖 繩 西 海 岸</h2>
+    <div class="section-kana">MORE OKINAWA DIVES</div>
+    <h2 class="section-title">青 洞 之 外 · 還 有 更 多 玩 法</h2>
     <div class="sec-line"></div>
-    <p class="section-sub">從恩納村出發，沿著沖繩本島西岸探索青之洞窟與萬座；天候與船班合適時，也能安排慶良間的透明海域。</p>
+    <p class="section-sub">青之洞窟可以是旅程的起點，不必是唯一目的地。櫻雪會依旅客的證照、經驗、季節與當日海況，從恩納村帶你前往萬座等西海岸潛點；條件合適時，也能進一步安排慶良間船潛，看到沖繩更多不同的海。</p>
     <a class="dive-map-base" href="https://maps.app.goo.gl/Xgw14vvBEVRDdFhM7" target="_blank" rel="noopener noreferrer">
       <small>SAKURAYUKI OKINAWA BASE</small>
       <strong>〒904-0416 沖縄県恩納村山田 591-1 ↗</strong>
