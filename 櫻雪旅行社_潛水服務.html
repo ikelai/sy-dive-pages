@@ -84,7 +84,7 @@
   .hero::before {
     content: ''; position: absolute;
     inset: 0; z-index: 1;
-    background: linear-gradient(90deg, rgba(4,42,71,0.64) 0%, rgba(4,42,71,0.28) 48%, rgba(4,42,71,0.12) 100%);
+    background: linear-gradient(90deg, rgba(4,42,71,0.68) 0%, rgba(4,42,71,0.34) 50%, rgba(4,42,71,0.14) 100%), linear-gradient(180deg,rgba(4,42,71,0.08),rgba(4,42,71,0.28));
   }
   .hero::after {
     content: ''; position: absolute;
@@ -107,6 +107,7 @@
   .hero-slide.active { opacity: 1; z-index: 1; }
   .hero-slide.active img { animation: heroCinema 8.8s cubic-bezier(0.2,0.55,0.35,1) both; }
   .hero-slide:nth-child(even).active img { animation-name: heroCinemaReverse; }
+  .hero-slide:first-child img { object-position: 54% center; }
   @keyframes heroCinema { from { transform: scale(1.035) translate3d(-0.5%,0,0); } to { transform: scale(1.095) translate3d(0.65%,-0.45%,0); } }
   @keyframes heroCinemaReverse { from { transform: scale(1.04) translate3d(0.55%,0,0); } to { transform: scale(1.09) translate3d(-0.55%,-0.35%,0); } }
   .hero-carousel-nav {
@@ -119,7 +120,21 @@
     background: rgba(255,255,255,0.42); transition: width 0.45s ease, background 0.45s ease;
   }
   .hero-carousel-dot.active { width: 42px; background: rgba(255,255,255,0.95); }
+  .hero-scene-label {
+    position: absolute; left: 2.2rem; bottom: 1.85rem; z-index: 3;
+    display: flex; align-items: center; gap: 0.8rem;
+    color: rgba(255,255,255,0.78); font-family: 'Montserrat','Noto Sans TC',sans-serif;
+    font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .hero-scene-label::before { content:''; display:block; width: 34px; height: 1px; background: rgba(255,255,255,0.62); }
   .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 0 2rem; }
+  .motion-ready .hero-content > * { opacity: 0; animation: heroCopyIn 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
+  .motion-ready .hero-content > *:nth-child(1) { animation-delay: .18s; }
+  .motion-ready .hero-content > *:nth-child(2) { animation-delay: .32s; }
+  .motion-ready .hero-content > *:nth-child(3) { animation-delay: .46s; }
+  .motion-ready .hero-content > *:nth-child(4) { animation-delay: .58s; }
+  .motion-ready .hero-content > *:nth-child(5) { animation-delay: .7s; }
+  @keyframes heroCopyIn { from { opacity:0; transform:translateY(18px); filter:blur(5px); } to { opacity:1; transform:none; filter:none; } }
   .hero-kana {
     font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em;
@@ -687,6 +702,7 @@
     .hero-slide img { object-position: 58% center; }
     .hero-slide:nth-child(2) img { object-position: 62% center; }
     .hero-carousel-nav { right: 1.25rem; bottom: 1.35rem; }
+    .hero-scene-label { left: 1.25rem; bottom: 1.25rem; max-width: 52vw; }
     .hero-carousel-dot { width: 15px; }
     .hero-carousel-dot.active { width: 28px; }
     section { padding-top: 4.5rem; padding-bottom: 4.5rem; }
@@ -715,7 +731,7 @@
 <!-- ══ HERO ══ -->
 <header class="hero">
   <div class="hero-carousel" aria-hidden="true">
-    <div class="hero-slide active"><img src="sy-dive-images/hero-okinawa-sky-v2.png?v=20260830-cinema-v2" alt=""></div>
+    <div class="hero-slide active"><img src="sy-dive-images/hero-okinawa-architecture-v2.png?v=20260901-architecture-v2" alt=""></div>
     <div class="hero-slide"><img src="sy-dive-images/hero-okinawa-underwater-v2.png?v=20260830-cinema-v2" alt="" loading="eager"></div>
     <div class="hero-slide"><img src="sy-dive-images/hero-okinawa-village-v2.png?v=20260830-cinema-v2" alt="" loading="eager"></div>
   </div>
@@ -734,8 +750,9 @@
     </div>
   </div>
   <div class="scroll-hint">— 向下探索 —</div>
+  <div class="hero-scene-label" aria-live="polite">Okinawa Base · Onna Village</div>
   <div class="hero-carousel-nav" aria-label="主視覺輪播">
-    <button class="hero-carousel-dot active" type="button" aria-label="顯示沖繩海岸"></button>
+    <button class="hero-carousel-dot active" type="button" aria-label="顯示櫻雪沖繩基地"></button>
     <button class="hero-carousel-dot" type="button" aria-label="顯示沖繩水下"></button>
     <button class="hero-carousel-dot" type="button" aria-label="顯示沖繩聚落"></button>
   </div>
@@ -1191,6 +1208,8 @@ const hero=document.querySelector('.hero');
 const heroCarousel=document.querySelector('.hero-carousel');
 const heroSlides=[...document.querySelectorAll('.hero-slide')];
 const heroDots=[...document.querySelectorAll('.hero-carousel-dot')];
+const heroSceneLabel=document.querySelector('.hero-scene-label');
+const heroSceneNames=['Okinawa Base · Onna Village','Underwater Light · Blue Cave','Island Life · Okinawa'];
 const getStickyBar=()=>document.querySelector('#stickyBar');
 const revealItems=[...document.querySelectorAll('.reveal')];
 const revealGroups=['.loc-grid','.feats','.architecture-grid','.nature-grid','.step-row','.plan-grid'];
@@ -1206,6 +1225,7 @@ revealItems.forEach((el)=>{
 const showHeroSlide=(nextIndex)=>{
   heroSlides.forEach((slide,index)=>slide.classList.toggle('active',index===nextIndex));
   heroDots.forEach((dot,index)=>dot.classList.toggle('active',index===nextIndex));
+  if(heroSceneLabel){heroSceneLabel.textContent=heroSceneNames[nextIndex]||'';}
 };
 let heroIndex=0;
 let heroTimer;
