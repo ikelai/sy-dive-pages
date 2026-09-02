@@ -46,3 +46,29 @@ h1,h2,h3,.step h3,.base-card h3,.plan h3,.ow-content li h3,.ow-requirements h3{f
 .padi-certified-mark small{font:500 .48rem/1.15 Montserrat,sans-serif;letter-spacing:.12em}
 .padi-link-label{font-size:.75rem;border-bottom:1px solid var(--ink);transition:transform .25s,color .25s}
 @media(hover:hover) and (pointer:fine){.padi-link:hover{transform:none;color:inherit}.padi-link:hover .padi-link-label{transform:translateX(6px);color:var(--blue)}}
+
+/* Keep the Open Water course sheet on one touch-scroll surface inside Wix/iOS. */
+.ow-modal{display:flex;align-items:flex-start;justify-content:center;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+.ow-dialog{flex:0 0 auto;margin:auto;max-height:none;overflow:visible}
+.ow-content{min-width:0}
+.ow-actions{padding-bottom:max(1rem,env(safe-area-inset-bottom))}
+@media(max-width:1024px){
+  .ow-modal{padding:0;background:#fff;backdrop-filter:none}
+  .ow-dialog{grid-template-columns:1fr;width:min(760px,100%);min-height:100%;margin:0 auto;box-shadow:none}
+  .ow-side{display:none}
+  .ow-content{padding:5rem clamp(1.4rem,6vw,3.5rem) calc(2rem + env(safe-area-inset-bottom))}
+  .ow-close{position:fixed;top:max(1rem,env(safe-area-inset-top));right:max(1rem,env(safe-area-inset-right));box-shadow:0 5px 18px rgba(12,74,112,.12)}
+}
+@media(max-width:600px){
+  .ow-content{padding:4.75rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom))}
+  .ow-content h2{font-size:clamp(1.85rem,9vw,2.6rem);line-height:1.25}
+  .ow-lead{font-size:.88rem}
+  .ow-facts{grid-template-columns:1fr;margin-bottom:1.5rem}
+  .ow-facts div{display:grid;grid-template-columns:92px 1fr;align-items:center;padding:.9rem 0;border-bottom:1px solid var(--line)}
+  .ow-facts div:last-child{border-bottom:0}
+  .ow-content li{grid-template-columns:40px 1fr}
+  .ow-requirements{padding:1.25rem}
+  .ow-actions{width:100%}
+  .ow-actions .button,.ow-bottom-close{width:100%}
+  .ow-bottom-close{padding:1rem;border:1px solid var(--line)}
+}
