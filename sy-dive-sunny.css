@@ -33,3 +33,7 @@ h1,h2,h3,.step h3,.base-card h3,.plan h3,.ow-content li h3,.ow-requirements h3{f
 @media(max-width:800px){.nav{height:82px}.nav .brand img,.nav.scrolled .brand img{width:min(78vw,300px);height:auto;max-height:57px}.menu{top:82px}}
 .base-card h3{font-size:clamp(2rem,3vw,3.2rem);white-space:nowrap}
 @media(min-width:801px){html.wix-embed{font-size:125%}}
+@media(min-width:801px) and (max-width:1180px){
+  .hero{height:min(82svh,980px);min-height:820px}
+  .hero-media{object-position:center 62%}
+}
