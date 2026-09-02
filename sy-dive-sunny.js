@@ -8,3 +8,11 @@ const toggleOw=open=>{owModal?.classList.toggle('open',open);owModal?.setAttribu
 owOpen?.addEventListener('click',()=>toggleOw(true));owCloses.forEach(button=>button.addEventListener('click',()=>toggleOw(false)));owModal?.addEventListener('click',event=>{if(event.target===owModal)toggleOw(false)});addEventListener('keydown',event=>{if(event.key==='Escape'&&owModal?.classList.contains('open'))toggleOw(false)});
 const windyFrame=document.querySelector('[data-windy-frame]'),windyButtons=document.querySelectorAll('[data-windy-layer]'),windyProducts={currents:'seaCurrents',waves:'ecmwfWaves',wind:'ecmwf'};
 windyButtons.forEach(button=>button.addEventListener('click',()=>{const layer=button.dataset.windyLayer,product=windyProducts[layer];windyButtons.forEach(item=>item.classList.toggle('active',item===button));if(windyFrame)windyFrame.src=`https://embed.windy.com/embed2.html?lat=26.44&lon=127.75&detailLat=26.44&detailLon=127.75&zoom=9&level=surface&overlay=${layer}&product=${product}&menu=true&message=true&marker=true&calendar=now&pressure=false&type=map&location=coordinates&detail=true&metricWind=kt&metricTemp=%C2%B0C&radarRange=-1`}));
+const groupCopyright=[...document.querySelectorAll('footer span')].find(element=>element.textContent.trim()==='© SAKURAYUKI GROUP');
+if(groupCopyright){
+  const groupLink=document.createElement('a');
+  groupLink.href='./';
+  groupLink.setAttribute('aria-label','返回櫻雪集團首頁');
+  groupLink.textContent=groupCopyright.textContent;
+  groupCopyright.replaceWith(groupLink);
+}
