@@ -22,4 +22,4 @@ h1,h2,h3,.step h3,.base-card h3,.plan h3,.ow-content li h3,.ow-requirements h3{f
 .nav{height:72px}.nav .brand img,.nav.scrolled .brand img{width:245px;height:auto;max-height:50px}
 @media(max-width:800px){.nav{height:82px}.nav .brand img,.nav.scrolled .brand img{width:min(68vw,265px);height:auto;max-height:54px}.menu{top:82px}}
 .base-card h3{font-size:clamp(2rem,3vw,3.2rem);white-space:nowrap}
-@media(min-width:801px){html.wix-embed .menu a{font-size:.85rem}}
+@media(min-width:801px){html.wix-embed{font-size:125%}}
