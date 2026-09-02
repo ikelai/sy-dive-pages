@@ -16,3 +16,8 @@ if(groupCopyright){
   groupLink.textContent=groupCopyright.textContent;
   groupCopyright.replaceWith(groupLink);
 }
+
+// Keep outbound-link arrows as typographic symbols on iOS/iPadOS instead of emoji.
+document.querySelectorAll('a').forEach(link=>{
+  if(link.textContent.includes('↗')) link.textContent=link.textContent.replaceAll('↗','↗︎');
+});
