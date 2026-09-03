@@ -7,14 +7,19 @@ const owModal=document.querySelector('.ow-modal'),owOpen=document.querySelector(
 const toggleOw=open=>{
   if(!owModal)return;
   const owContent=owModal.querySelector('.ow-content');
+  const inlineMode=document.documentElement.classList.contains('wix-embed')&&matchMedia('(max-width:1024px)').matches;
+  if(inlineMode&&owOpen?.closest('section')&&!owModal.classList.contains('inline-sheet')){
+    owModal.classList.add('inline-sheet');
+    owOpen.closest('section').appendChild(owModal);
+  }
   owModal.classList.toggle('open',open);
   owModal.setAttribute('aria-hidden',String(!open));
-  document.documentElement.classList.toggle('modal-open',open);
-  document.body.classList.toggle('modal-open',open);
+  document.documentElement.classList.toggle('modal-open',open&&!inlineMode);
+  document.body.classList.toggle('modal-open',open&&!inlineMode);
   if(open){
     owModal.scrollTop=0;
     if(owContent)owContent.scrollTop=0;
-    requestAnimationFrame(()=>{owModal.scrollTop=0;if(owContent)owContent.scrollTop=0;owCloses[0]?.focus({preventScroll:true})});
+    requestAnimationFrame(()=>{owModal.scrollTop=0;if(owContent)owContent.scrollTop=0;if(inlineMode)owModal.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});else owCloses[0]?.focus({preventScroll:true})});
   }else{
     owOpen?.focus({preventScroll:true});
   }

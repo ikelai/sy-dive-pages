@@ -75,3 +75,18 @@ h1,h2,h3,.step h3,.base-card h3,.plan h3,.ow-content li h3,.ow-requirements h3{f
 }
 
 html.modal-open,body.modal-open{height:100%;overflow:hidden;overscroll-behavior:none}
+
+/* Wix auto-height iframes do not expose the device viewport height. On tablets
+   and phones the course details therefore expand in-page instead of trapping
+   touch scrolling inside a false full-screen overlay. */
+@media(max-width:1024px){
+  .wix-embed .ow-modal.inline-sheet{position:relative;inset:auto;z-index:3;display:block;width:min(960px,calc(100% - 2rem));height:0;margin:0 auto;overflow:hidden;background:transparent;opacity:0;visibility:hidden;touch-action:pan-y;transition:opacity .35s ease,margin .35s ease}
+  .wix-embed .ow-modal.inline-sheet.open{height:auto;margin-top:clamp(2rem,6vw,4rem);opacity:1;visibility:visible}
+  .wix-embed .ow-modal.inline-sheet .ow-dialog{display:block;width:100%;height:auto;min-height:0;overflow:visible;border:1px solid var(--line);box-shadow:0 18px 50px rgba(12,74,112,.1)}
+  .wix-embed .ow-modal.inline-sheet .ow-content{height:auto;overflow:visible;padding:clamp(4.5rem,8vw,6rem) clamp(1.4rem,6vw,4rem) clamp(2rem,5vw,4rem)}
+  .wix-embed .ow-modal.inline-sheet .ow-close{position:absolute;top:1rem;right:1rem}
+  .wix-embed .ow-modal.inline-sheet .ow-actions{padding-bottom:0}
+}
+@media(max-width:600px){
+  .wix-embed .ow-modal.inline-sheet{width:calc(100% - 1rem)}
+}
