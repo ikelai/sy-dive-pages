@@ -6,12 +6,15 @@ document.querySelectorAll('[data-slider]').forEach(track=>{const parent=track.pa
 const owModal=document.querySelector('.ow-modal'),owOpen=document.querySelector('[data-open-water-open]'),owCloses=document.querySelectorAll('[data-open-water-close]');
 const toggleOw=open=>{
   if(!owModal)return;
+  const owContent=owModal.querySelector('.ow-content');
   owModal.classList.toggle('open',open);
   owModal.setAttribute('aria-hidden',String(!open));
+  document.documentElement.classList.toggle('modal-open',open);
   document.body.classList.toggle('modal-open',open);
   if(open){
     owModal.scrollTop=0;
-    requestAnimationFrame(()=>{owModal.scrollTop=0;owCloses[0]?.focus({preventScroll:true})});
+    if(owContent)owContent.scrollTop=0;
+    requestAnimationFrame(()=>{owModal.scrollTop=0;if(owContent)owContent.scrollTop=0;owCloses[0]?.focus({preventScroll:true})});
   }else{
     owOpen?.focus({preventScroll:true});
   }

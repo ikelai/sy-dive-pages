@@ -48,16 +48,17 @@ h1,h2,h3,.step h3,.base-card h3,.plan h3,.ow-content li h3,.ow-requirements h3{f
 @media(hover:hover) and (pointer:fine){.padi-link:hover{transform:none;color:inherit}.padi-link:hover .padi-link-label{transform:translateX(6px);color:var(--blue)}}
 
 /* Keep the Open Water course sheet on one touch-scroll surface inside Wix/iOS. */
-.ow-modal{display:flex;align-items:flex-start;justify-content:center;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+.ow-modal{display:flex;align-items:flex-start;justify-content:center;overflow:hidden;overscroll-behavior:none;touch-action:none}
 .ow-dialog{flex:0 0 auto;margin:auto;max-height:none;overflow:visible}
 .ow-content{min-width:0}
 .ow-actions{padding-bottom:max(1rem,env(safe-area-inset-bottom))}
 @media(max-width:1024px){
-  .ow-modal{padding:0;background:#fff;backdrop-filter:none}
-  .ow-dialog{grid-template-columns:1fr;width:min(760px,100%);min-height:100%;margin:0 auto;box-shadow:none}
+  .ow-modal{height:100vh;height:100dvh;padding:0;background:#fff;backdrop-filter:none}
+  .ow-dialog{grid-template-columns:1fr;width:min(760px,100%);height:100%;min-height:0;margin:0 auto;overflow:hidden;box-shadow:none}
   .ow-side{display:none}
-  .ow-content{padding:5rem clamp(1.4rem,6vw,3.5rem) calc(2rem + env(safe-area-inset-bottom))}
+  .ow-content{height:100%;min-height:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;padding:5rem clamp(1.4rem,6vw,3.5rem) calc(3.5rem + env(safe-area-inset-bottom))}
   .ow-close{position:fixed;top:max(1rem,env(safe-area-inset-top));right:max(1rem,env(safe-area-inset-right));box-shadow:0 5px 18px rgba(12,74,112,.12)}
+  .ow-actions{padding-bottom:max(2rem,env(safe-area-inset-bottom))}
 }
 @media(max-width:600px){
   .ow-content{padding:4.75rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom))}
@@ -72,3 +73,5 @@ h1,h2,h3,.step h3,.base-card h3,.plan h3,.ow-content li h3,.ow-requirements h3{f
   .ow-actions .button,.ow-bottom-close{width:100%}
   .ow-bottom-close{padding:1rem;border:1px solid var(--line)}
 }
+
+html.modal-open,body.modal-open{height:100%;overflow:hidden;overscroll-behavior:none}
