@@ -75,3 +75,5 @@ h1,h2,h3,.step h3,.base-card h3,.plan h3,.ow-content li h3,.ow-requirements h3{f
 }
 
 html.modal-open,body.modal-open{height:100%;overflow:hidden;overscroll-behavior:none}
+.faq-cat{font:600 .72rem/1.4 Montserrat,sans-serif;letter-spacing:.18em;color:var(--blue);margin:2.6rem 0 .6rem}.faq-group:first-child .faq-cat{margin-top:0}.faq-list details[open] p{max-height:400px}
+.faq-list summary{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}.faq-list summary::after{float:none;flex:none}
